@@ -4,11 +4,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INDEX TESTING</title>
+    <title>MIHierarchies</title>
 </head>
 
+
+<link rel="icon" href="Images/logo-hcircle-dark.png">
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+<link rel="stylesheet" type="text/css" href="./assets/styles.css" />
+
+<script src="https://kit.fontawesome.com/ae1e2e7d99.js" crossorigin="anonymous"></script>
+
+</head>
+
+
 <body>
-    <h1>INDEX TESTING</h1>
+
+
+
+
+
+    <div class="container" style="width:100%;">
+        <div class="outer row" style="color:black;">
+            <div style="width:100%;  margin-bottom:3%; float:left; background-color:#155446; color:white;">
+                <h1>Tree Visualization</h1>
+                <br>
+            </div>
+            <br />
+
+
+
+
+            <div class="inner row" id="consent-form" style="width:100%;">
+                <h1
+                    style="margin-bottom:50px; color:black; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                    Participant Information Sheet</h1>
+
+
+
+
+
+
+
+                <embed id="pdfviewer" src="File/infosheet.pdf" frameborder="0" width="100%">
+                <br>
+                <button type="button" id="btn-info" class="btn btn-lg btn-outline-primary"
+                    style="margin-top: 2%; margin-bottom: 5%; background-color: #155446; color:white">Proceed to the
+                    experiment</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script type="text/javascript">
+    var logObject = [];
+
+    var uniq = (new Date()).getTime();
+
+    //console.log(uniq)
+    //console.log(navigator.userAgent);
+
+    const userID = "P" + uniq;
+    //console.log(userID);
+
+    var date = new Date();
+    window.localStorage.setItem("userID", userID);
+    window.localStorage.setItem("screenSize", "" + window.innerWidth + ";" + window.innerHeight + "");
+
+    logObject.push({
+        "date": date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear(),
+        "userID": localStorage.getItem("userID"),
+        "vizID": "",
+        "screenWidth": window.innerWidth,
+        "screenHeight": window.innerHeight,
+        "pageID": "ParticipantInfo_Sheet",
+        "elementID": "",
+        "elementType": "",
+        "elementDescription": "New user. Landed on consent form.",
+        "eventDescription": "",
+        "overall_timestamp": Math.round(+new Date() / 1000),
+        //"phase_timestamp": new Date().getMilliseconds(),
+        "questionID": "",
+        "question": "",
+        "useranswer": "",
+        "correctanswer": "",
+        "score": ""
+
+    });
+    window.localStorage.setItem("logObject", JSON.stringify(logObject));
+
+
+    d3.select("#pdfviewer")
+        .attr("height", window.innerHeight * .65)
+        .attr("width", window.innerWidth * .75);
+
+
+    d3.select("#btn-info")
+        .on("click", function (d) {
+            window.location.href = 'consent.html';
+        });
+
+
+    function KeyPress(e) {
+        var evtobj = window.event ? event : e
+        if ((evtobj.keyCode == 77 || evtobj.keyCode == 109) && evtobj.ctrlKey) {
+            window.location.href = 'mtree.html';
+        }
+        else if ((evtobj.keyCode == 76 || evtobj.keyCode == 108) && evtobj.ctrlKey) {
+            window.location.href = 'treeswlinking.html';
+        }
+    }
+
+    document.onkeydown = KeyPress;
+
+
+
+
+
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>
