@@ -260,7 +260,7 @@
     <div class="row" id="slidescarousel">
         <div class="col-12" id="imgvid-div">
             <br>
-            <img id="image" src="Images/mihierarchies.png" class="img-fluid" alt="Responsive image">
+            <img id="image" src="Images/books-mihierarchies.png" class="img-fluid" alt="Responsive image">
             <br>
 
         </div>
@@ -401,7 +401,7 @@
                                 .attr("controls", "")
                                 //.attr("autoplay", "")
                                 .append("source")
-                                .attr("src", "Images/linkedtreeinaction.mov")
+                                .attr("src", "Images/books-linkedtreeinaction.mov")
                                 .attr("type", "video/mp4");
 
                         }
@@ -413,12 +413,12 @@
                                 d3.select("#imgvid-div")
                                     .append("img")
                                     .attr("id", "image")
-                                    .attr("src", "Images/" + slides[numofclicks] + ".png")
+                                    .attr("src", "Images/books-" + slides[numofclicks] + ".png")
                                     .attr("class", "img-fluid");
 
                             else
                                 d3.select("#image")
-                                    .attr("src", "Images/" + slides[numofclicks] + ".png");
+                                    .attr("src", "Images/books-" + slides[numofclicks] + ".png");
 
                         }
 
@@ -470,7 +470,7 @@
                                 .attr("height", "70%")
                                 .attr("controls", "")
                                 .append("source")
-                                .attr("src", "Images/linkedtreeinaction.mov")
+                                .attr("src", "Images/books-linkedtreeinaction.mov")
                                 .attr("type", "video/mp4");
 
                         }
@@ -481,11 +481,11 @@
                                 d3.select("#imgvid-div")
                                     .append("img")
                                     .attr("id", "image")
-                                    .attr("src", "Images/" + slides[numofclicks] + ".png")
+                                    .attr("src", "Images/books-" + slides[numofclicks] + ".png")
                                     .attr("class", "img-fluid");
                             else
                                 d3.select("#image")
-                                    .attr("src", "Images/" + slides[numofclicks] + ".png");
+                                    .attr("src", "Images/books-" + slides[numofclicks] + ".png");
 
                         }
                         d3.select("#progress-overview").style("width", ((numofclicks + 1) / (slides.length) * 100) + "%");
