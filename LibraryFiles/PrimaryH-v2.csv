@@ -1,0 +1,118 @@
+child,parent,description_child,description_parent,title,author,isbn,pubname,pubyear,CB,callnumber
+root,,root,,,,,,,yes,
+e,root,E,root,,,,,,yes,
+f,root,F,root,,,,,,,
+j,root,J,root,,,,,,yes,
+ja,j,JA,J,,,,,,yes,
+jk,j,JK,J,,,,,,,
+4dtahs,e100,4DTAHS,E100,444 days : The american hostage story ,Sid Moody and the News Staff and photographers of The Associated Press,0831745703;0831745711,New York : Rutledge Press,1981,,e1834d
+4dthr,e100,4DTHR,E100,444 days : The hostages remember ,Tim Wells,015132803X;9780151328031,San Diego : Harcourt Brace Jovanovich,1985,,e1834d
+atpwlt,e100,ATPWLT,E100,After the Palestine-Israel War : limits to US and Israeli policy ,Khalil Nakhleh and Clifford A Wright,0912031018;9780912031019,Belmont,1983,,e183atp
+afdate,e100,AFDATE,E100,All fall down : America's tragic encounter with Iran,Khalil Nakhleh and Clifford A Wright,0394544889;9780394544885,New York : Random House,1985,,e183afd
+aaefrt,e100,AAEFRT,E100,America and Egypt : from Roosevelt to Eisenhower ,Matthew F Holland,0275954749;9780275954741,Westport,1996,,e183aae
+ahiitco,e100,AHIITCO,E100,American hostages in Iran the conduct of a crisis,Matthew F Holland,300023332,London : Yale University Press,1985,,e183ahi
+apotiat,e100,APOTIAT,E100,American public opinion toward Israel and the Arab-Israeli conflict ,Eytan Gilboa,0669134260;9780669134261,Lexington,1987,,e183apo
+aaham,e100,AAHAM,E100,An ancient heritage :the Arab-American minority ,Brent Ashabranner ; photographs  Paul S Conklin,0060200480;9780060200480;0060200499;9780060200497;0397324340;9780397324347;0397324359;9780397324354,New York : HarperCollins,1991,,e184aah
+btfaqf,e100,BTFAQF,E100,Before the flames : a quest for the history of Arab Americans ,Gregory Orfalea,292707487,Austin : University of Texas Press,1988,,e184btf
+vtswot,jk4000,VTSWOT,JK4000,Veil : the secret wars of the CIA 1981-1987 ,Bob Woodward,0671655434;9780671655433,London : Simon & Schuster,1987,,jk468 vt
+breakingwm,e100,BREAKINGWM,E100,Breaking with Moscow ,Arkady N Shevchenko,224028049,London : Cape,1985,,e183bwm
+bcafpa,e100,BCAFPA,E100,Broken covent : American foreign policy and the crisis between the U.S. and Israel ,Moshe Arens,0671869647;9780671869649,Simon & Schuster,1995,,e183bc
+cotraf,e100,COTRAF,E100,Children of the roojme : a family's journey ,Elmaz Abinader,0393029522;9780393029529,New York : Norton,1991,,e184cot
+bwajar,e100,BWAJAR,E100,Between Washington and Jerusalem : a reporter's notebook ,Wolf Blitzer,195037081,New York : Oxford University Press,1985,,e183bwa
+deltaf,e100,DELTAF,E100,Delta force ,Charlie A Beckwith and Donald Knox,0151246572;9780151246571,San Diego : Harcourt brace jovanovich,1983,,e183df
+eaiur1,e100,EAIUR1,E100,Eisenhower and Israel : US-Israeli relations 1953-1960 ,Isaac Alteras,0813012058;9780813012056;0813012066;9780813012063,Gainesville : University Press of Florida,1993,,e183eai
+eope,ja80,EOPE,JA80,Essays on political education ,Bernard Crick and Derek Heater,0815273044;0905273036;9780905273037,Ringmer [England] : Falmer Press,1977,,ja88eop
+floridagc,f300,FLORIDAGC,F300,Florida's gulf coast ,Photographed  Clyde H Smith,0930527186 : $30.00;9780930527181,Old Saybrook,1991,,f317fgc
+greatp,f500,GREATP,F500,Great Plains ,Ian Frazier,0374217238;9780374217235,New York : Farrar Straus Giroux,1989,,f595gp
+gotr,e100,GOTR,E100,Guest of the revolution ,Kathryn Koob,0840741057 : $12.95;9780840741059,Nashville : T Nelson Pub,1982,,e183got
+hostage,e100,HOSTAGE,E100,Hostage ,Sheldon D Engelmayer and Robert J Wagman,0898030846;9780898030846,Ottawa,1981,,e183h
+kapc,f400,KAPC,F400,Kentucky : a photographic celebration ,text  Don Edwards ; photographs  William Strode,0938314858;9780938314851;0938314874 : 12.95;9780938314875,Helena,1990,,f449ka
+khumac,jk400,KHUMAC,JK400,Killing hope : US military and CIA interventions since World War II ,William Blum,1567510531;9781567510539;1567510523;9781567510522,Monroe,1995,,jk468kh
+lfaana,e100,LFAANA,E100,Love from America : a newsman's account of efforts to aid hostages in Tehran ,Alex Paen ; written with James H Brown,0915677334;9780915677337,Santa Monica,1989,,e183lfa
+wtcoel,ja800,WTCOEL,JA800, with the collaboration of Ernest L Fortin,Edited  Ralph Lerner and Muhsin Mahdi,Medieval political philosophy : a sourcebook ,0801491398;9780801491399,Ithaca,,ja82 wt
+naafp1,e100,NAAFP1,E100,Nasser and American foreign policy 1952-1956 ,Muhammad Abd el-Wahab Sayed-Ahmed,1870326148;9781870326148,London : LAAM,1989,,e183naa
+nosajt,e100,NOSAJT,E100,Nest of spies : America's journey to disaster in Iran ,Amir Taheri,0091734584;9780091734589,London : Hutchinson,1988,,e183nos
+oiotw,e100,OIOTW,E100,Occidentalism : images of the West ,edited  James G Carrier,0198279787;9780198279785;0198279795;9780198279792,Oxford : Clarendon Press ; New York : Oxford University Press,1995,,e184oi
+owoe,e100,OWOE,E100,On wings of eagles ,Ken Follett,000217006X;9780002170062,London : Collins,1983,,e183owo
+pwgita,e100,PWGITA,E100,Paved with Good Intentions : the American Experience and Iran ,Barry Rubin,0195028058;9780195028058,OUP,1980,,e183pwg
+ptitaw,ja80,PTITAW,JA80,Political trends in the Arab world : the role of ideas and ideals in politics ,Majid Khadduri,0801811228;9780801811227,Baltimore : Johns Hopkins Press,1970,yes,ja84pti
+teoteni,ja80,TEOTENI,JA80,The evolution of the Egyptian national image : from its origins to Ahmad Lutfi al-Sayyid ,Charles Wendell,520021118,Berkeley : University of California Press,1972,,ja84teo
+totofb,jk400,TOTOFB,JK400,Trail of the octopus : from Beirut to Lockerbie--inside the DIA ,Donald Goddard with Lester K Coleman,074751562X;9780747515623,London,1993,,jk468tot
+wftstt,e100,WFTSTT,E100,Witness : from the Shah to the secret arms deal : an insider's account of US involvement in Iran ,Mansur Rafizadeh,0688073697;9780688073695,New York : W Morrow,1987,,e183wf
+tlarot,ja700,TLAROT,JA700,The loss and recovery of truth : selected writings ,Gerhart Niemeyer ; edited  Michael Henry,9781587314728;158731472X;9781587314735;1587314738,South Bend,2013,,ja71 tla
+pafots,e100,PAFOTS,E100,Puro arte : Filipinos on the stages of empire ,Lucy Mae San Pablo Burns,9780814744437;0814744435;9780814725450;0814725457;9780814708132;0814708137;9780814744499;0814744494,New York University Press,2012,yes,e184pa
+americans,e1000,AMERICANS,E1000,American speeches.,Scott Farris,1931082979;9781931082976;1931082987;9781931082983,Distributed to the trade in the United States by Penguin Putm; Library of America,2006,,e183 as
+troel1,e1000,TROEL1,E1000,The reshaping of everyday life; 1790-1840 ,Jack Larkin,0060916060;9780060916060;0060159057;9780060159054,HarperPerennial,1989,,e164 tro
+americanc,e1000,AMERICANC,E1000,American colonies ,Alan Taylor ; [map illustrations  Jeffrey Ward],9780142002100;0142002100,Penguin,2002,,e188 ac
+gmlaah,e1000,GMLAAH,E1000,Give me liberty! : An American history ,Eric Foner,9780393934304;0393934306,WW Norton,2011,,e178 gml
+tbytpo,e1000,TBYTPO,E1000,The barbarous years : the peopling of British North America : the conflict of civilizations; 1600-1675 ,Bernard Bailyn,9780394515700;0394515706,Alfred A Knopf,2012,,e191 tby
+oooptf,e1000,OOOPTF,E1000,Out of our past : the forces that shaped modern America ,Carl N Degler,0061319856;9780061319853,Harper & Row,1984,,e178 ooo
+giiah,e1000,GIIAH,E1000,Great issues in American history ,edited  Clarence L  Ver Steeg and Richard Hofstadter,0394705408;9780394705408,Vintage Books,1969,,e188 gii
+afgtgl,e100,AFGTGL,E100,A field guide to getting lost ,Rebecca Solnit,0143037242,Penguin,2006,yes,e169afg
+tpobna,e100,TPOBNA,E100,The peopling of British North America : an introduction ,Joseph C Morton,0394757793,Vintage Books,1988,yes,e188tpo
+tphotus,e1000,TPHOTUS,E1000,The Penguin history of the United States of America ,Hugh Brogan,014025255X,Penguin,2001,yes,e178 tph
+rcwmtf,e300,RCWMTF,E300,Revolutiory characters : what made the founders different ,Gordon S Wood,1594200939;9781594200939;9780143112082;0143112082,Penguin Press,2007,yes,e302rc
+tgdiaa,e100,TGDIAA,E100,The Great Depression in America : a cultural encyclopedia.,William H Young and Nancy K Young,0313335206;9780313335204;0313335214;9780313335211;0313335222;9780313335228,Harcourt Education distributor; Greenwood,2007,yes,e169tgd
+tlotmia,e100,TLOTMIA,E100,The life of the mind in America : from the Revolution to the Civil War ,Perry Miller,0156519909,Harcourt,1965,yes,e169tlo
+tgotar,e1000,TGOTAR,E1000,The growth of the American republic ,Samuel Eliot Morison and Henry Steele Commager,0195025954;9780195025958;0195025938;9780195025934;0195025946;9780195025941,OUP,1980,,e178 tgo
+ahtcot,e1000,AHTCOT,E1000,American holocaust : the conquest of the New World ,David E  Stannard,9780195085570;0195085574,Oxford University press,1992,,e112 ah
+safkme,e100,SAFKME,E100,Support any friend : Kennedy's Middle East and the making of the U.S.-Israel alliance ,Warren Bass,9780195165807;0195165802;9780195177503,Oxford University Press,2004,,e183saf
+tsotph,e100,TSOTPH,E100,The shadow of the panther : Huey Newton and the price of Black power in America ,Hugh Pearson,9780201483413;0201483416,Addison-Wesley,1994,,e185tso
+sachoa,e1000,SACHOA,E1000,Self-rule : a cultural history of American democracy ,Robert H Wiebe,0226895629;9780226895628;9780226895635;0226895637,U of Chicago P,1995,,e183 sa
+tceia,e100,TCEIA,E100,The Chinese experience in America ,Shih-shan Henry Tsai,0253313597;0253203872,India UP,1986,,e184tce
+taomx,e100,TAOMX,E100,The autobiography of Malcolm X ,with the assistance of Alex Haley ; foreword  Attallah Shabazz ; introduction  MS Handler ; epilogue  Alex Haley ; afterword  Ossie Davis,9780345350688;0345350685;9780606003674;0606003673;9780812419535,Ballantine,1999,,e185tao
+blacklm,e100,BLACKLM,E100,Black like me ,John Howard Griffin,9780451234216;0451234219,Signet,2010,,e185blm
+tstgsi,e100,TSTGSI,E100,The seventies : the great shift in American culture; society; and politics ,Bruce J Schulman,030681126X,Da Capo,2002,,e169ts
+rtlbot,e100,RTLBOT,E100,Redemption : the last battle of the Civil War ,Nicholas Lemann,9780374530693;0374530696,Farrar Straus and Giroux,2007,,e185rt
+ftsomt,e100,FTSOMT,E100,For the soul of mankind : the United States; the Soviet Union; and the Cold War ,Melvyn P Leffler,9780809097173;0809097176;9780374531423;0374531420,Hill and Wang,2007,,e183fts
+tbtwat,e300,TBTWAT,E300,To begin the world anew : the genius and ambiguities of the American founders ,Bernard Bailyn,0375713085;9780375713088,Vintage,2004,yes,e302tbt
+dangerousn,e100,DANGEROUSN,E100,Dangerous nation ,Robert Kagan,0375724915;9780375724916,Knopf,2006,yes,e183dt
+wtwhai,e100,WTWHAI,E100,Working toward whiteness : how America's immigrants became white : the strange journey from Ellis Island to the suburbs ,David R  Roediger,9780465070749;0465070744,Perseus Running distributor; BasicBooks,2006,,e184wtw
+coaim,e100,COAIM,E100,Coming of age in Mississippi ,Anne Moody,9.78039E+12,Delta Trade Paperbacks,2004,,e185coa
+sbamtr,e100,SBAMTR,E100,Slavery by another me : the re-enslavement of Black Americans from the Civil War to World War II ,Douglas A Blackmon,9780385722704;0385722702,Anchor Books,2009,,e185sba
+troadj,e300,TROADJ,E300,The rise of American democracy : Jefferson to Lincoln ,Sean Wilentz,9780393058208;0393058204,Norton,2005,yes,e302tro
+yrtsjo,e100,YRTSJO,E100,Yellow ribbon : the secret journal of Bruce Laingen ,L Bruce Laingen,0028810309 : $23.00;9780028810300,Washington : Brassey's (US),1992,,e183yr
+rcbtsa,e200,RCBTSA,E200,Rough crossings : Britain the slaves and the American Revolution ,Simon Schama,006053916X;9780060539160;9780060539160,New York : Ecco,2006,,e269rc
+iashmn,e100,IASHMN,E100,I'm a stranger here myself : notes on returning to America after twenty years away ,Bill Bryson,076790382X;9780767903820,New York : Broadway Books,2000,,e169ias
+tlvocb,e1000,TLVOCB,E1000,The last voyage of Columbus : being the epic tale of the great captain's fourth expedition including accounts of swordfight mutiny shipwreck gold war hurricane and discovery ,Martin Dugard,0316828831;9780316828833,New York : Little,2005,,e118 tlv
+jtusatm,e100,JTUSATM,E100,Jordan the United States and the Middle East peace process 1974-1991 ,Madiha Rashid Al Madfai,0521415233;9780521415231,Cambridge [England] ; New York,1993,,e183jtu
+swtdhw,e100,SWTDHW,E100,Sleeping with the devil : how Washington sold our soul for Saudi crude ,Robert Baer,1400050219;9781400050215,New York : Crown,2003,,e183swt
+upti,e100,UPTI,E100,US policy toward Iraq ,F Gregory Gause III,9948003233;9789948003236,Abu Dhabi,2002,,e183upt
+eiht,ja700,EIHT,JA700,Ethics in hard times ,edited  Arthur L Caplan and Daniel Callahan,0306407906;9780306407901,New York : Plenum Press,E825,,ja79 eih
+oopam,e100,OOPAM,E100,Out of place : a memoir ,Edward W Said,1862073708;9781862073708,London : Granta,2000,,e184oop
+ctppot,ja80,CTPPOT,JA80,China : the political philosophy of the middle kingdom ,Tongdong Bai,9781780320755;1780320752;9781780320762;1780320760,London ; New York : Zed Books,2012,,ja84ct
+mopcte,ja700,MOPCTE,JA700,Models of political competence : the evolution of political norms in the works of Burgundian and Habsburg court historians c 1470-1700 ,Maria Golubeva,9789004231054;9004231056;9789004250741,Leiden : Brill,2013,,ja71 mop
+pwvtwa,ja800,PWVTWA,JA800,Politics without vision : thinking without a banister in the twentieth century ,Tracy B Strong,9780226777467;0226777464,University of Chicago Press,2012,yes,ja83 pwv
+tpatra,jk1000,TPATRA,JK1000,Tom Paine's America : the rise and fall of transatlantic radicalism in the early republic ,Seth Cotlar,9780813931005;0813931002;9780813931067;0813931061,University of Virginia Press,2011,yes,jk171 tpa
+temwr,ja700,TEMWR,JA700,The Ellen Meiksins Wood reader ,edited  Larry Patriquin,9789004230088;9004230084;9789004230095;9004230092,Extenza Turpin distributor; Brill,2012,yes,ja76 tem
+slaetr,ja80,SLAETR,JA80,Settlers; liberty; and empire : the roots of early American political theory; 1675-1775 ,Craig Yirush,9780521193306;0521193303;9780521132466;0521132460,Cambridge University Press,2011,yes,ja84sla
+politicalr,ja80,POLITICALR,JA80,Political romanticism ,"Carl Schmitt ; translated  Guy Oakes ; with a new introduction  Graham McAleer""",9781412814720;1412814723,Transaction,2011,yes,ja84pr
+eamcrc,ja80,EAMCRC,JA80,Eurocentrism : a Marxian critical realist critique ,Nick Hostettler,9780415565103;0415565103;9780203861905;0203861906,Routledge,2012,yes,ja84ea
+ohog,ja700,OHOG,JA700,Oxford handbook of governance ,edited  David Levi-Faur,9780199560530;0199560536,Oxford University Press,2012,yes,ja71 oho
+ppsapt,ja700,PPSAPT,JA700,Philosophic pride : Stoicism and political thought from Lipsius to Rousseau ,Christopher Brooke,9780691152080;069115208X,Princeton University Press,2012,yes,ja71 pp
+fpav,ja700,FPAV,JA700,Foucault; politics; and violence ,Johanna Oksala,9780810128026;0810128020;9780810128033;0810128039,Northwestern University Press,2012,yes,ja71 fpa
+pptet,ja700,PPTET,JA700,Political philosophy : the essential texts ,edited  Steven M Cahn,0195177088;9780195177084,Oxford University Press,2005,yes,ja71 pp
+ptfatc,jk1000,PTFATC,JK1000,Philosophy; the Federalist and the Constitution ,Morton White,9780195039115;0195039114;9780195059489;0195059484,OUP,1987,yes,jk155 ptf
+lapash,ja800,LAPASH,JA800,Liberty and property : a social history of Western political thought from Renaissance to Enlightenment ,Ellen Meiksins Wood,9781844677528;1844677524,Verso,2012,yes,ja83 lap
+iamerm,ja700,IAMERM,JA700,Interpretation and method : empirical research methods and the interpretive turn ,edited  Dvora Yanow and Peregrine Schwartz-Shea,9780765635396;0765635399;9780765635402;0765635402,ME Sharp Inc,2014,,ja71 iam
+chariep,ja80,CHARIEP,JA80,Classical humanism and republicanism in English political thought; 1570-1640 ,Markku Peltonen,0521496950,Cambridge University Press,1995,,ja84cha
+ppavsi,ja700,PPAVSI,JA700,Political philosophy : a very short introduction ,David Miller,9780192803955;0192803956,Oxford University Press,2003,yes,ja71 pp
+lothopp,ja700,LOTHOPP,JA700,Lectures on the history of political philosophy ,John Rawls ; edited  Samuel Freeman,0674024923;9780674024922,Belknap Press of Harvard University Press,2007,,ja71 lot
+vcaheo,ja80,VCAHEO,JA80,Virtue; commerce; and history : essays on political thought and history; chiefly in the eighteenth century ,JGA Pocock,0521257018;0521276608,Cambridge University Press,1985,,ja84vca
+cpprs,ja700,CPPRS,JA700,Contemporary political philosophy : radical studies ,edited  Keith Graham,9780521245517;0521245516;9780521287838;0521287839,Cambridge University Press,1982,,ja71 cpp
+e100,e,E100,E,,,,,,yes,
+jk4000,jk,JK4000,JK,,,,,,,
+ja80,ja,JA80,JA,,,,,,,
+f300,f,F300,F,,,,,,,
+f500,f,F500,F,,,,,,,
+f800,f,F800,F,,,,,,,
+f400,f,F400,F,,,,,,,
+jk400,jk,JK400,JK,,,,,,,
+ja800,ja,JA800,JA,,,,,,,
+e200,e,E200,E,,,,,,yes,
+e1000,e,E1000,E,,,,,,yes,
+ja700,ja,JA700,JA,,,,,,,
+e300,e,E300,E,,,,,,yes,
+jk1000,jk,JK1000,JK,,,,,,,
+e500,e,E500,E,,,,,,,
+db,e500,DB,E500,Dummy book,Dummy author,123456789,Dummy publisher,2023,yes,

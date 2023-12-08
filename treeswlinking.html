@@ -260,12 +260,13 @@
         d3.queue()
             //.defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced-v6.csv")
             //.defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced-v6.csv")
-            .defer(d3.csv, "LibraryFiles/PrimaryH-v1.csv")
-            .defer(d3.csv, "LibraryFiles/SecondaryH-v1.csv")
+            .defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
+            .defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
             .await(function (error, h2, h1) {
                 if (error) throw error;
 
                 else {
+
                     h2 = h2;
                     h1 = h1;
                     runScript_tabs(h1, h2);
@@ -429,6 +430,7 @@
             if (d3.select("#tooltip").empty())
                 d3.select("#content")
                     .append("div")
+                    .style("height", "auto")
                     /*
                     .style("width", "300px")
                     .style("height", "150px")
@@ -1802,10 +1804,19 @@
                 })
                 .style("stroke", "green")
                 .style("stroke-width", function (d) {
-                    if (d.data.data.child.includes("."))
-                        return 0;
-                    else
-                        return circle_stroke;
+                    if (data_source == "books") {
+                        if (d.data.data.isbn == "category")
+                            return circle_stroke;
+                        else
+                            return 0;
+                    }
+
+                    else {
+                        if (d.data.data.child.includes("."))
+                            return 0;
+                        else
+                            return circle_stroke;
+                    }
                 })
                 /* .style("stroke-dasharray", function (d) {
                     if (d.data.data.child.includes("."))
@@ -1836,22 +1847,53 @@
                                     .style("opacity", 1);
                     }
 
-                    var label = d.data.data.description_child, child = "root", parent = "";
-                    update_log("ltree", "node " + label, "node", "hover on a node", "mouseover", "", "", "", "", "");
-                    if (label.includes("/")) {
-                        child = label.substring(label.lastIndexOf("/") + 1, label.length);
-                        parent = label.substring(0, label.lastIndexOf("/"));
+
+                    var label = "", child = "", parent = "", text = "", type = "";
+
+
+                    if (data_source == "books") {
+                        label = d.data.data.title;
+                        if (label == "")
+                            label = d.data.data.description;
+
+                        update_log("ltree", "h2 node " + label, "node", "hover on a node", "mouseover", "", "", "", "", "");
+
+                        type = "";
+                        if (d.data.data.isbn == "category") {
+                            type = "Category";
+                            type = type + "\nLoC Code: " + d.data.data.description_child;
+                        }
+                        else {
+                            type = "Book"
+                        }
+
+                        text = "<b>" + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
                     }
-                    var type = "";
-                    if (d.children || d._children)
-                        type = "Folder";
+
                     else {
-                        if (d.data.data.child.includes("."))
-                            type = "File";
-                        else
-                            type = "Folder"
+                        label = d.data.data.description_child, child = "root", parent = "";
+                        update_log("ltree", "h2 node " + label, "node", "hover on a node", "mouseover", "", "", "", "", "");
+                        if (label.includes("/")) {
+                            child = label.substring(label.lastIndexOf("/") + 1, label.length);
+                            parent = label.substring(0, label.lastIndexOf("/"));
+                        }
+
+                        var type = "";
+                        if (d.children || d._children)
+                            type = "Folder";
+                        else {
+                            if (d.data.data.child.includes("."))
+                                type = "File";
+                            else
+                                type = "Folder"
+                        }
+                        text = "<b> TargetH " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + parent + " /<b>" + child + "</b>";
                     }
-                    var text = "<b> TargetH " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + parent + " /<b>" + child + "</b>";
+
+
+
+
+
                     d3.select("#tooltip")
                         .html(text)
                         .style("left", parseInt(d3.event.pageX + tooltip_offset - 500) + "px")
@@ -1962,11 +2004,19 @@
                 })
                 .text(function (d) {
                     // console.log(d);
-                    var label = d.data.data.child;
-                    if (label.includes("_"))
-                        label = label.substring(label.indexOf("/") + 1, label.length);
-                    if (label.includes("/"))
-                        label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                    var label = "";
+
+                    if (data_source == "books") {
+                        label = d.data.data.title;
+                    }
+
+                    else {
+                        label = d.data.data.child;
+                        if (label.includes("_"))
+                            label = label.substring(label.indexOf("/") + 1, label.length);
+                        if (label.includes("/"))
+                            label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                    }
 
                     if (label.length > label_len) {
                         if (label.includes(".")) {
@@ -1992,7 +2042,10 @@
                         .style("fill", "red")
                         .style("cursor", "pointer")
                         .text(function (d) {
-                            return d.data.data.child;
+                            if (data_source == "books")
+                                return d.data.data.title;
+                            else
+                                return d.data.data.child;
                         })
 
                     update_log("ltree", "text label " + d3.select(this).attr("id"), "label", "hover on a label", "mouseover", "", "", "", "", "");
@@ -2007,11 +2060,17 @@
                         .style("fill", label_color)
                         .style("cursor", "default")
                         .text(function (d) {
-                            var label = d.data.data.child;
-                            if (label.includes("_"))
-                                label = label.substring(label.indexOf("/") + 1, label.length);
-                            if (label.includes("/"))
-                                label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                            var label = "";
+
+                            if (data_source == "books")
+                                label = d.data.data.title;
+                            else {
+                                label = d.data.data.child;
+                                if (label.includes("_"))
+                                    label = label.substring(label.indexOf("/") + 1, label.length);
+                                if (label.includes("/"))
+                                    label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                            }
 
                             if (label.length > label_len) {
                                 if (label.includes(".")) {
@@ -2030,7 +2089,7 @@
                             return label;
                         });
 
-                    update_log("ltree", "text label " + d3.select(this).attr("id"), "label", "leave a label", "mouseleave", "", "", "", "", "");
+                    update_log("ltree", "h2 text label " + d3.select(this).attr("id"), "label", "leave a label", "mouseleave", "", "", "", "", "");
                 });
 
             h2_nodeEnter
@@ -2184,11 +2243,17 @@
                 .on("click", function (d) {
 
                     d3.select("#lines").remove();
+                    console.log("toolbox " + sel_toolbox);
 
                     if (sel_toolbox == "") {
                         console.log("click folder");
                         update_log("ltree", "h1 node " + d.data.data.child, "node", "collapse/expand nodes", "click", "", "", "", "", "");
                         click(d);
+                        h1tree(d, h1_root);
+                        //commonElementsList(h2_tree.descendants(), h1_tree.descendants());
+                        setTimeout(() => {
+                            commonElements(h2_tree.descendants(), h1_tree.descendants());
+                        }, 1000);
                     }
                     else if (sel_toolbox == "btn-expand-folder") {
 
@@ -2228,6 +2293,7 @@
 
                         //console.log(mtree.descendants());
                         h1tree(d, h1_root);
+                        //commonElementsList(h2_tree.descendants(), h1_tree.descendants());
                         setTimeout(() => {
                             commonElements(h2_tree.descendants(), h1_tree.descendants());
                         }, 1000);
@@ -2351,6 +2417,43 @@
                     //console.log("NODE UPDATE");
                     return duration;
                 });
+
+
+            h1_nodeUpdate
+                .selectAll("circle")
+                .attr("cx", function (d) {
+                    //console.log(d.data.data.child);
+                    //console.log(h2_root_pos - d.depth * level_offset);
+                    //console.log(source);
+                    return d.depth * level_offset;
+                })
+                .attr("cy", function (d) {
+                    //console.log(d.data.data.child + " " + d.x);
+                    //console.log(source.x);
+                    //if (d.data.data.description_child == "root")
+                    //console.log(d.data.data.description_child + " " + d.x);
+                    return d.x;
+
+                });
+
+            h1_nodeUpdate
+                .selectAll("text")
+                .attr("x", function (d) {
+
+                    if ((this.previousSibling).getAttribute("class").includes("leaf"))
+                        // return h2_root_pos - d.y - 8;
+                        return d.depth * level_offset - 10;
+                    else
+                        //return h2_root_pos - d.y + 10;
+                        return d.depth * level_offset + 10;
+                })
+                .attr("y", function (d) {
+                    if ((this.previousSibling).getAttribute("class").includes("leaf"))
+                        return d.x - 5;
+                    else
+                        return d.x;
+                });
+
 
 
 
@@ -2504,10 +2607,19 @@
                 })
                 .style("stroke", "green")
                 .style("stroke-width", function (d) {
-                    if (d.data.data.child.includes("."))
-                        return 0;
-                    else
-                        return circle_stroke;
+                    if (data_source == "books") {
+                        if (d.data.data.isbn == "category")
+                            return circle_stroke;
+                        else
+                            return 0;
+                    }
+
+                    else {
+                        if (d.data.data.child.includes("."))
+                            return 0;
+                        else
+                            return circle_stroke;
+                    }
                 })
                 // .style("opacity", 1)
                 .style("opacity", function (d) {
@@ -2533,24 +2645,53 @@
                                     .style("opacity", 1);
                     }
 
-                    var label = d.data.data.description_child, child = "root", parent = "";
-                    update_log("ltree", "node " + d3.select(this).attr("id"), "node", "hover on a node", "mouseover", "", "", "", "", "");
-                    if (label.includes("/")) {
-                        child = label.substring(label.lastIndexOf("/") + 1, label.length);
-                        parent = label.substring(0, label.lastIndexOf("/"));
+                    var label = "", child = "", parent = "", text = "", type = "";
+
+
+                    if (data_source == "books") {
+                        label = d.data.data.title;
+                        if (label == "")
+                            label = d.data.data.description;
+
+                        update_log("ltree", "h1 node " + label, "node", "hover on a node", "mouseover", "", "", "", "", "");
+
+                        type = "";
+                        if (d.data.data.isbn == "category") {
+                            type = "Category";
+                            type = type + "\nLoC Code: " + d.data.data.description_child;
+                        }
+                        else {
+                            type = "Book"
+                        }
+
+                        text = "<b>" + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
                     }
 
-
-                    var type = "";
-                    if (d.children || d._children)
-                        type = "Folder";
                     else {
-                        if (d.data.data.child.includes("."))
-                            type = "File";
-                        else
-                            type = "Folder"
+                        label = d.data.data.description_child, child = "root", parent = "";
+                        update_log("ltree", "h1 node " + label, "node", "hover on a node", "mouseover", "", "", "", "", "");
+                        if (label.includes("/")) {
+                            child = label.substring(label.lastIndexOf("/") + 1, label.length);
+                            parent = label.substring(0, label.lastIndexOf("/"));
+                        }
+
+
+
+
+
+                        var type = "";
+                        if (d.children || d._children)
+                            type = "Folder";
+                        else {
+                            if (d.data.data.child.includes("."))
+                                type = "File";
+                            else
+                                type = "Folder"
+                        }
+                        text = "<b> TargetH " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + parent + " /<b>" + child + "</b>";
                     }
-                    var text = "<b> BaseH " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + parent + " /<b>" + child + "</b>";
+
+
                     d3.select("#tooltip")
                         .html(text)
                         .style("left", parseInt(d3.event.pageX + tooltip_offset) + "px")
@@ -2684,11 +2825,15 @@
                     return label_opacity;
                 })
                 .text(function (d) {
-                    var label = d.data.data.child;
-                    if (label.includes("_"))
-                        label = label.substring(label.indexOf("/") + 1, label.length);
-                    if (label.includes("/"))
-                        label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                    if (data_source == "books")
+                        label = d.data.data.title;
+                    else {
+                        label = d.data.data.child;
+                        if (label.includes("_"))
+                            label = label.substring(label.indexOf("/") + 1, label.length);
+                        if (label.includes("/"))
+                            label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                    }
 
                     if (label.length > label_len) {
                         if (label.includes(".")) {
@@ -2716,20 +2861,53 @@
                         .style("fill", "red")
                         .style("cursor", "pointer")
                         .text(function (d) {
-                            return d.data.data.child;
+                            if (data_source == "books")
+                                return d.data.data.title;
+                            else
+                                return d.data.data.child;
                         })
 
                     update_log("ltree", "node " + d3.select(this).attr("id"), "node", "hover on a node", "mouseover", "", "", "", "", "");
                 })
                 .on("mouseleave", function (d) {
+
                     d3.select(this)
-                        .attr("dx", "0em")
                         .style("font-size", label_size - d.depth)
                         //.attr("transform", "rotate(65)")
                         .style("fill", label_color)
-                        .style("cursor", "default");
+                        .style("cursor", "default")
+                        .text(function (d) {
+                            var label = "";
 
-                    update_log("ltree", "node " + d3.select(this).attr("id"), "node", "leave a node", "mouseleave", "", "", "", "", "");
+                            if (data_source == "books")
+                                label = d.data.data.title;
+                            else {
+                                label = d.data.data.child;
+                                if (label.includes("_"))
+                                    label = label.substring(label.indexOf("/") + 1, label.length);
+                                if (label.includes("/"))
+                                    label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                            }
+
+                            if (label.length > label_len) {
+                                if (label.includes(".")) {
+                                    var start = label.indexOf(".");
+                                    var len = label.length;
+                                    var templen = label.substr(start, len).length;
+
+                                    label = label.substring(0, label_len - templen) + ".." + label.substr(start, len);
+
+                                }
+                                else {
+                                    label = label.substring(0, label_len);
+                                }
+                            }
+
+                            return label;
+                        });
+
+                    update_log("ltree", "h1 text label " + d3.select(this).attr("id"), "label", "leave a label", "mouseleave", "", "", "", "", "");
+
                 });
 
 
@@ -3430,9 +3608,11 @@
                     }
                     else {
                         d3.selectAll(".toolbox-icon")
-
                             .style("fill", "white")
                             .style("stroke", "grey");
+
+                        sel_toolbox = "";
+                        document.getElementById("treeswlinking_svg").style.cursor = "default";
                     }
 
 
@@ -3513,6 +3693,7 @@
                     else {
                         anc_desc = [];
                         sel_toolbox = "";
+                        document.getElementById("treeswlinking_svg").style.cursor = "default";
 
                         d3.selectAll(".toolbox-icon")
                             .style("fill", "white")
@@ -3587,6 +3768,7 @@
                     else {
                         anc_desc = [];
                         sel_toolbox = "";
+                        document.getElementById("treeswlinking_svg").style.cursor = "default";
 
                         d3.selectAll(".toolbox-icon")
                             .style("fill", "white")
@@ -3767,6 +3949,7 @@
 
             var loop_counter = 0;
 
+            console.log(commonElementsArr);
 
 
             for (var h1 = 0; h1 < h1_desc.length; h1++) {
@@ -3868,8 +4051,8 @@
                                 //console.log(h2);
 
                                 //console.log(h2_desc[h2]);
-                                //console.log(e);
-                                //console.log(d);
+                                console.log(e);
+                                console.log(d);
 
 
 
@@ -3901,23 +4084,66 @@
                                 //console.log(h2_desc[h2].data.data.child + " " + h2_desc[h2].data.depth);
 
 
-                                var label = d3.select(this).attr("h1child"), child = "root", parent = "";
+                                var label = d3.select(this).attr("h1child"), child = "root", parent = "", type = "", text = "", dashes = "|";
                                 update_log("ltree", "connecting link " + label, "link", "hover on a common link", "mouseover", "", "", "", "", "");
 
-                                if (label.includes("/")) {
-                                    child = label.substring(label.lastIndexOf("/") + 1, label.length);
-                                    parent = label.substring(0, label.lastIndexOf("/"));
+                                //console.log(data_source);
+                                if (data_source == "books") {
+                                    //child = d.data.data.title;
+
+                                    //console.log(h1_tree.descendants());
+                                    h2_tree.descendants().forEach(function (element) {
+                                        console.log(element);
+                                        //console.log(element.data.data.child + " " + label);
+                                        if (element.data.data.child == label.toLowerCase()) {
+
+                                            if (element.data.data.isbn == "category") {
+                                                child = element.data.data.title + " LoC Code" + element.data.data.description_child;
+                                                type = "genres";
+                                            }
+                                            else {
+                                                child = element.data.data.title;
+                                                type = "books";
+                                            }
+
+                                            //console.log(element.ancestors());
+                                            for (var i = 1; i < element.ancestors().length - 1; i++) {
+                                                dashes = dashes + "-";
+                                                //parent = parent + dashes + " " + element.ancestors()[i].data.data.title + "\n";
+                                            }
+
+                                            console.log(element.descendants().length);
+
+
+
+
+
+
+                                            text = "<b>Link between common " + type + "  </b><hr class='border border-danger border-1 opacity-50'>" + parent + "" + dashes + " " + child + "";
+                                        }
+
+
+                                    });
+
+                                }
+                                else {
+                                    if (label.includes("/")) {
+                                        child = label.substring(label.lastIndexOf("/") + 1, label.length);
+                                        parent = label.substring(0, label.lastIndexOf("/"));
+                                    }
+                                    if (label.includes("."))
+                                        type = "file";
+                                    else
+                                        type = "folder"
+
+                                    text = "<b>Link between common " + type + "  </b><hr class='border border-danger border-1 opacity-50'>" + parent + "/" + "<b>" + child + "</b>";
                                 }
 
-                                var type = "";
-
-                                if (label.includes("."))
-                                    type = "file";
-                                else
-                                    type = "folder"
 
 
-                                var text = "<b>Link between common " + type + "  </b><hr class='border border-danger border-1 opacity-50'>" + parent + "/" + "<b>" + child + "</b>";
+
+
+
                                 d3.select("#tooltip")
                                     .html(text)
                                     .style("left", parseInt(d3.event.pageX + tooltip_offset) + "px")
