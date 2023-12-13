@@ -91,9 +91,9 @@
 
 <script src="books-algorithm.js"></script>
 <script src="treeswlinking.html"></script>
-<script src="twl-trainingquestions.js"></script>
-<script src="twl-guidedtour.js"></script>
-<script src="twl-experimentquestions.js"></script>
+<script src="books-twl-trainingquestions.js"></script>
+<script src="books-twl-guidedtour.js"></script>
+<script src="books-twl-experimentquestions.js"></script>
 <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
 
 
@@ -243,13 +243,17 @@
         var toolbox_opacity = 1;
         var h1_anc_desc = [];
         var h2_anc_desc = [];
+        var user_set_depth = 0;
 
-
+        if (data_source == "books")
+            user_set_depth = 1;
+        else
+            user_set_depth = 2;
 
         var title = [];
 
-        let h2_root = "", h2_struct = "", h2_tree = "";
-        let h1_root = "", h1_struct = "", h1_tree = "";
+        let h2_root = "", h2_struct = "", h2_tree = "", h2_tree_original = "";
+        let h1_root = "", h1_struct = "", h1_tree = "", h1_tree_original = "";
 
         update_log("ltree", "", "landed on the treeswlinking page", "", "", "", "", "", "", "");
 
@@ -307,10 +311,12 @@
                     collapse(element);
                 }
             });
+            //console.log(h1_tree.descendants());
             h2tree(h2_tree.descendants()[0], h2_root);
             h1tree(h1_tree.descendants()[0], h1_root);
 
             commonElementsList(h2_tree.descendants(), h1_tree.descendants());
+
             if (d3.select("#lines")) {
                 d3.select("#lines").remove();
                 setTimeout(() => {
@@ -430,7 +436,7 @@
             if (d3.select("#tooltip").empty())
                 d3.select("#content")
                     .append("div")
-                    .style("height", "auto")
+                    //.style("height", "auto")
                     /*
                     .style("width", "300px")
                     .style("height", "150px")
@@ -875,44 +881,106 @@
                 });
 
 
+            h1_tree_original = h1_tree.descendants().slice(0);
+            h2_tree_original = h2_tree.descendants().slice(0);
+
+
             var nodes_list = [];
             var h1list = [], h2list = [];
-            for (i = 0; i < h2_root.descendants().length; i++) {
-                h2list.push(h2_root.descendants()[i].data.data.description_child);
+
+            if (data_source == "books") {
+                for (i = 0; i < h2_root.descendants().length; i++) {
+                    var type = "";
+                    if (h2_root.descendants()[i].data.data.isbn == "category")
+                        type = "Genre";
+                    else
+                        type = "Book";
+                    h2list.push({ "value": h2_root.descendants()[i].data.data.description_child, "title": h2_root.descendants()[i].data.data.title, "type": type });
+                }
+                for (i = 0; i < h1_root.descendants().length; i++) {
+                    //h1list.push(h1_root.descendants()[i].data.data.description_child);
+                    var type = "";
+                    if (h1_root.descendants()[i].data.data.isbn == "category")
+                        type = "Genre";
+                    else
+                        type = "Book";
+                    h1list.push({ "value": h1_root.descendants()[i].data.data.description_child, "title": h1_root.descendants()[i].data.data.title, "type": type });
+                }
+                let intersection = h1list.filter(x => h2list.includes(x.value));
+
+                let h1diff = h1list.filter(x => !h2list.includes(x.value));
+                let h2diff = h2list.filter(x => !h1list.includes(x.value));
+
+                for (var i = 0; i < intersection.length; i++)
+                    nodes_list.push(intersection[i]);
+
+                for (var i = 0; i < h1diff.length; i++)
+                    nodes_list.push(h1diff[i]);
+
+                for (var i = 0; i < h2diff.length; i++)
+                    nodes_list.push(h2diff[i]);
+
+
+                //console.log(nodes_list);
+                //console.log(h1diff);
+                nodes_list
+                    .sort(function (x, y) {
+                        //console.log(x);
+                        return d3.ascending(x.x, y.x);
+                    });
+
+                d3.select("#search-nodes-list")
+                    .selectAll("option")
+                    .data(nodes_list)
+                    .enter()
+                    .append("option")
+                    .attr("value", function (d) {
+                        //console.log(d.data.data.description_child);
+                        //return d.value;
+                        return d.type + ": " + d.title;
+                    });
+                /* .text(function (d) {
+                    //console.log(d);
+                    //return d.type + ": " + d.title;
+                }); */
             }
-            for (i = 0; i < h1_root.descendants().length; i++) {
-                h1list.push(h1_root.descendants()[i].data.data.description_child);
+            else {
+                for (i = 0; i < h2_root.descendants().length; i++) {
+                    h2list.push(h2_root.descendants()[i].data.data.description_child);
+                }
+                for (i = 0; i < h1_root.descendants().length; i++) {
+                    h1list.push(h1_root.descendants()[i].data.data.description_child);
+                }
+                let intersection = h1list.filter(x => h2list.includes(x));
+                let h1diff = h1list.filter(x => !h2list.includes(x));
+                let h2diff = h2list.filter(x => !h1list.includes(x));
+
+
+                for (var i = 0; i < intersection.length; i++)
+                    nodes_list.push(intersection[i]);
+
+                for (var i = 0; i < h1diff.length; i++)
+                    nodes_list.push(h1diff[i]);
+
+                for (var i = 0; i < h2diff.length; i++)
+                    nodes_list.push(h2diff[i]);
+
+                nodes_list.sort();
+
+                d3.select("#search-nodes-list")
+                    .selectAll("option")
+                    .data(nodes_list)
+                    .enter()
+                    .append("option")
+                    .attr("value", function (d) {
+                        //console.log(d.data.data.description_child);
+                        return d;
+                    })
+                    .text(function (d) {
+                        return d;
+                    });
+
             }
-            let intersection = h1list.filter(x => h2list.includes(x));
-            let h1diff = h1list.filter(x => !h2list.includes(x));
-            let h2diff = h2list.filter(x => !h1list.includes(x));
-
-
-            for (var i = 0; i < intersection.length; i++)
-                nodes_list.push(intersection[i]);
-
-            for (var i = 0; i < h1diff.length; i++)
-                nodes_list.push(h1diff[i]);
-
-            for (var i = 0; i < h2diff.length; i++)
-                nodes_list.push(h2diff[i]);
-
-            nodes_list.sort();
-
-            d3.select("#search-nodes-list")
-                .selectAll("option")
-                .data(nodes_list)
-                .enter()
-                .append("option")
-                .attr("value", function (d) {
-                    //console.log(d.data.data.description_child);
-                    return d;
-                })
-                .text(function (d) {
-                    return d;
-                });
-
-
             drawLegend(h1_tree.descendants());
 
 
@@ -932,7 +1000,7 @@
 
 
                 commonElementsList(h2_tree.descendants(), h1_tree.descendants());
-                //console.log(commonElementsArr);
+                console.log(commonElementsArr);
                 var flag = 0;
                 h2_tree.descendants().reverse().forEach(function (element) {
                     flag = 0;
@@ -943,7 +1011,7 @@
                         }
                     }
                     if (flag == 1) {
-                        //console.log("collapse h2 element " + element.data.data.description_child);
+                        console.log("collapse h2 element " + element.data.data.description_child);
                         collapse(element);
                     }
                 });
@@ -960,6 +1028,7 @@
                         collapse(element);
                     }
                 });
+                console.log(h1_tree.descendants()[0]);
                 h2tree(h2_tree.descendants()[0], h2_root);
                 h1tree(h1_tree.descendants()[0], h1_root);
             }
@@ -1065,359 +1134,823 @@
             .on("click", function () {
 
 
-                child = d3.select("#search-nodes").node().value
-                    .replaceAll(".", "")
-                    .replaceAll(" ", "")
-                    .replaceAll("(", "")
-                    .replaceAll(")", "")
-                    .toLowerCase();
-                num_slashes = child.split("/");
-                var root = h2_tree.descendants()[0];
-                //console.log(num_slashes);
 
-                var offsetHeight = document.getElementById('sticky').offsetHeight;
-                //console.log(offsetHeight);
-                var h2flag = 0, h1flag = 0;
+                if (data_source == "books") {
 
-                h2_tree.descendants().forEach(function (element) {
-                    //console.log(element.depth + " " + num_slashes);
-                    //if (element.depth == num_slashes.length - 1) {
-                    name = element.data.data.child
-                        .replaceAll(/\//g, "")
-                        .replaceAll(".", "")
-                        .replaceAll(" ", "")
-                        .replaceAll("(", "")
-                        .replaceAll(")", "")
-                        .toLowerCase();
-                    //console.log(name);
-                    //console.log(child);
-                    //console.log("n " + name + " " + num_slashes[num_slashes.length - 1]);
-                    if (name == num_slashes[num_slashes.length - 1]) {
-                        //console.log("ITS A MATCHYY");
-                        //console.log(name);
-                        h2flag = 1;
-                        //console.log(name + " " + num_slashes[num_slashes.length - 1]);
-                        path = root.path(element);
 
-                        for (var i = 0; i < path.length; i++) {
+                    var h1_search_anc = [], h2_search_anc = [];
+                    h1flag = 0, h2flag = 0;
 
-                            pathname = path[i].data.data.child
-                                .replaceAll(/\//g, "")
-                                .replaceAll(".", "")
-                                .replaceAll(" ", "")
-                                .replaceAll("(", "")
-                                .replaceAll(")", "")
-                                .toLowerCase();
 
-                            if (d3.select("#h1tree_" + pathname).empty()) {
 
-                                document.getElementById("h2tree_" + pathname)
-                                    .scrollIntoView(true);
+                    child = d3.select("#search-nodes").node().value;
+                    console.log(child);
+
+                    update_log("ltree", "btn-search", "button", "search for a node " + child, "click", "", "", "", "", "");
+
+
+                    if (child.includes("Book:"))
+                        child = child.replace("Book: ", "");
+                    else
+                        child = child.replace("Genre: ", "");
+
+
+
+                    h1_tree.descendants().forEach(function (element) {
+                        if (child == element.data.data.title) {
+                            console.log("MATCH " + child + " " + element.data.data.title);
+                            h1flag = 1;
+
+                            for (var i = 0; i < element.ancestors().length; i++) {
+                                var id = element.ancestors()[i].data.data.child
+                                    .replaceAll(/\//g, "")
+                                    .replaceAll(".", "")
+                                    .replaceAll(" ", "")
+                                    .replaceAll("(", "")
+                                    .replaceAll(")", "")
+                                    .toLowerCase();
+
+                                console.log(id);
+
+                                //console.log(d3.select(id).node().parentNode);
+
+                                document.getElementById("g-" + id).scrollIntoView(true);
+
                                 var scrolledY = window.scrollY;
                                 var scrolledX = window.scrollX;
 
                                 if (scrolledY) {
                                     window.scroll(scrolledX, scrolledY + offsetHeight);
                                 }
+
+
+
+
+
+                                d3.select("#h1tree")
+                                    .append("rect")
+                                    .attr("class", "search-rect")
+                                    .attr("id", "rect-" + id)
+                                    .attr("width", 20)
+                                    .attr("height", 20)
+                                    .attr("x", d3.select("#h1tree_" + id).attr("cx") - radius - rect_offset)
+                                    .attr("y", d3.select("#h1tree_" + id).attr("cy") - radius - rect_offset)
+                                    .style("fill", "none")
+                                    .style("stroke-width", "3px")
+                                    .style("stroke", "gold");
+
+                                d3.select(".h1tree_" + id + "_text")
+                                    .classed("selected_text", true)
+                                    .style("fill", "#FFD700")
+                                    .style("font-size", 20);
+
+
+
+
+                            }
+                        }
+
+
+                    });
+
+                    if (h1flag == 0) {
+
+                        console.log(h1_tree_original);
+
+                        h1_tree_original.forEach(function (element) {
+                            if (child == element.data.data.title) {
+                                console.log(element.ancestors());
+                                for (var i = 0; i < element.ancestors().length; i++) {
+                                    h1_search_anc.push(element.ancestors()[i].data.data.title);
+                                }
                             }
 
-                            else {
+                        });
+
+                        console.log(h1_search_anc);
+
+                        for (var i = 0; i < h1_search_anc.length; i++) {
+                            h1_tree.descendants().forEach(function (element) {
+
+
+                                if (element.data.data.title == h1_search_anc[i]) {
+                                    // console.log("match");
+                                    h1flag = 1;
+
+                                    expand(element);
+
+                                    var layout_flag = 0;
+
+
+                                    setTimeout(() => {
+                                        h1tree(h1_tree.descendants()[0], h1_root);
+
+                                        //trynow();
+                                    }, 1000);
+
+                                    setTimeout(() => {
+                                        //h1tree(h1_tree.descendants()[0], h1_root);
+
+                                        trynow();
+                                    }, 3000);
+
+
+
+
+                                    //if (layout_flag == 1) {
+                                    function trynow() {
+                                        for (var j = 0; j < element.ancestors().length; j++) {
+                                            var id = element.ancestors()[j].data.data.child
+                                                .replaceAll(/\//g, "")
+                                                .replaceAll(".", "")
+                                                .replaceAll(" ", "")
+                                                .replaceAll("(", "")
+                                                .replaceAll(")", "")
+                                                .toLowerCase();
+
+                                            console.log(id);
+
+                                            //console.log(d3.select(id).node().parentNode);
+
+                                            document.getElementById("g-" + id).scrollIntoView(true);
+
+                                            var scrolledY = window.scrollY;
+                                            var scrolledX = window.scrollX;
+
+                                            if (scrolledY) {
+                                                window.scroll(scrolledX, scrolledY + offsetHeight);
+                                            }
+
+                                            d3.select("#h1tree")
+                                                .append("rect")
+                                                .attr("class", "search-rect")
+                                                .attr("id", "rect-" + id)
+                                                .attr("width", 20)
+                                                .attr("height", 20)
+                                                .attr("x", d3.select("#h1tree_" + id).attr("cx") - radius - rect_offset)
+                                                .attr("y", d3.select("#h1tree_" + id).attr("cy") - radius - rect_offset)
+                                                .style("fill", "none")
+                                                .style("stroke-width", "3px")
+                                                .style("stroke", "gold");
+
+                                            d3.select(".h1tree_" + id + "_text")
+                                                .classed("selected_text", true)
+                                                .style("fill", "#FFD700")
+                                                .style("font-size", 20);
+
+
+                                        }
+
+
+                                        for (var k = 0; k < i; k++) {
+                                            h1_tree.descendants().forEach(function (element) {
+                                                if (element.data.data.title == h1_search_anc[k]) {
+                                                    var id = element.data.data.child
+                                                        .replaceAll(/\//g, "")
+                                                        .replaceAll(".", "")
+                                                        .replaceAll(" ", "")
+                                                        .replaceAll("(", "")
+                                                        .replaceAll(")", "")
+                                                        .toLowerCase();
+
+                                                    //console.log(id);
+
+                                                    //console.log(d3.select(id).node().parentNode);
+
+                                                    document.getElementById("g-" + id).scrollIntoView(true);
+
+                                                    var scrolledY = window.scrollY;
+                                                    var scrolledX = window.scrollX;
+
+                                                    if (scrolledY) {
+                                                        window.scroll(scrolledX, scrolledY + offsetHeight);
+                                                    }
+
+                                                    d3.select("#h1tree")
+                                                        .append("rect")
+                                                        .attr("class", "search-rect")
+                                                        .attr("id", "rect-" + id)
+                                                        .attr("width", 20)
+                                                        .attr("height", 20)
+                                                        .attr("x", d3.select("#h1tree_" + id).attr("cx") - radius - rect_offset)
+                                                        .attr("y", d3.select("#h1tree_" + id).attr("cy") - radius - rect_offset)
+                                                        .style("fill", "none")
+                                                        .style("stroke-width", "3px")
+                                                        .style("stroke", "gold");
+
+                                                    d3.select(".h1tree_" + id + "_text")
+                                                        .classed("selected_text", true)
+                                                        .style("fill", "#FFD700")
+                                                        .style("font-size", 20);
+                                                }
+
+                                            });
+
+
+                                        }
+                                    }
+
+
+
+
+                                }
+
+
+                            });
+                            if (h1flag == 1)
+                                break;
+
+                        }
+
+
+
+
+
+                    }
+
+                    //h2 tree search
+
+                    h2_tree.descendants().forEach(function (element) {
+                        if (child == element.data.data.title) {
+                            console.log("MATCH " + child + " " + element.data.data.title);
+                            h2flag = 1;
+
+                            for (var i = 0; i < element.ancestors().length; i++) {
+                                var id = element.ancestors()[i].data.data.child
+                                    .replaceAll(/\//g, "")
+                                    .replaceAll(".", "")
+                                    .replaceAll(" ", "")
+                                    .replaceAll("(", "")
+                                    .replaceAll(")", "")
+                                    .toLowerCase();
+
+                                console.log(id);
+
+                                //console.log(d3.select(id).node().parentNode);
+
+                                document.getElementById("g-" + id).scrollIntoView(true);
+
+                                var scrolledY = window.scrollY;
+                                var scrolledX = window.scrollX;
+
+                                if (scrolledY) {
+                                    window.scroll(scrolledX, scrolledY + offsetHeight);
+                                }
+
+
+
+
+
+                                d3.select("#h2tree")
+                                    .append("rect")
+                                    .attr("class", "search-rect")
+                                    .attr("id", "rect-" + id)
+                                    .attr("width", 20)
+                                    .attr("height", 20)
+                                    .attr("x", d3.select("#h2tree_" + id).attr("cx") - radius - rect_offset)
+                                    .attr("y", d3.select("#h2tree_" + id).attr("cy") - radius - rect_offset)
+                                    .style("fill", "none")
+                                    .style("stroke-width", "3px")
+                                    .style("stroke", "gold");
+
+                                d3.select(".h2tree_" + id + "_text")
+                                    .classed("selected_text", true)
+                                    .style("fill", "#FFD700")
+                                    .style("font-size", 20);
+
+
+
+
+                            }
+                        }
+
+
+                    });
+
+                    if (h2flag == 0) {
+
+                        console.log(h2_tree_original);
+
+                        h2_tree_original.forEach(function (element) {
+                            if (child == element.data.data.title) {
+                                console.log(element.ancestors());
+                                for (var i = 0; i < element.ancestors().length; i++) {
+                                    h2_search_anc.push(element.ancestors()[i].data.data.title);
+                                }
+                            }
+
+                        });
+
+                        console.log(h2_search_anc);
+
+                        for (var i = 0; i < h2_search_anc.length; i++) {
+                            h2_tree.descendants().forEach(function (element) {
+
+
+                                if (element.data.data.title == h2_search_anc[i]) {
+                                    // console.log("match");
+                                    h2flag = 1;
+
+                                    expand(element);
+
+                                    var layout_flag = 0;
+
+
+                                    setTimeout(() => {
+                                        h2tree(h2_tree.descendants()[0], h2_root);
+
+                                        //trynow();
+                                    }, 1000);
+
+                                    setTimeout(() => {
+                                        //h2tree(h2_tree.descendants()[0], h2_root);
+
+                                        trynow();
+                                    }, 3000);
+
+
+
+
+                                    //if (layout_flag == 1) {
+                                    function trynow() {
+                                        for (var j = 0; j < element.ancestors().length; j++) {
+                                            var id = element.ancestors()[j].data.data.child
+                                                .replaceAll(/\//g, "")
+                                                .replaceAll(".", "")
+                                                .replaceAll(" ", "")
+                                                .replaceAll("(", "")
+                                                .replaceAll(")", "")
+                                                .toLowerCase();
+
+                                            console.log(id);
+
+                                            //console.log(d3.select(id).node().parentNode);
+
+                                            document.getElementById("g-" + id).scrollIntoView(true);
+
+                                            var scrolledY = window.scrollY;
+                                            var scrolledX = window.scrollX;
+
+                                            if (scrolledY) {
+                                                window.scroll(scrolledX, scrolledY + offsetHeight);
+                                            }
+
+                                            d3.select("#h2tree")
+                                                .append("rect")
+                                                .attr("class", "search-rect")
+                                                .attr("id", "rect-" + id)
+                                                .attr("width", 20)
+                                                .attr("height", 20)
+                                                .attr("x", d3.select("#h2tree_" + id).attr("cx") - radius - rect_offset)
+                                                .attr("y", d3.select("#h2tree_" + id).attr("cy") - radius - rect_offset)
+                                                .style("fill", "none")
+                                                .style("stroke-width", "3px")
+                                                .style("stroke", "gold");
+
+                                            d3.select(".h2tree_" + id + "_text")
+                                                .classed("selected_text", true)
+                                                .style("fill", "#FFD700")
+                                                .style("font-size", 20);
+
+
+                                        }
+
+
+                                        for (var k = 0; k < i; k++) {
+                                            h2_tree.descendants().forEach(function (element) {
+                                                if (element.data.data.title == h2_search_anc[k]) {
+                                                    var id = element.data.data.child
+                                                        .replaceAll(/\//g, "")
+                                                        .replaceAll(".", "")
+                                                        .replaceAll(" ", "")
+                                                        .replaceAll("(", "")
+                                                        .replaceAll(")", "")
+                                                        .toLowerCase();
+
+                                                    //console.log(id);
+
+                                                    //console.log(d3.select(id).node().parentNode);
+
+                                                    document.getElementById("g-" + id).scrollIntoView(true);
+
+                                                    var scrolledY = window.scrollY;
+                                                    var scrolledX = window.scrollX;
+
+                                                    if (scrolledY) {
+                                                        window.scroll(scrolledX, scrolledY + offsetHeight);
+                                                    }
+
+                                                    d3.select("#h2tree")
+                                                        .append("rect")
+                                                        .attr("class", "search-rect")
+                                                        .attr("id", "rect-" + id)
+                                                        .attr("width", 20)
+                                                        .attr("height", 20)
+                                                        .attr("x", d3.select("#h2tree_" + id).attr("cx") - radius - rect_offset)
+                                                        .attr("y", d3.select("#h2tree_" + id).attr("cy") - radius - rect_offset)
+                                                        .style("fill", "none")
+                                                        .style("stroke-width", "3px")
+                                                        .style("stroke", "gold");
+
+                                                    d3.select(".h2tree_" + id + "_text")
+                                                        .classed("selected_text", true)
+                                                        .style("fill", "#FFD700")
+                                                        .style("font-size", 20);
+                                                }
+
+                                            });
+
+
+                                        }
+                                    }
+
+
+
+
+                                }
+
+
+                            });
+                            if (h2flag == 1)
+                                break;
+
+                        }
+
+
+
+
+
+                    }
+                    //end of h2 tree search
+
+                }
+
+
+
+
+
+
+
+
+
+
+                /////////////////////////////////////////////////
+
+                else {
+                    child = d3.select("#search-nodes").node().value
+                        .replaceAll(".", "")
+                        .replaceAll(" ", "")
+                        .replaceAll("(", "")
+                        .replaceAll(")", "")
+                        .toLowerCase();
+                    num_slashes = child.split("/");
+                    var root = h2_tree.descendants()[0];
+                    //console.log(num_slashes);
+
+                    var offsetHeight = document.getElementById('sticky').offsetHeight;
+                    //console.log(offsetHeight);
+                    var h2flag = 0, h1flag = 0;
+
+                    h2_tree.descendants().forEach(function (element) {
+                        //console.log(element.depth + " " + num_slashes);
+                        //if (element.depth == num_slashes.length - 1) {
+                        name = element.data.data.child
+                            .replaceAll(/\//g, "")
+                            .replaceAll(".", "")
+                            .replaceAll(" ", "")
+                            .replaceAll("(", "")
+                            .replaceAll(")", "")
+                            .toLowerCase();
+                        //console.log(name);
+                        //console.log(child);
+                        //console.log("n " + name + " " + num_slashes[num_slashes.length - 1]);
+                        if (name == num_slashes[num_slashes.length - 1]) {
+                            //console.log("ITS A MATCHYY");
+                            //console.log(name);
+                            h2flag = 1;
+                            //console.log(name + " " + num_slashes[num_slashes.length - 1]);
+                            path = root.path(element);
+
+                            for (var i = 0; i < path.length; i++) {
+
+                                pathname = path[i].data.data.child
+                                    .replaceAll(/\//g, "")
+                                    .replaceAll(".", "")
+                                    .replaceAll(" ", "")
+                                    .replaceAll("(", "")
+                                    .replaceAll(")", "")
+                                    .toLowerCase();
+
+                                if (d3.select("#h1tree_" + pathname).empty()) {
+
+                                    document.getElementById("h2tree_" + pathname)
+                                        .scrollIntoView(true);
+                                    var scrolledY = window.scrollY;
+                                    var scrolledX = window.scrollX;
+
+                                    if (scrolledY) {
+                                        window.scroll(scrolledX, scrolledY + offsetHeight);
+                                    }
+                                }
+
+                                else {
+
+                                    document.getElementById("h1tree_" + pathname)
+                                        .scrollIntoView(true);
+                                    var scrolledY = window.scrollY;
+                                    var scrolledX = window.scrollX;
+
+                                    if (scrolledY) {
+                                        window.scroll(scrolledX, scrolledY + offsetHeight);
+                                    }
+
+
+                                }
+
+                                //console.log(pathname);
+                                // d3.select("#h1tree_" + pathname)
+                                //.style("stroke","gold");
+
+                                /* d3.select("#h2tree_" + pathname)
+                                    .style("fill", "gold")
+                                    .attr("r", 15)
+                                    .style("opacity", "1")
+                                    .classed("selected", "true"); */
+
+                                //console.log("h2 " + pathname);
+
+                                d3.select("#h2tree")
+                                    .append("rect")
+                                    .attr("class", "search-rect")
+                                    .attr("id", "rect-" + pathname)
+                                    .attr("width", 20)
+                                    .attr("height", 20)
+                                    .attr("x", d3.select("#h2tree_" + pathname).attr("cx") - radius - rect_offset)
+                                    .attr("y", d3.select("#h2tree_" + pathname).attr("cy") - radius - rect_offset)
+                                    .style("fill", "none")
+                                    .style("stroke-width", "3px")
+                                    .style("stroke", "gold");
+
+                                //console.log("#h2tree_" + pathname + "_text");
+                                d3.select(".h2tree_" + pathname + "_text")
+                                    .style("fill", "red")
+                                    .style("font-size", "20")
+                                    .classed("selected_text", "true");
+
+
+                            }
+                        }
+                    });
+
+                    if (h2flag == 0) {
+                        d3.select("#lines").remove();
+                        setTimeout(() => {
+                            commonElements(h2_tree.descendants(), h1_tree.descendants());
+                        }, 1000);
+                        h2flag = 0;
+                        for (var j = h2_tree.descendants().length - 1; j >= 0; j--) {
+                            var element = h2_tree.descendants()[j];
+                            name = element.data.data.child
+                                .replaceAll(/\//g, "")
+                                .replaceAll(".", "")
+                                .replaceAll(" ", "")
+                                .replaceAll("(", "")
+                                .replaceAll(")", "")
+                                .toLowerCase();
+                            //if (element.ancestors()[i].depth > 1)
+                            //console.log(num_slashes.length);
+                            for (var i = num_slashes.length - 1; i >= 2; i--) {
+                                //console.log(i);
+                                if (name == num_slashes[i]) {
+                                    //console.log("match " + i + " " + name);
+                                    //console.log("expand ")
+                                    //console.log(element)
+                                    if (element._children != null && element._children.length >= 1) {
+                                        //console.log(element);
+                                        for (var c = 0; c < element._children.length; c++) {
+                                            if (element._children[c].data.data.child.replaceAll(/\//g, "")
+                                                .replaceAll(".", "")
+                                                .replaceAll(" ", "")
+                                                .replaceAll("(", "")
+                                                .replaceAll(")", "")
+                                                .toLowerCase() == num_slashes[i + 1]) {
+                                                expand(element);
+                                                h2tree(h2_tree.descendants()[0], h2_root);
+                                                h2flag = 1;
+                                                break;
+                                            }
+                                        }
+                                    }
+
+
+
+                                }
+
+                            }
+
+                            if (h2flag == 1) {
+                                setTimeout(() => {
+                                    //console.log(num_slashes);
+                                    for (var i = 0; i < num_slashes.length; i++) {
+                                        //console.log(i + " " + num_slashes[i]);
+                                        pathname = num_slashes[i].replaceAll(/\//g, "")
+                                            .replaceAll(".", "")
+                                            .replaceAll(" ", "")
+                                            .replaceAll("(", "")
+                                            .replaceAll(")", "")
+                                            .toLowerCase();
+                                        d3.select("#h2tree")
+                                            .append("rect")
+                                            .attr("class", "search-rect")
+                                            .attr("id", "rect-" + pathname)
+                                            .attr("width", 20)
+                                            .attr("height", 20)
+                                            .attr("x", d3.select("#h2tree_" + pathname).attr("cx") - radius - rect_offset)
+                                            .attr("y", d3.select("#h2tree_" + pathname).attr("cy") - radius - rect_offset)
+                                            .style("fill", "none")
+                                            .style("stroke-width", "3px")
+                                            .style("stroke", "gold");
+
+                                        //console.log("#h2tree_" + pathname + "_text");
+                                        d3.select(".h2tree_" + pathname + "_text")
+                                            .style("fill", "red")
+                                            .style("font-size", "20")
+                                            .classed("selected_text", "true");
+
+                                    }
+                                }, 800);
+                                break;
+                            }
+                        }
+                    }
+
+
+
+
+
+
+                    var root = h1_tree.descendants()[0];
+
+
+                    h1_tree.descendants().forEach(function (element) {
+                        //console.log(element.depth + " " + num_slashes);
+                        //if (element.depth == num_slashes.length - 1) {
+                        name = element.data.data.child
+                            //.replaceAll(/\//g, "")
+                            .replaceAll(".", "")
+                            .replaceAll(" ", "")
+                            .replaceAll("(", "")
+                            .replaceAll(")", "")
+                            .toLowerCase();
+                        //console.log(name);
+                        //console.log(child);
+                        //console.log(name + " " + child);
+                        if (name == num_slashes[num_slashes.length - 1]) {
+                            //console.log("ITS A MATCHYY");
+                            h1flag = 1;
+
+                            path = root.path(element);
+
+                            for (var i = 0; i < path.length; i++) {
+
+                                pathname = path[i].data.data.child
+                                    .replaceAll(/\//g, "")
+                                    .replaceAll(".", "")
+                                    .replaceAll(" ", "")
+                                    .replaceAll("(", "")
+                                    .replaceAll(")", "")
+                                    .toLowerCase();
+                                //console.log(pathname);
 
                                 document.getElementById("h1tree_" + pathname)
                                     .scrollIntoView(true);
                                 var scrolledY = window.scrollY;
-                                var scrolledX = window.scrollX;
 
                                 if (scrolledY) {
-                                    window.scroll(scrolledX, scrolledY + offsetHeight);
+                                    window.scroll(0, scrolledY - offsetHeight);
                                 }
 
 
+                                /* d3.select("#h1tree_" + pathname)
+                                    .style("fill", "gold")
+                                    .attr("r", 15)
+                                    .style("opacity", "1")
+                                    .classed("selected", "true"); */
+
+                                //console.log("h1 " + pathname);
+
+                                d3.select("#h1tree")
+                                    .append("rect")
+                                    .attr("class", "search-rect")
+                                    .attr("id", "rect-" + pathname)
+                                    .attr("width", 20)
+                                    .attr("height", 20)
+                                    .attr("x", d3.select("#h1tree_" + pathname).attr("cx") - radius - rect_offset)
+                                    .attr("y", d3.select("#h1tree_" + pathname).attr("cy") - radius - rect_offset)
+                                    .style("fill", "none")
+                                    .style("stroke-width", "3px")
+                                    .style("stroke", "gold");
+
+
+                                d3.select(".h1tree_" + pathname + "_text")
+                                    .style("fill", "red")
+                                    .style("font-size", "20")
+                                    .classed("selected_text", "true");
                             }
-
-                            //console.log(pathname);
-                            // d3.select("#h1tree_" + pathname)
-                            //.style("stroke","gold");
-
-                            /* d3.select("#h2tree_" + pathname)
-                                .style("fill", "gold")
-                                .attr("r", 15)
-                                .style("opacity", "1")
-                                .classed("selected", "true"); */
-
-                            //console.log("h2 " + pathname);
-
-                            d3.select("#h2tree")
-                                .append("rect")
-                                .attr("class", "search-rect")
-                                .attr("id", "rect-" + pathname)
-                                .attr("width", 20)
-                                .attr("height", 20)
-                                .attr("x", d3.select("#h2tree_" + pathname).attr("cx") - radius - rect_offset)
-                                .attr("y", d3.select("#h2tree_" + pathname).attr("cy") - radius - rect_offset)
-                                .style("fill", "none")
-                                .style("stroke-width", "3px")
-                                .style("stroke", "gold");
-
-                            //console.log("#h2tree_" + pathname + "_text");
-                            d3.select(".h2tree_" + pathname + "_text")
-                                .style("fill", "red")
-                                .style("font-size", "20")
-                                .classed("selected_text", "true");
-
-
                         }
-                    }
-                });
-
-                if (h2flag == 0) {
-                    d3.select("#lines").remove();
-                    setTimeout(() => {
-                        commonElements(h2_tree.descendants(), h1_tree.descendants());
-                    }, 1000);
-                    h2flag = 0;
-                    for (var j = h2_tree.descendants().length - 1; j >= 0; j--) {
-                        var element = h2_tree.descendants()[j];
-                        name = element.data.data.child
-                            .replaceAll(/\//g, "")
-                            .replaceAll(".", "")
-                            .replaceAll(" ", "")
-                            .replaceAll("(", "")
-                            .replaceAll(")", "")
-                            .toLowerCase();
-                        //if (element.ancestors()[i].depth > 1)
-                        //console.log(num_slashes.length);
-                        for (var i = num_slashes.length - 1; i >= 2; i--) {
-                            //console.log(i);
-                            if (name == num_slashes[i]) {
-                                //console.log("match " + i + " " + name);
-                                //console.log("expand ")
-                                //console.log(element)
-                                if (element._children != null && element._children.length >= 1) {
-                                    //console.log(element);
-                                    for (var c = 0; c < element._children.length; c++) {
-                                        if (element._children[c].data.data.child.replaceAll(/\//g, "")
-                                            .replaceAll(".", "")
-                                            .replaceAll(" ", "")
-                                            .replaceAll("(", "")
-                                            .replaceAll(")", "")
-                                            .toLowerCase() == num_slashes[i + 1]) {
-                                            expand(element);
-                                            h2tree(h2_tree.descendants()[0], h2_root);
-                                            h2flag = 1;
-                                            break;
-                                        }
-                                    }
-                                }
+                        //}
 
 
+                    });
 
-                            }
-
-                        }
-
-                        if (h2flag == 1) {
-                            setTimeout(() => {
-                                //console.log(num_slashes);
-                                for (var i = 0; i < num_slashes.length; i++) {
-                                    //console.log(i + " " + num_slashes[i]);
-                                    pathname = num_slashes[i].replaceAll(/\//g, "")
-                                        .replaceAll(".", "")
-                                        .replaceAll(" ", "")
-                                        .replaceAll("(", "")
-                                        .replaceAll(")", "")
-                                        .toLowerCase();
-                                    d3.select("#h2tree")
-                                        .append("rect")
-                                        .attr("class", "search-rect")
-                                        .attr("id", "rect-" + pathname)
-                                        .attr("width", 20)
-                                        .attr("height", 20)
-                                        .attr("x", d3.select("#h2tree_" + pathname).attr("cx") - radius - rect_offset)
-                                        .attr("y", d3.select("#h2tree_" + pathname).attr("cy") - radius - rect_offset)
-                                        .style("fill", "none")
-                                        .style("stroke-width", "3px")
-                                        .style("stroke", "gold");
-
-                                    //console.log("#h2tree_" + pathname + "_text");
-                                    d3.select(".h2tree_" + pathname + "_text")
-                                        .style("fill", "red")
-                                        .style("font-size", "20")
-                                        .classed("selected_text", "true");
-
-                                }
-                            }, 800);
-                            break;
-                        }
-                    }
-                }
-
-
-
-
-
-
-                var root = h1_tree.descendants()[0];
-
-
-                h1_tree.descendants().forEach(function (element) {
-                    //console.log(element.depth + " " + num_slashes);
-                    //if (element.depth == num_slashes.length - 1) {
-                    name = element.data.data.child
-                        //.replaceAll(/\//g, "")
-                        .replaceAll(".", "")
-                        .replaceAll(" ", "")
-                        .replaceAll("(", "")
-                        .replaceAll(")", "")
-                        .toLowerCase();
-                    //console.log(name);
-                    //console.log(child);
-                    //console.log(name + " " + child);
-                    if (name == num_slashes[num_slashes.length - 1]) {
-                        //console.log("ITS A MATCHYY");
-                        h1flag = 1;
-
-                        path = root.path(element);
-
-                        for (var i = 0; i < path.length; i++) {
-
-                            pathname = path[i].data.data.child
+                    if (h1flag == 0) {
+                        d3.select("#lines").remove();
+                        setTimeout(() => {
+                            commonElements(h2_tree.descendants(), h1_tree.descendants());
+                        }, 1000);
+                        h1flag = 0;
+                        for (var j = h1_tree.descendants().length - 1; j >= 0; j--) {
+                            var element = h1_tree.descendants()[j];
+                            name = element.data.data.child
                                 .replaceAll(/\//g, "")
                                 .replaceAll(".", "")
                                 .replaceAll(" ", "")
                                 .replaceAll("(", "")
                                 .replaceAll(")", "")
                                 .toLowerCase();
-                            //console.log(pathname);
+                            //if (element.ancestors()[i].depth > 1)
+                            //console.log(num_slashes.length);
+                            for (var i = num_slashes.length - 1; i >= 2; i--) {
+                                //console.log(i);
+                                if (name == num_slashes[i]) {
+                                    //console.log("match " + i + " " + name);
+                                    //console.log("expand ")
+                                    //console.log(element + " " + element._children.length);
+                                    if (element._children != null && element._children.length >= 1) {
+                                        //console.log(element);
+                                        for (var c = 0; c < element._children.length; c++) {
+                                            if (element._children[c].data.data.child.replaceAll(/\//g, "")
+                                                .replaceAll(".", "")
+                                                .replaceAll(" ", "")
+                                                .replaceAll("(", "")
+                                                .replaceAll(")", "")
+                                                .toLowerCase() == num_slashes[i + 1]) {
+                                                //console.log("exp " + element)
+                                                expand(element);
+                                                h1tree(h1_tree.descendants()[0], h1_root);
+                                                h1flag = 1;
+                                                break;
+                                            }
+                                        }
+                                    }
 
-                            document.getElementById("h1tree_" + pathname)
-                                .scrollIntoView(true);
-                            var scrolledY = window.scrollY;
 
-                            if (scrolledY) {
-                                window.scroll(0, scrolledY - offsetHeight);
+
+                                }
+
                             }
 
-
-                            /* d3.select("#h1tree_" + pathname)
-                                .style("fill", "gold")
-                                .attr("r", 15)
-                                .style("opacity", "1")
-                                .classed("selected", "true"); */
-
-                            //console.log("h1 " + pathname);
-
-                            d3.select("#h1tree")
-                                .append("rect")
-                                .attr("class", "search-rect")
-                                .attr("id", "rect-" + pathname)
-                                .attr("width", 20)
-                                .attr("height", 20)
-                                .attr("x", d3.select("#h1tree_" + pathname).attr("cx") - radius - rect_offset)
-                                .attr("y", d3.select("#h1tree_" + pathname).attr("cy") - radius - rect_offset)
-                                .style("fill", "none")
-                                .style("stroke-width", "3px")
-                                .style("stroke", "gold");
-
-
-                            d3.select(".h1tree_" + pathname + "_text")
-                                .style("fill", "red")
-                                .style("font-size", "20")
-                                .classed("selected_text", "true");
-                        }
-                    }
-                    //}
-
-
-                });
-
-                if (h1flag == 0) {
-                    d3.select("#lines").remove();
-                    setTimeout(() => {
-                        commonElements(h2_tree.descendants(), h1_tree.descendants());
-                    }, 1000);
-                    h1flag = 0;
-                    for (var j = h1_tree.descendants().length - 1; j >= 0; j--) {
-                        var element = h1_tree.descendants()[j];
-                        name = element.data.data.child
-                            .replaceAll(/\//g, "")
-                            .replaceAll(".", "")
-                            .replaceAll(" ", "")
-                            .replaceAll("(", "")
-                            .replaceAll(")", "")
-                            .toLowerCase();
-                        //if (element.ancestors()[i].depth > 1)
-                        //console.log(num_slashes.length);
-                        for (var i = num_slashes.length - 1; i >= 2; i--) {
-                            //console.log(i);
-                            if (name == num_slashes[i]) {
-                                //console.log("match " + i + " " + name);
-                                //console.log("expand ")
-                                //console.log(element + " " + element._children.length);
-                                if (element._children != null && element._children.length >= 1) {
-                                    //console.log(element);
-                                    for (var c = 0; c < element._children.length; c++) {
-                                        if (element._children[c].data.data.child.replaceAll(/\//g, "")
+                            if (h1flag == 1) {
+                                setTimeout(() => {
+                                    //console.log(num_slashes);
+                                    for (var i = 0; i < num_slashes.length; i++) {
+                                        //console.log(i + " " + num_slashes[i]);
+                                        pathname = num_slashes[i].replaceAll(/\//g, "")
                                             .replaceAll(".", "")
                                             .replaceAll(" ", "")
                                             .replaceAll("(", "")
                                             .replaceAll(")", "")
-                                            .toLowerCase() == num_slashes[i + 1]) {
-                                            //console.log("exp " + element)
-                                            expand(element);
-                                            h1tree(h1_tree.descendants()[0], h1_root);
-                                            h1flag = 1;
-                                            break;
-                                        }
+                                            .toLowerCase();
+                                        d3.select("#h1tree")
+                                            .append("rect")
+                                            .attr("class", "search-rect")
+                                            .attr("id", "rect-" + pathname)
+                                            .attr("width", 20)
+                                            .attr("height", 20)
+                                            .attr("x", d3.select("#h1tree_" + pathname).attr("cx") - radius - rect_offset)
+                                            .attr("y", d3.select("#h1tree_" + pathname).attr("cy") - radius - rect_offset)
+                                            .style("fill", "none")
+                                            .style("stroke-width", "3px")
+                                            .style("stroke", "gold");
+
+
+                                        d3.select(".h1tree_" + pathname + "_text")
+                                            .style("fill", "red")
+                                            .style("font-size", "20")
+                                            .classed("selected_text", "true");
+
                                     }
-                                }
-
-
-
+                                }, 800);
+                                break;
                             }
-
-                        }
-
-                        if (h1flag == 1) {
-                            setTimeout(() => {
-                                //console.log(num_slashes);
-                                for (var i = 0; i < num_slashes.length; i++) {
-                                    //console.log(i + " " + num_slashes[i]);
-                                    pathname = num_slashes[i].replaceAll(/\//g, "")
-                                        .replaceAll(".", "")
-                                        .replaceAll(" ", "")
-                                        .replaceAll("(", "")
-                                        .replaceAll(")", "")
-                                        .toLowerCase();
-                                    d3.select("#h1tree")
-                                        .append("rect")
-                                        .attr("class", "search-rect")
-                                        .attr("id", "rect-" + pathname)
-                                        .attr("width", 20)
-                                        .attr("height", 20)
-                                        .attr("x", d3.select("#h1tree_" + pathname).attr("cx") - radius - rect_offset)
-                                        .attr("y", d3.select("#h1tree_" + pathname).attr("cy") - radius - rect_offset)
-                                        .style("fill", "none")
-                                        .style("stroke-width", "3px")
-                                        .style("stroke", "gold");
-
-
-                                    d3.select(".h1tree_" + pathname + "_text")
-                                        .style("fill", "red")
-                                        .style("font-size", "20")
-                                        .classed("selected_text", "true");
-
-                                }
-                            }, 800);
-                            break;
                         }
                     }
+
+
+
+
+                    update_log("ltree", "btn-search", "button", "search for a node " + d3.select("#search-nodes").node().value, "click", "", "", "", "", "");
                 }
-
-
-
-
-                update_log("ltree", "btn-search", "button", "search for a node " + d3.select("#search-nodes").node().value, "click", "", "", "", "", "");
 
             });
 
@@ -1896,6 +2429,8 @@
 
                     d3.select("#tooltip")
                         .html(text)
+                        .style("width", "auto")
+                        .style("height", "auto")
                         .style("left", parseInt(d3.event.pageX + tooltip_offset - 500) + "px")
                         .style("top", parseInt(d3.event.pageY + 50) + "px")
                         .style("text-align", "left")
@@ -2167,7 +2702,7 @@
         function h1tree(source, h1_root) {
 
             //console.log(source);
-            //console.log(h1);
+            //console.log("h1");
 
             //console.log(h1_root);
             var triangleColor = "green";
@@ -2324,7 +2859,7 @@
                         h1tree(d, h1_root);
                         setTimeout(() => {
                             commonElements(h2_tree.descendants(), h1_tree.descendants());
-                        }, 1000);
+                        }, 800);
 
                     }
 
@@ -2694,6 +3229,8 @@
 
                     d3.select("#tooltip")
                         .html(text)
+                        .style("width", "auto")
+                        .style("height", "auto")
                         .style("left", parseInt(d3.event.pageX + tooltip_offset) + "px")
                         .style("top", parseInt(d3.event.pageY + 50) + "px")
                         .style("text-align", "left")
@@ -3424,11 +3961,29 @@
 
             d3.select("#btn-zoom")
                 .append("g")
-                .attr("id", btns_toolbox[bt])
+                .attr("id", "btn-zoom-in")
                 .attr("transform", "translate(62,0)")
                 .on("mouseover", function (d) {
                     d3.select(this).style("cursor", "pointer");
-
+                    d3.select("#tooltip")
+                        .classed("hovertt", true)
+                        .html("<tt>Zoom in</tt>")
+                        .style("width", "auto")
+                        .style("height", "auto")
+                        .style("left", parseInt(d3.event.pageX) + "px")
+                        .style("top", parseInt(d3.event.pageY + 50) + "px")
+                        .style("text-align", "left")
+                        .style("opacity", 1);
+                })
+                .on("mouseleave", function () {
+                    d3.select("#tooltip")
+                        .html("")
+                        .classed("hovertt", false)
+                        .style("width", 0)
+                        .style("height", 0)
+                        .style("left", "0px")
+                        .style("top", "0px")
+                        .style("opacity", 0);
                 })
                 .on("click", function (e, d, i) {
 
@@ -3436,8 +3991,6 @@
                         .style("stroke", "grey");
 
                     sel_toolbox = "btn-zoom-in";
-
-
 
 
                     d3.select(this)
@@ -3506,6 +4059,25 @@
                 .attr("transform", "translate(62,23)")
                 .on("mouseover", function (d) {
                     d3.select(this).style("cursor", "pointer");
+                    d3.select("#tooltip")
+                        .classed("hovertt", true)
+                        .html("<tt>Zoom out</tt>")
+                        .style("width", "auto")
+                        .style("height", "auto")
+                        .style("left", parseInt(d3.event.pageX) + "px")
+                        .style("top", parseInt(d3.event.pageY + 50) + "px")
+                        .style("text-align", "left")
+                        .style("opacity", 1);
+                })
+                .on("mouseleave", function () {
+                    d3.select("#tooltip")
+                        .classed("hovertt", false)
+                        .html("")
+                        .style("width", 0)
+                        .style("height", 0)
+                        .style("left", "0px")
+                        .style("top", "0px")
+                        .style("opacity", 0);
                 })
                 .on("click", function () {
 
@@ -3576,9 +4148,27 @@
                 .attr("class", "toolbox-g")
                 .attr("id", "btn-reset")
                 .attr("transform", "translate(" + cal + ",0)")
-                .on("mouseover", function () {
-                    document.getElementById("treeswlinking_svg").style.cursor = "pointer";
-
+                .on("mouseover", function (d) {
+                    d3.select(this).style("cursor", "pointer");
+                    d3.select("#tooltip")
+                        .classed("hovertt", true)
+                        .html("<tt>Reset Zoom</tt>")
+                        .style("width", "auto")
+                        .style("height", "auto")
+                        .style("left", parseInt(d3.event.pageX) + "px")
+                        .style("top", parseInt(d3.event.pageY + 50) + "px")
+                        .style("text-align", "left")
+                        .style("opacity", 1);
+                })
+                .on("mouseleave", function () {
+                    d3.select("#tooltip")
+                        .classed("hovertt", false)
+                        .html("")
+                        .style("width", 0)
+                        .style("height", 0)
+                        .style("left", "0px")
+                        .style("top", "0px")
+                        .style("opacity", 0);
                 })
                 .on("click", function () {
                     console.log("reset");
@@ -3666,6 +4256,28 @@
                 .attr("class", "toolbox-g")
                 .attr("id", "btn-expand-folder")
                 .attr("transform", "translate(" + cal + ",0)")
+                .on("mouseover", function (d) {
+                    d3.select(this).style("cursor", "pointer");
+                    d3.select("#tooltip")
+                        .classed("hovertt", true)
+                        .html("<tt>Expand only this node</tt>")
+                        .style("width", "auto")
+                        .style("height", "auto")
+                        .style("left", parseInt(d3.event.pageX) + "px")
+                        .style("top", parseInt(d3.event.pageY + 50) + "px")
+                        .style("text-align", "left")
+                        .style("opacity", 1);
+                })
+                .on("mouseleave", function () {
+                    d3.select("#tooltip")
+                        .classed("hovertt", false)
+                        .html("")
+                        .style("width", 0)
+                        .style("height", 0)
+                        .style("left", "0px")
+                        .style("top", "0px")
+                        .style("opacity", 0);
+                })
                 .on("click", function () {
                     console.log("Expand");
                     if (d3.select(this).select("rect").style("fill") == "rgb(255, 255, 255)" || d3.select(this).select("rect").style("fill") == "white") {
@@ -3745,7 +4357,28 @@
                 .attr("class", "toolbox-g")
                 .attr("id", "btn-collapse-folder")
                 .attr("transform", "translate(" + cal + ",0)")
-
+                .on("mouseover", function (d) {
+                    d3.select(this).style("cursor", "pointer");
+                    d3.select("#tooltip")
+                        .classed("hovertt", true)
+                        .html("<tt>Collapse only this node</tt>")
+                        .style("width", "auto")
+                        .style("height", "auto")
+                        .style("left", parseInt(d3.event.pageX) + "px")
+                        .style("top", parseInt(d3.event.pageY + 50) + "px")
+                        .style("text-align", "left")
+                        .style("opacity", 1);
+                })
+                .on("mouseleave", function () {
+                    d3.select("#tooltip")
+                        .classed("hovertt", false)
+                        .html("")
+                        .style("width", 0)
+                        .style("height", 0)
+                        .style("left", "0px")
+                        .style("top", "0px")
+                        .style("opacity", 0);
+                })
                 .on("click", function () {
                     console.log("Collapse");
                     if (d3.select(this).select("rect").style("fill") == "rgb(255, 255, 255)" || d3.select(this).select("rect").style("fill") == "white") {
@@ -3850,14 +4483,18 @@
 
         function commonElementsList(h2_desc, h1_desc) {
             var arr = [];
+            //console.log(h1_desc);
+
+
 
             for (h1 = h1_desc.length - 1; h1 > 0; h1--) {
                 for (h2 = h2_desc.length - 1; h2 > 0; h2--) {
 
                     //console.log(h2 + " " + h1);
-                    if (h1_desc[h1].depth >= 2 && h2_desc[h2].depth >= 2)
+                    if (h1_desc[h1].depth >= user_set_depth && h2_desc[h2].depth >= user_set_depth)
                         if (h1_desc[h1].status == "ACCEPT" && h1_desc[h1].data.data.child == h2_desc[h2].data.data.child) {
-                            // if (h1_desc[h1].data.data.description_child == "root/hcil/members")
+                            //if (h1_desc[h1].data.data.description_child == "F")
+                            //console.log(h1_desc[h1]);
                             //console.log("members " + checkElements(h1_desc[h1], h2_desc[h2]));
                             if (checkElements(h1_desc[h1], h2_desc[h2])) {
                                 //console.log("draw line " + h1_desc[h1].data.data.description_child);
@@ -3881,7 +4518,7 @@
             //console.log("expand");
             //console.log(arr);
             //console.log("collapse");
-            //console.log(commonElementsArr);
+            console.log(commonElementsArr);
 
 
 
@@ -4068,7 +4705,7 @@
                                     .replaceAll(")", "")
                                     .toLowerCase();
 
-                                console.log(child);
+                                //console.log(child);
 
                                 d3.select("#h2tree_" + child)
                                     .transition()
@@ -4093,7 +4730,7 @@
 
                                     //console.log(h1_tree.descendants());
                                     h2_tree.descendants().forEach(function (element) {
-                                        console.log(element);
+                                        //console.log(element);
                                         //console.log(element.data.data.child + " " + label);
                                         if (element.data.data.child == label.toLowerCase()) {
 
@@ -4146,6 +4783,8 @@
 
                                 d3.select("#tooltip")
                                     .html(text)
+                                    .style("width", "auto")
+                                    .style("height", "auto")
                                     .style("left", parseInt(d3.event.pageX + tooltip_offset) + "px")
                                     .style("top", parseInt(d3.event.pageY + 50) + "px")
                                     .style("text-align", "left")

@@ -244,8 +244,7 @@ padding: 0;
           }
 
           #tooltip{
-            width:400px;
-            height:150px;
+            
             background-color: white;
             border:solid;
             font-size: 20px;
@@ -260,6 +259,12 @@ padding: 0;
         white-space: -pre-wrap;
         white-space: -o-pre-wrap;
         word-wrap: break-word;
+          }
+
+          #tooltip.hovertt{
+            background-color: #155446;
+            font-size: 15px;
+            color:white;
           }
 
           .tree_heading{

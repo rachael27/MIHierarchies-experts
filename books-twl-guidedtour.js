@@ -13,25 +13,25 @@ function twl_guidedtour() {
             intro: "Nodes are arranged in an alphabetical order from top-to-bottom for easy access in each tree and sub-tree."
         },
         {
-            element: document.querySelector('[id="h1tree_root"]'),
+            element: document.querySelector('[id="h1tree_e11-143"]'),
             title: "Node with a green border <hr class='border border-primary border-3 opacity-75'>",
-            intro: "<p class='text-justify'>A node may represent a file or folder. <br> <hr class='border border-danger border-2 opacity-50'> If the node has a green border, it is a folder.</p>"
+            intro: "<p class='text-justify'>A node may represent a genre or book. <br> <hr class='border border-danger border-2 opacity-50'> If the node has a green border, it is a genre/sub-genre.</p>"
         },
 
         {
-            element: document.querySelector('[id="h1tree_privacy-policyshtml"]'),
+            element: document.querySelector('[id="h1tree_blacklm"]'),
             title: "Node without a green border <hr class='border border-primary border-3 opacity-75'>",
-            intro: "<p class='text-justify'>If the node doesn't have a border, it is a file. </p>"
+            intro: "<p class='text-justify'>If the node doesn't have a border, it is a book. </p>"
         },
         {
-            element: document.querySelector("#link_academics"),
-            title: "A connecting link between folders <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Consider the blue links for this step of the tour. <hr class='border border-danger border-2 opacity-50'> If a link is drawn between 2 folders, it means that the folder along with the files that belong to it are common to both hierarchies. <hr class='border border-danger border-2 opacity-50'> Hovering on a link (hover on the first blue link) highlights the BeforeH and AfterH nodes that the link connects and display the node details."
+            element: document.querySelector("#link_f800"),
+            title: "A connecting link between genres <hr class='border border-primary border-3 opacity-75'>",
+            intro: "Consider the blue links for this step of the tour. <hr class='border border-danger border-2 opacity-50'> If a link is drawn between 2 genres, it means that the genre along with the books that belong to it are common to both hierarchies. <hr class='border border-danger border-2 opacity-50'> Hovering on a link (hover on the first blue link) highlights the BeforeH and AfterH nodes that the link connects and display the node details."
         },
         {
-            element: document.querySelector('[id="link_treemaps-index.html"]'),
-            title: "A connecting link between files <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Consider the orange links for this step of the tour. <hr class='border border-danger border-2 opacity-50'>  If a link is drawn between 2 files, it means that the file is common to both hierarchies."
+            element: document.querySelector('[id="link_4dtahs"]'),
+            title: "A connecting link between books <hr class='border border-primary border-3 opacity-75'>",
+            intro: "Consider the orange links for this step of the tour. <hr class='border border-danger border-2 opacity-50'>  If a link is drawn between 2 books, it means that the book is common to both hierarchies."
         },
 
         {
@@ -41,43 +41,43 @@ function twl_guidedtour() {
         },
 
         {
-            element: document.querySelector('[id="h1tree_spotfire"]'),
+            element: document.querySelector('[id="h1tree_4dtahs"]'),
             title: "Interacting with a node - tooltip <hr class='border border-primary border-3 opacity-75'>",
             intro: "You can hover on a node to view a tooltip which displays the details about a node. <br><hr class='border border-danger border-2 opacity-50'> It also highlights the path from the node to the root."
         },
         {
-            element: document.querySelector('[id="h1tree_applet"]'),
+            element: document.querySelector('[id="h1tree_f400"]'),
             title: "Tree levels <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The level of a node is the number of ancestors from the given node until the root node. <hr class='border border-danger border-2 opacity-50'> To calculate the level, simply count the number of highlighted nodes starting from the root node at level 0. Hence, the level of the selected node is 3.  <hr class='border border-danger border-2 opacity-50'> The root node is at level 0."
+            intro: "The level of a node is the number of ancestors from the given node until the root node. <hr class='border border-danger border-2 opacity-50'> To calculate the level, simply count the number of highlighted nodes starting from the root node at level 0. Hence, the level of the selected node is 2.  <hr class='border border-danger border-2 opacity-50'> The root node is at level 0."
         },
         {
-            element: document.querySelector("#h1tree .triangle-agile2d"),
+            element: document.querySelector("#h1tree .triangle-f"),
             title: "The green triangle <hr class='border border-primary border-3 opacity-75'>",
             intro: "The green triangle indicates that a node has been collapsed (i.e. the children of that node are hidden)."
         },
 
         {
-            element: document.querySelector('[id="h1tree_agile2d"]'),
+            element: document.querySelector('[id="h1tree_f"]'),
             title: "Interacting with a node - collapse/expand <hr class='border border-primary border-3 opacity-75'>",
             intro: "You can click on a node (with a green triangle) to expand its children. <br><hr class='border border-danger border-2 opacity-50'> Click on the node again to collapse it."
         },
 
         {
-            element: document.querySelector(".h2tree_oh99-indexshtml_text"),
+            element: document.querySelector(".h2tree_addsas_text"),
             title: "Interacting with a label <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The label displays the truncated file/folder name along with the extension (of the file). <hr class='border border-danger border-2 opacity-50'> You can hover on a label to magnify the text and to view the entire file/folder name."
+            intro: "The label displays the truncated book/genre name along with the extension (of the book). <hr class='border border-danger border-2 opacity-50'> You can hover on a label to magnify the text and to view the entire book/genre name."
         },
 
 
         {
             element: document.querySelector('[id="search-nodes"]'),
             title: "Search nodes <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Enter the file/folder name, for e.g. type 'filelist.xml' will give you a list of all files named filelist.xml. <hr class='border border-danger border-2 opacity-50'> Choose the required file based on its <b>path:</b><i>/anthro/photos/index_files/filelist.xml</i>"
+            intro: "Enter the genre/book name, for e.g. type 'america' will give you a list of all genres/books named america. <hr class='border border-danger border-2 opacity-50'> Choose the <b>Book:</b><i>American Colonies</i>."
         },
         {
             element: document.querySelector('[id="btn-search"]'),
             title: "Search nodes <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Now, click on the search button. Automatic scrolling will take you to the node that you searched for. <hr class='border border-danger border-2 opacity-50'> The searched node and the nodes on its path (found just below this pop-up box) to the root node are surrounded by gold squares and have red-colored labels."
+            intro: "Now, click on the search button. Automatic scrolling will take you to the node that you searched for. <hr class='border border-danger border-2 opacity-50'> The searched node and the nodes on its path to the root node are surrounded by gold squares and have red-colored labels."
         },
         {
             element: document.querySelector('[id="btn-clear"]'),
@@ -87,15 +87,42 @@ function twl_guidedtour() {
         {
             element: document.querySelector('[id="btn-changeonlylayout"]'),
             title: "View changes-only layout <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The default layout expands only those folders that have undergone changes while hiding the children of those nodes that did not change from the BeforeH to AfterH."
+            intro: "The default layout expands only those genres that have undergone changes while hiding the children of those nodes that did not change from the BaseH to TargetH."
         },
 
         {
             element: document.querySelector('[id="btn-entirelayout"]'),
             title: "View the entire layout <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This layout expands all folders - those that have undergone changes and those that have not. <hr class='border border-danger border-2 opacity-50'> You can toogle between the two layouts depending on the task."
+            intro: "This layout expands all genres - those that have undergone changes and those that have not. <hr class='border border-danger border-2 opacity-50'> You can toogle between the two layouts depending on the task."
         },
 
+        {
+            element: document.querySelector('[id="btn-zoom"]'),
+            title: "Zoom <hr class='border border-primary border-3 opacity-75'>",
+            intro: "You can use the zoom-in and zoom-out buttons to zoom in and out of the visualization. <br><hr class='border border-danger border-2 opacity-50'> You can click on any empty (white) space and drag the visualization. <br><hr class='border border-danger border-2 opacity-50'> Finally click on the Zoom button or press the Esc key to switch off the zoom mode. <br><hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/books-twl-zoom.mov" type="video/mp4"></video>'
+
+        },
+
+        {
+            element: document.querySelector('[id="btn-reset"]'),
+            title: "Zoom Reset (toggle button) <hr class='border border-primary border-3 opacity-75'>",
+            intro: "To reset the zoom magnigications, click on the zoom reset button. <br><hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/books-twl-reset.mov" type="video/mp4"></video>'
+
+        },
+
+        {
+            element: document.querySelector('[id="btn-expand-genre"]'),
+            title: "Expand Node (toggle button) <hr class='border border-primary border-3 opacity-75'>",
+            intro: "This button can be used to expand only one genre and collapse every other genre. <hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/books-twl-expand.mov" type="video/mp4"></video>'
+
+        },
+
+        {
+            element: document.querySelector('[id="btn-collapse-genre"]'),
+            title: "Collapse genre (toggle button) <hr class='border border-primary border-3 opacity-75'>",
+            intro: "This button can be used to collapse only one genre and collapse every other genre.<hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/books-twl-collapse.mov" type="video/mp4"></video>'
+
+        },
         {
 
             title: "End of the Guided Tour! <hr class='border border-primary border-3 opacity-75'>",

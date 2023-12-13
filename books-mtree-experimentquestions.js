@@ -20,90 +20,134 @@ function experimentquestions(qcounter) {
         },
         {
             "qid": "E1.",
-            "question": "Does the AfterH have the same number of levels as the Before?",
-            "answer": "No. The AfterH has one level more than the BeforeH",
-            "options": ["Yes", "No. The AfterH has one level more than the BeforeH", "No. The AfterH has one level less than the BeforeH"]
+            "question": "Does the TargetH have the same number of levels as the BaseH?",
+            "answer": "No. The TargetH has one level more than the BaseH",
+            "options": ["Yes", "No. The TargetH has one level more than the BaseH", "No. The TargetH has one level less than the BaseH"]
 
         },
 
         {
             "qid": "E2.",
-            "question": "What is the path of the node:<i>treeml.dtd</i> to the root node?",
-            "answer": "<i>root/hcil/iv03contest/datasets/treeml.dtd</i>",
-            "options": ["<i>root/hcil/census/JavaProto/demo_files/treeml.dtd</i>", "<i>root/hcil/iv03contest/datasets/treeml.dtd</i>", "<i>root/hcil/about/pictures/treeml.dtd</i>", "<i>root/hcil/treemaps/treeml.dtd</i>"]
+            "question": "What is the path of the node <b>book:</b><i>Elements in Political Science</i> to the root node?",
+            "answer": "",
+            "options": [""]
 
         },
 
-
         {
             "qid": "E3.",
-            "question": "What is the level of node filename:<i>root/hcil/piccolo/newsroom/newsroom-index.shtml</i> in the before and after hierarchies?",
-            "answer": "Level 4 in the BeforeH and Level 4 in the AfterH",
-            "options": ["Level 4 in the BeforeH and Level 4 in the AfterH", "Level 4 in the BeforeH and Level 5 in the AfterH", "Level 5 in the BeforeH and Level 6 in the AfterH"]
+            "question": "What is the level of node?",
+            "answer": "",
+            "options": [""]
 
         },
 
         {
             "qid": "E4.",
-            "question": "Which folder has the maximum number of files deletions?",
-            "answer": "treemap3",
-            "options": ["snap", "oh99", "treemap3", "spacetree"]
+            "question": "Books belonging to which genre are found only in the GreenValley library?",
+            "answer": "",
+            "options": [""]
 
         },
 
         {
             "qid": "E5.",
-            "question": "Is the element filename:<i>root/hcil/about/pictures/reddot.gif</i> available in both hierarchies?",
-            "answer": "No. It is available only in the AfterH",
-            "options": ["Yes. It is available in both hierarchies", "No. It is available only in the BeforeH", "No. It is available only in the AfterH"]
+            "question": "Which genre has all sub-genres common to the RedPark and GreenValley libraries?",
+            "answer": "",
+            "options": [""]
 
         },
 
-        /* {
-            "qid": "E6.",
-            "question": "Node file:<i>root/hcil/pda/thesis/thesis-pda/postscript.html</i> in the BeforeH has gone through a change/s. What is/are the change/s?",
-            "answer": "The file has moved up one level in to the folder<i>root/hcil/pda/thesis</i>.",
-            "options": ["The file has moved to a different folder on the same level.", "The file has moved down one level in to a sub-folder inside the parent folder:<i>root/hcil/pda/thesis/thesis-pda/thesis-draft/postscript.html</i>.", "The file has moved up one level in to the folder<i>root/hcil/pda/thesis</i>."]
- 
-        },
- */
         {
             "qid": "E6.",
-            "question": "Choose the best description for the folder:<i>root/hcil/piccolo/applications</i> changed?",
-            "answer": "One folder and a file that belongs to it have been retained",
-            "options": ["Some files have been deleted", "The folder contents have not changed at all", "One folder and a file that belongs to it have been retained", "One file has been added"]
+            "question": "What is common to these three books: <i>Revolutionary characters: What made the founders different?, To begin the world anew..., The rise of American democracy...?",
+            "answer": "",
+            "options": [""]
 
         },
 
         {
             "qid": "E7.",
-            "question": "Find the siblings of folder:<i>root/hcil/photomesa/help.html</i>",
-            "answer": "[licensing.shtml;hand-button.gif;hcil-logo-small.gif]",
-            "options": ["[figure01.jpg;figure02.jpg;figure03.jpg]", "[spotfire;touchscreens;timesearcher]", "[licensing.shtml;hand-button.gif;hcil-logo-small.gif]"]
+            "question": "How many books does the genre:ABC have? (expand the triangle)",
+            "answer": "",
+            "options": [""]
 
         },
+
         {
             "qid": "E8.",
-            "question": "Which folder in the BeforeH has the most number of newly created files in the AfterH?",
-            "answer": "<i>root/hcil/treemap3</i>",
-            "options": ["<i>root/hcil/treemap3</i>", "<i>root/hcil/about/pictures</i>", "<i>root/hcil/agile2d</i>"]
+            "question": "What book should you read if you want to know about New Mexico?",
+            "answer": "",
+            "options": [""]
 
         },
+
         {
             "qid": "E9.",
-            "question": "Which folder in the BeforeH was deleted in the AfterH?",
-            "answer": "<i>root/hcil/visumillion</i>",
-            "options": ["<i>root/hcil/treemaps</i>", "<i>root/hcil/about</i>", "<i>root/hcil/visumillion</i>"]
+            "question": "Which sub-genre of Political Sceince only exists in the GreenValley library?",
+            "answer": "",
+            "options": [""]
 
         },
 
         {
             "qid": "E10.",
-            "question": "What changes are common to folder:<i>root/hcil/members/mvenkatraman</i> and folder:<i>root/hcil/members/rsalter</i>?",
-            "answer": "One file was deleted; one file was added and one file was retained",
-            "options": ["All files were deleted", "One file was added and one file was deleted", "One file was deleted; one file was added and one file was retained", "Two files were retained and the rest were deleted"]
+            "question": "Which genre has the most number of books?",
+            "answer": "",
+            "options": [""]
 
         },
+
+        {
+            "qid": "E11.",
+            "question": "Which library has the most number of books?",
+            "answer": "",
+            "options": [""]
+
+        },
+
+        {
+            "qid": "E12.",
+            "question": "",
+            "answer": "",
+            "options": [""]
+
+        },
+
+        {
+            "qid": "E13.",
+            "question": "",
+            "answer": "",
+            "options": [""]
+
+        },
+
+        {
+            "qid": "E14.",
+            "question": "",
+            "answer": "",
+            "options": [""]
+
+        },
+
+        {
+            "qid": "E15.",
+            "question": "",
+            "answer": "",
+            "options": [""]
+
+        },
+
+
+        /* {
+            "qid": "E6.",
+            "question": "Node file:<i>root/hcil/pda/thesis/thesis-pda/postscript.html</i> in the BaseH has gone through a change/s. What is/are the change/s?",
+            "answer": "The file has moved up one level in to the folder<i>root/hcil/pda/thesis</i>.",
+            "options": ["The file has moved to a different folder on the same level.", "The file has moved down one level in to a sub-folder inside the parent folder:<i>root/hcil/pda/thesis/thesis-pda/thesis-draft/postscript.html</i>.", "The file has moved up one level in to the folder<i>root/hcil/pda/thesis</i>."]
+ 
+        },
+ */
+
 
         {
             "qid": "E11.",
