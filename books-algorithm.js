@@ -154,6 +154,8 @@ function bt_compareDimensions(h1, h2, h1_dims, h2_dims, h2color, h1color, merged
 
                 bookdetails = findBookDetails(h1_dims, h1[i][ii]);
 
+                console.log(altparent + " " + linkcolor);
+
                 hier_obj.push({
                     "child": h1[i][ii],
 
@@ -183,6 +185,8 @@ function bt_compareDimensions(h1, h2, h1_dims, h2_dims, h2color, h1color, merged
                     "x": 0,
                     "y": 0,
 
+                    //"linkcolor": "blue",
+                    //"linkcolor": "red",
                     "linkcolor": linkcolor,
 
                     "h2parent": detailsh2[0],

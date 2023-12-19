@@ -1,5 +1,5 @@
 child,parent,description_child,description_parent,title,author,isbn,pubname,pubyear,CB,callnumber
-root,,ROOT,,,,category,,,yes,
+root,,ROOT,,root,,category,,,yes,
 e,root,E,ROOT,America and United States,,category,,,yes,
 f,root,F,ROOT,History of the Americas,,category,,,,
 j,root,J,ROOT,Political Science,,category,,,yes,
@@ -8,51 +8,24 @@ jk,j,JK,J,Political institutions and public administration,,category,,,,
 4dtahs,e11-143,4DTAHS,E11-143,444 days : The american hostage story ,Sid Moody and the News Staff and photographers of The Associated Press,0831745703;0831745711,New York : Rutledge Press,1981,yess,e1834d
 4dthr,e11-143,4DTHR,E11-143,444 days : The hostages remember ,Tim Wells,015132803X;9780151328031,San Diego : Harcourt Brace Jovanovich,1985,,e1834d
 atpwlt,e11-143,ATPWLT,E11-143,After the Palestine-Israel War : limits to US and Israeli policy ,Khalil Nakhleh and Clifford A Wright,0912031018;9780912031019,Belmont,1983,yess,e183atp
-afdate,e11-143,AFDATE,E11-143,All fall down : America's tragic encounter with Iran,Khalil Nakhleh and Clifford A Wright,0394544889;9780394544885,New York : Random House,1985,,e183afd
-bwajar,e11-143,BWAJAR,E11-143,Between Washington and Jerusalem : a reporter's notebook ,Wolf Blitzer,195037081,New York : Oxford University Press,1985,,e183bwa
 deltaf,e11-143,DELTAF,E11-143,Delta force ,Charlie A Beckwith and Donald Knox,0151246572;9780151246571,San Diego : Harcourt brace jovanovich,1983,,e183df
-naafp1,e11-143,NAAFP1,E11-143,Nasser and American foreign policy 1952-1956 ,Muhammad Abd el-Wahab Sayed-Ahmed,1870326148;9781870326148,London : LAAM,1989,,e183naa
-nosajt,e11-143,NOSAJT,E11-143,Nest of spies : America's journey to disaster in Iran ,Amir Taheri,0091734584;9780091734589,London : Hutchinson,1988,,e183nos
-oiotw,e11-143,OIOTW,E11-143,Occidentalism : images of the West ,edited  James G Carrier,0198279787;9780198279785;0198279795;9780198279792,Oxford : Clarendon Press ; New York : Oxford University Press,1995,,e184oi
-owoe,e11-143,OWOE,E11-143,On wings of eagles ,Ken Follett,000217006X;9780002170062,London : Collins,1983,,e183owo
-pwgita,e11-143,PWGITA,E11-143,Paved with Good Intentions : the American Experience and Iran ,Barry Rubin,0195028058;9780195028058,OUP,1980,,e183pwg
 ptitaw,ja80,PTITAW,JA80,Political trends in the Arab world : the role of ideas and ideals in politics ,Majid Khadduri,0801811228;9780801811227,Baltimore : Johns Hopkins Press,1970,yes,ja84pti
 teoteni,ja80,TEOTENI,JA80,The evolution of the Egyptian national image : from its origins to Ahmad Lutfi al-Sayyid ,Charles Wendell,520021118,Berkeley : University of California Press,1972,,ja84teo
 totofb,jk4000,TOTOFB,JK4000,Trail of the octopus : from Beirut to Lockerbie--inside the DIA ,Donald Goddard with Lester K Coleman,074751562X;9780747515623,London,1993,,jk468tot
 wftstt,e11-143,WFTSTT,E11-143,Witness : from the Shah to the secret arms deal : an insider's account of US involvement in Iran ,Mansur Rafizadeh,0688073697;9780688073695,New York : W Morrow,1987,,e183wf
 tlarot,ja70,TLAROT,JA70,The loss and recovery of truth : selected writings ,Gerhart Niemeyer ; edited  Michael Henry,9781587314728;158731472X;9781587314735;1587314738,South Bend,2013,,ja71 tla
 pafots,e11-143,PAFOTS,E11-143,Puro arte : Filipinos on the stages of empire ,Lucy Mae San Pablo Burns,9780814744437;0814744435;9780814725450;0814725457;9780814708132;0814708137;9780814744499;0814744494,New York University Press,2012,yes,e184pa
-americans,e11-143,AMERICANS,E11-143,American speeches.,Scott Farris,1931082979;9781931082976;1931082987;9781931082983,Distributed to the trade in the United States by Penguin Putm; Library of America,2006,,e183 as
-troel1,e11-143,TROEL1,E11-143,The reshaping of everyday life; 1790-1840 ,Jack Larkin,0060916060;9780060916060;0060159057;9780060159054,HarperPerennial,1989,,e164 tro
-americanc,e11-143,AMERICANC,E11-143,American colonies ,Alan Taylor ; [map illustrations  Jeffrey Ward],9780142002100;0142002100,Penguin,2002,,e188 ac
-gmlaah,e11-143,GMLAAH,E11-143,Give me liberty! : An American history ,Eric Foner,9780393934304;0393934306,WW Norton,2011,,e178 gml
-tbytpo,e11-143,TBYTPO,E11-143,The barbarous years : the peopling of British North America : the conflict of civilizations; 1600-1675 ,Bernard Bailyn,9780394515700;0394515706,Alfred A Knopf,2012,,e191 tby
-oooptf,e11-143,OOOPTF,E11-143,Out of our past : the forces that shaped modern America ,Carl N Degler,0061319856;9780061319853,Harper & Row,1984,,e178 ooo
-giiah,e11-143,GIIAH,E11-143,Great issues in American history ,edited  Clarence L  Ver Steeg and Richard Hofstadter,0394705408;9780394705408,Vintage Books,1969,,e188 gii
 afgtgl,e11-143,AFGTGL,E11-143,A field guide to getting lost ,Rebecca Solnit,0143037242,Penguin,2006,yes,e169afg
 tpobna,e11-143,TPOBNA,E11-143,The peopling of British North America : an introduction ,Joseph C Morton,0394757793,Vintage Books,1988,yes,e188tpo
 tphotus,e11-143,TPHOTUS,E11-143,The Penguin history of the United States of America ,Hugh Brogan,014025255X,Penguin,2001,yes,e178 tph
 rcwmtf,e300-453,RCWMTF,E300-453,Revolutiory characters : what made the founders different ,Gordon S Wood,1594200939;9781594200939;9780143112082;0143112082,Penguin Press,2007,yes,e302rc
-tgdiaa,e11-143,TGDIAA,E11-143,The Great Depression in America : a cultural encyclopedia.,William H Young and Nancy K Young,0313335206;9780313335204;0313335214;9780313335211;0313335222;9780313335228,Harcourt Education distributor; Greenwood,2007,yes,e169tgd
+tgdiaa,e11-143,TGDIAA,E11-143,The Great Depression in America : a cultural encyclopedia,William H Young and Nancy K Young,0313335206;9780313335204;0313335214;9780313335211;0313335222;9780313335228,Harcourt Education distributor; Greenwood,2007,yes,e169tgd
 tlotmia,e11-143,TLOTMIA,E11-143,The life of the mind in America : from the Revolution to the Civil War ,Perry Miller,0156519909,Harcourt,1965,yes,e169tlo
-tgotar,e11-143,TGOTAR,E11-143,The growth of the American republic ,Samuel Eliot Morison and Henry Steele Commager,0195025954;9780195025958;0195025938;9780195025934;0195025946;9780195025941,OUP,1980,,e178 tgo
-ahtcot,e11-143,AHTCOT,E11-143,American holocaust : the conquest of the New World ,David E  Stannard,9780195085570;0195085574,Oxford University press,1992,,e112 ah
-safkme,e11-143,SAFKME,E11-143,Support any friend : Kennedy's Middle East and the making of the U.S.-Israel alliance ,Warren Bass,9780195165807;0195165802;9780195177503,Oxford University Press,2004,,e183saf
-sachoa,e11-143,SACHOA,E11-143,Self-rule : a cultural history of American democracy ,Robert H Wiebe,0226895629;9780226895628;9780226895635;0226895637,U of Chicago P,1995,,e183 sa
-tceia,e11-143,TCEIA,E11-143,The Chinese experience in America ,Shih-shan Henry Tsai,0253313597;0253203872,India UP,1986,,e184tce
-taomx,e11-143,TAOMX,E11-143,The autobiography of Malcolm X ,with the assistance of Alex Haley ; foreword  Attallah Shabazz ; introduction  MS Handler ; epilogue  Alex Haley ; afterword  Ossie Davis,9780345350688;0345350685;9780606003674;0606003673;9780812419535,Ballantine,1999,,e185tao
-tstgsi,e11-143,TSTGSI,E11-143,The seventies : the great shift in American culture; society; and politics ,Bruce J Schulman,030681126X,Da Capo,2002,,e169ts
-rtlbot,e11-143,RTLBOT,E11-143,Redemption : the last battle of the Civil War ,Nicholas Lemann,9780374530693;0374530696,Farrar Straus and Giroux,2007,,e185rt
-ftsomt,e11-143,FTSOMT,E11-143,For the soul of mankind : the United States; the Soviet Union; and the Cold War ,Melvyn P Leffler,9780809097173;0809097176;9780374531423;0374531420,Hill and Wang,2007,,e183fts
 tbtwat,e300-453,TBTWAT,E300-453,To begin the world anew : the genius and ambiguities of the American founders ,Bernard Bailyn,0375713085;9780375713088,Vintage,2004,yes,e302tbt
 dangerousn,e11-143,DANGEROUSN,E11-143,Dangerous nation ,Robert Kagan,0375724915;9780375724916,Knopf,2006,yes,e183dt
-wtwhai,e11-143,WTWHAI,E11-143,Working toward whiteness : how America's immigrants became white : the strange journey from Ellis Island to the suburbs ,David R  Roediger,9780465070749;0465070744,Perseus Running distributor; BasicBooks,2006,,e184wtw
-coaim,e11-143,COAIM,E11-143,Coming of age in Mississippi ,Anne Moody,9.78039E+12,Delta Trade Paperbacks,2004,,e185coa
 troadj,e300-453,TROADJ,E300-453,The rise of American democracy : Jefferson to Lincoln ,Sean Wilentz,9780393058208;0393058204,Norton,2005,yes,e302tro
 yrtsjo,e11-143,YRTSJO,E11-143,Yellow ribbon : the secret journal of Bruce Laingen ,L Bruce Laingen,0028810309 : $23.00;9780028810300,Washington : Brassey's (US),1992,,e183yr
 rcbtsa,e201-298,RCBTSA,E201-298,Rough crossings : Britain the slaves and the American Revolution ,Simon Schama,006053916X;9780060539160;9780060539160,New York : Ecco,2006,,e269rc
-iashmn,e11-143,IASHMN,E11-143,I'm a stranger here myself : notes on returning to America after twenty years away ,Bill Bryson,076790382X;9780767903820,New York : Broadway Books,2000,,e169ias
-tlvocb,e11-143,TLVOCB,E11-143,The last voyage of Columbus : being the epic tale of the great captain's fourth expedition including accounts of swordfight mutiny shipwreck gold war hurricane and discovery ,Martin Dugard,0316828831;9780316828833,New York : Little,2005,,e118 tlv
 eiht,ja70,EIHT,JA70,Ethics in hard times ,edited  Arthur L Caplan and Daniel Callahan,0306407906;9780306407901,New York : Plenum Press,,,ja79 eih
 oopam,e11-143,OOPAM,E11-143,Out of place : a memoir ,Edward W Said,1862073708;9781862073708,London : Granta,2000,,e184oop
 ctppot,ja80,CTPPOT,JA80,China : the political philosophy of the middle kingdom ,Tongdong Bai,9781780320755;1780320752;9781780320762;1780320760,London ; New York : Zed Books,2012,,ja84ct
@@ -79,7 +52,7 @@ e11-143,e,E11-143,E,America,,category,,,,
 e151-889,e,E151-889,E,United States,,category,,,,
 e11-29,e11-143,E11-29,E11-143,General,,category,,,,
 e151-169.12,e151-889,E151-169.12,E151-889,General,,category,,,,
-e171-183.9,e151-889,,,History,,category,,,,
+e171-183.9,e151-889,E171-183.9,E151-889,History,,category,,,,
 e171-180,e171-183.9,E171-180,E171-183.9,General,,category,,,,
 e179.5,e171-180,E179.5,E171-180,Historical Geography,,category,,,,
 e183-183.3,e171-183.9,E183-183.3,E171-183.9,Political History,,category,,,,
@@ -87,31 +60,31 @@ e183.8,e171-183.9,E183.8,E171-183.9,Relations with individual countries,,categor
 e184-185.98,e151-889,E184-185.98,E151-889,Elements in the population,,category,,,,
 e186-199,e151-889,E186-199,E151-889,Colonial History,,category,,,,
 e197,e186-199,E197,E186-199,Queen Anne's War,,category,,,,
-e201-298,e,E201-298,E,The Revolution,,category,,,,
-e300-453,e,E300-453,E,Revolution to the Civil War,,category,,,,
+e201-298,e,E201-298,E,The Revolutionary Times,,category,,,,
+e300-453,e,E300-453,E,In-state revolution to the Civil War,,category,,,,
 e300-302.6,e300-453,E300-302.6,E300-453,General,,category,,,,
 e302,e300-302.6,E302,E300-302.6,Collected works of American statemen,,category,,,,
 jk4000,jk,JK4000,JK,State government,,category,,,,
-ja80,ja,JA80,JA,History,,category,,,,
-f300,f,F300,F,Gulf States. West Florida,,category,,,,
+ja80,ja,JA80,JA,Theory: Relations to other subjects,,category,,,,
+f300,f,F300,F,Gulf States: West Florida,,category,,,,
 f500,f,F500,F,Ohio,,category,,,,
 f800,f,F800,F,New Mexico,,category,,,,
 f400,f,F400,F,Arkansas,,category,,,,
 ja70,ja,JA70,JA,Dictionaries and encyclopedias,,category,,,,
-jk1000,jk,JK1000,JK,Congress. Legislative branch,,category,,,,
+jk1000,jk,JK1000,JK,Congress: Legislative branch,,category,,,,
 jq,j,JQ,J,Political Science and Public Administration,,category,,,,
-jq1758-1852,jq,JQ1758-1852,JQ,Middle East,,,,,,
+jq1758-1852,jq,JQ1758-1852,JQ,Middle Eastern Relationships,,category,,,,
 jtusatm,jq1758-1852,JTUSATM,JQ1758-1852,Jordan the United States and the Middle East peace process 1974-1991 ,Madiha Rashid Al Madfai,0521415233;9780521415231,Cambridge [England] ; New York,1993,,
 swtdhw,jq1758-1852,SWTDHW,JQ1758-1852,Sleeping with the devil : how Washington sold our soul for Saudi crude ,Robert Baer,1400050219;9781400050215,New York : Crown,2003,,
 upti,jq1758-1852,UPTI,JQ1758-1852,US policy toward Iraq ,F Gregory Gause III,9948003233;9789948003236,Abu Dhabi,2002,,
 tsotph,e184.5-185.98,TSOTPH,E184.5-185.98,The shadow of the panther : Huey Newton and the price of Black power in America ,Hugh Pearson,9780201483413;0201483416,Addison-Wesley,1994,,e185tso
 blacklm,e184.5-185.98,BLACKLM,E184.5-185.98,Black like me ,John Howard Griffin,9780451234216;0451234219,Signet,2010,,e185blm
 sbamtr,e184.5-185.98,SBAMTR,E184.5-185.98,Slavery by another me : the re-enslavement of Black Americans from the Civil War to World War II ,Douglas A Blackmon,9780385722704;0385722702,Anchor Books,2009,,e185sba
-e184.5-185.98,e11-143,E184.5-185.98,E11-143,Afro-Americans,,,,,,
+e184.5-185.98,e11-143,E184.5-185.98,E11-143,Afro-Americans,,category,,,,
 ja10,ja,JA10,JA,Periodicals,,category,,,,ja10
 ja1000,ja10,JA1000,JA10,Political Quarterly,,category,,,,
-tpqitt,ja1000,TPQITT,JA1000,The Political Quarterly in the thirties , W. A. Robson,,Allen Lane,1971,,ja10tpq
-tpqitf,ja1000,TPQITF,JA1000,The Political Quarterly in the fifties , W. A. Robson,,Allen Lane,1971,,
-g,root,G,ROOT,Geography,,,,,,
-g30,g,G30,G,Middle East,,,,,,
-g3000,g30,G3000,G30,Arab World,,,,,,
+tpqitt,ja1000,TPQITT,JA1000,The Political Quarterly in the thirties , W. A. Robson,category,Allen Lane,1971,,ja10tpq
+tpqitf,ja1000,TPQITF,JA1000,The Political Quarterly in the fifties , W. A. Robson,category,Allen Lane,1971,,
+g,root,G,ROOT,Geography,,category,,,,
+g30,g,G30,G,Middle East,,category,,,,
+g3000,g30,G3000,G30,Arab World,,category,,,,

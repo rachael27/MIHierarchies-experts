@@ -712,7 +712,7 @@
             var h1_root = d3.hierarchy(h1_struct);
 
             var nodes_list = [];
-            var h1list = [], h2list = [];
+            var h1list = [], h2list = [], intersection = [], h1diff = [], h2diff = [];
 
 
             for (i = 0; i < h2_root.descendants().length; i++) {
@@ -721,7 +721,7 @@
                     type = "Genre";
                 else
                     type = "Book";
-                h2list.push({ "value": h2_root.descendants()[i].data.data.description_child, "title": h2_root.descendants()[i].data.data.title, "type": type });
+                h2list.push({ "value": h2_root.descendants()[i].data.data.child, "title": h2_root.descendants()[i].data.data.title, "type": type });
             }
             for (i = 0; i < h1_root.descendants().length; i++) {
                 //h1list.push(h1_root.descendants()[i].data.data.description_child);
@@ -730,27 +730,45 @@
                     type = "Genre";
                 else
                     type = "Book";
-                h1list.push({ "value": h1_root.descendants()[i].data.data.description_child, "title": h1_root.descendants()[i].data.data.title, "type": type });
+                h1list.push({ "value": h1_root.descendants()[i].data.data.child, "title": h1_root.descendants()[i].data.data.title, "type": type });
             }
-            let intersection = h1list.filter(x => h2list.includes(x.value));
 
-            let h1diff = h1list.filter(x => !h2list.includes(x.value));
-            let h2diff = h2list.filter(x => !h1list.includes(x.value));
+            //let intersection = h1list.filter(x => h2list.includes(x.value));
+            for (var i = 0; i < h1list.length; i++) {
+                for (var j = 0; j < h2list.length; j++) {
+                    if (h1list[i].value == h2list[j].value && !intersection.includes(h1list[i].value)) {
+                        intersection.push(h1list[i].value);
+                        nodes_list.push(h1list[i]);
+                    }
+                }
+            }
 
-            for (var i = 0; i < intersection.length; i++)
-                nodes_list.push(intersection[i]);
+            //console.log(intersection.length);
 
-            for (var i = 0; i < h1diff.length; i++)
-                nodes_list.push(h1diff[i]);
+            for (var i = 0; i < h1list.length; i++) {
+                if (!intersection.includes(h1list[i].value)) {
+                    intersection.push(h1list[i].value);
+                    nodes_list.push(h1list[i]);
+                }
+            }
 
-            for (var i = 0; i < h2diff.length; i++)
-                nodes_list.push(h2diff[i]);
+            //console.log(intersection.length);
 
-            //console.log(nodes_list);
+            for (var i = 0; i < h2list.length; i++) {
+                if (!intersection.includes(h2list[i].value)) {
+                    intersection.push(h2list[i].value);
+                    nodes_list.push(h2list[i]);
+                }
+            }
+
+            //console.log(intersection.length);
+
+
+            console.log(nodes_list);
             //console.log(h1diff);
             nodes_list
                 .sort(function (x, y) {
-                    //console.log(x);
+                    //console.log(x.title);
                     return d3.ascending(x.x, y.x);
                 });
 
@@ -949,7 +967,7 @@
 
                                     d3.select(".mergedtree_" + id + ".text")
                                         .classed("selected", true)
-                                        .style("fill", "#FFD700")
+                                        .style("fill", "red")
                                         .style("font-size", 20);
 
 
@@ -1021,7 +1039,7 @@
 
                                             d3.select(".mergedtree_" + id + ".text")
                                                 .classed("selected", true)
-                                                .style("fill", "#FFD700")
+                                                .style("fill", "red")
                                                 .style("font-size", 20);
 
 
@@ -1065,7 +1083,7 @@
 
                                                     d3.select(".mergedtree_" + id + ".text")
                                                         .classed("selected", true)
-                                                        .style("fill", "#FFD700")
+                                                        .style("fill", "red")
                                                         .style("font-size", 20);
                                                 }
 
@@ -1297,8 +1315,8 @@
                     //console.log(element.data.data.child);
                     if ((element.data.data.linkcolor == "blue") || element.children == null) {
                         for (var i = 0; i < element.descendants().length; i++) {
-                            //console.log("entering check" + element.descendants()[i].data.data.child);
-                            if ((element.descendants()[i].data.data.linkcolor == "blue") && element.descendants()[i].children == null) {
+                            //console.log("entering check" + element.descendants()[i].data.data);
+                            if ((element.descendants()[i].data.data.linkcolor == "blue" && element.descendants()[i].children == null) && element.descendants()[i].data.data.alternateparent == "") {
                                 //console.log(element.descendants()[i].data.data.child + " passed check");
                                 flag += 1;
                             }
@@ -1313,7 +1331,11 @@
 
                 });
                 mergedtree(mtree.descendants()[0], hier_root);
-
+                console.log("finished layout");
+                setTimeout(() => {
+                    console.log("drawing links");
+                    showlinks_updated(), 90000
+                });
 
             });
 
@@ -1326,7 +1348,9 @@
                 });
 
                 mergedtree(mtree.descendants()[0], hier_root);
-
+                setTimeout(() => {
+                    showlinks_updated(), 800
+                });
             });
 
 
@@ -1402,7 +1426,7 @@
             var tree_start = [100, 0];
 
             mtree_original = mtree.descendants().slice(0);
-            console.log(mtree_original);
+            //console.log(mtree_original);
 
 
             //console.log(parseInt(margin.left + 40) + " " + parseInt(margin.top + 400));
@@ -1422,15 +1446,15 @@
                     //console.log(element.data.data.child);
                     if ((element.data.data.linkcolor == "blue") || element.children == null) {
                         for (var i = 0; i < element.descendants().length; i++) {
-                            //console.log("entering check" + element.descendants()[i].data.data.child);
-                            if ((element.descendants()[i].data.data.linkcolor == "blue") && element.descendants()[i].children == null) {
+                            //console.log(element.descendants()[i].data.data.alternateparent);
+                            if ((element.descendants()[i].data.data.linkcolor == "blue" && element.descendants()[i].children == null) && element.descendants()[i].data.data.alternateparent == "") {
                                 //console.log(element.descendants()[i].data.data.child + " passed check");
                                 flag += 1;
                             }
                         }
                         //console.log(element.data.data.child + " " + flag + " " + (element.descendants().length));
                         if (flag == element.descendants().length - 1 || element.children == null) {
-                            console.log("collapse " + element.data.data.child);
+                            //console.log("collapse " + element.data.data.child);
                             collapse(element);
                         }
 
@@ -1671,7 +1695,7 @@
 
                         var type = "";
                         if (d.data.data.isbn == "category") {
-                            type = "Category";
+                            type = "Genre";
                             type = type + " Code:" + d.data.data.description_child;
                         }
                         else {
@@ -1756,11 +1780,16 @@
                     .style("opacity", 0)
                     .text(function (d) {
                         // console.log(d);
-                        var label = d.data.data.child;
-                        if (label.includes("_"))
-                            label = label.substring(label.indexOf("_") + 1, label.length);
-                        if (label.includes("/"))
-                            label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                        var label = "";
+                        if (data_source == "books")
+                            label = d.data.data.title;
+                        else {
+                            label = d.data.data.child;
+                            if (label.includes("_"))
+                                label = label.substring(label.indexOf("_") + 1, label.length);
+                            if (label.includes("/"))
+                                label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                        }
                         return label;
                     });
             }
@@ -1937,7 +1966,7 @@
 
                         var type = "";
                         if (d.data.data.isbn == "category") {
-                            type = "Category";
+                            type = "Genre";
                             type = type + " Code:" + d.data.data.description_child;
                         }
                         else {
@@ -2036,11 +2065,16 @@
                     .style("opacity", 0)
                     .text(function (d) {
                         // console.log(d);
-                        var label = d.data.data.child;
-                        if (label.includes("_"))
-                            label = label.substring(label.indexOf("_") + 1, label.length);
-                        if (label.includes("/"))
-                            label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                        var label = "";
+                        if (data_source == "books")
+                            label = d.data.data.title;
+                        else {
+                            label = d.data.data.child;
+                            if (label.includes("_"))
+                                label = label.substring(label.indexOf("_") + 1, label.length);
+                            if (label.includes("/"))
+                                label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                        }
                         return label;
                     });
             }
@@ -2791,7 +2825,7 @@
                         //mlexp
                         //if (!(d3.select(".mergedtree_" + circle_id + "_outer").attr("class").includes("selected") && d3.select(".mergedtree_" + circle_id + "_inner").attr("class").includes("selected"))) {
                         if (d3.select(".mergedtree_" + circle_id + "_outer").style("stroke") == "blue" || d3.select(".mergedtree_" + circle_id + "_outer").style("stroke") == "red") {
-                            console.log("1 outer is red");
+                            //console.log("1 outer is red");
                             d3.select(".mergedtree_" + circle_id + "_outer")
                                 .style("stroke", "gold")
                                 .style("stroke-width", circle_stroke + 3);
@@ -2803,7 +2837,7 @@
                         }
 
 
-                        for (var i = 0; i < root.path(d).length - 1; i++) {
+                        for (var i = 0; i < root.path(d).length; i++) {
                             path.push(root.path(d)[i].data.data.child);
                             var id = root.path(d)[i].data.data.child
                                 .replaceAll(/\//g, "")
@@ -2814,7 +2848,7 @@
                                 .toLowerCase();
 
                             //console.log("others " + id);
-                            console.log(id + " " + d3.select(".mergedtree_" + id + "_outer").style("stroke") + " " + d3.select(".mergedtree_" + id + "_inner").style("stroke"));
+                            //console.log(id + " " + d3.select(".mergedtree_" + id + "_outer").style("stroke") + " " + d3.select(".mergedtree_" + id + "_inner").style("stroke"));
                             if (d3.select(".mergedtree_" + id + "_outer").style("stroke") == "blue" || d3.select(".mergedtree_" + id + "_outer").style("stroke") == "red") {
                                 //console.log("over red outer " + id);
                                 d3.select(".mergedtree_" + id + "_outer")
@@ -2828,23 +2862,29 @@
                                     .style("stroke-width", circle_stroke + 3);
                             }
 
+                            d3.select(".mergedtree_" + id + ".text")
+                                .style("font-size", "16px")
+                                .style("fill", "red")
+                                .text(function (d) {
+                                    return d.data.data.title;
+                                });
 
                         }
                         //}
 
 
                         //console.log(path);
-                        console.log(d);
+                        //console.log(d);
 
                         var label = d.data.data.title;
                         if (label == "")
                             label = d.data.data.description;
 
                         var type = ""; var text = "";
-                        console.log(label);
+                        //console.log(label);
 
                         if (d.data.data.isbn == "category") {
-                            type = "<b>Category</b>";
+                            type = "<b>Genre</b>";
                             label = d.data.data.title + "\nLoC Code: " + d.data.data.description;
                         }
                         else {
@@ -2860,8 +2900,11 @@
                             type = type + " available in " + afterh + " and " + beforeh;
 
 
+                        type = type + "<hr class='border border-danger border-1 opacity-50'>";
 
-                        text = type + "<hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
+
+
+                        text = type + "" + label + "<b>";
 
 
                         /*  if (h2text == h1text)
@@ -2873,6 +2916,7 @@
                         d3.select("#tooltip")
                             .html(text)
                             .style("width", "300px")
+                            .style("height", "auto")
                             .style("left", parseInt(d3.event.pageX + 100) + "px")
                             .style("top", parseInt(d3.event.pageY) + "px")
                             .style("text-align", "left")
@@ -2880,28 +2924,19 @@
 
                         //console.log(text + "     " + text.length);
 
-                        if (text.length > 80 && text.length < 120)
-                            d3.select("#tooltip")
-                                .style("height", "200px");
-                        else if (text.length > 120 && text.length < 200)
-                            d3.select("#tooltip")
-                                .style("height", "250px");
-                        else if (text.length > 200)
-                            d3.select("#tooltip")
-                                .style("height", "350px");
+                        /*  if (text.length > 80 && text.length < 120)
+                             d3.select("#tooltip")
+                                 .style("height", "200px");
+                         else if (text.length > 120 && text.length < 200)
+                             d3.select("#tooltip")
+                                 .style("height", "250px");
+                         else if (text.length > 200)
+                             d3.select("#tooltip")
+                                 .style("height", "350px"); */
 
 
 
-                        /* d3.select(this)
-                            .transition()
-                            .attr("r", mtree_radius + 5); */
 
-
-
-                        //}
-
-
-                        // console.log(h2_root.descendants());
 
 
 
@@ -2954,6 +2989,29 @@
                                     .style("stroke", "green")
                                     .style("stroke-width", "0px");
                             }
+
+                            var label = root.path(d)[i].data.data.title;
+
+                            if (label.length > label_len) {
+                                if (label.includes(".")) {
+                                    var start = label.lastIndexOf(".");
+                                    var len = label.length;
+                                    var templen = label.substr(start, len).length;
+
+                                    label = label.substring(0, label_len - templen) + label.substr(start, len);
+
+                                }
+                                else {
+                                    label = label.substring(0, label_len);
+                                }
+                            }
+
+                            d3.select(".mergedtree_" + id + ".text")
+                                .style("font-size", function (d) {
+                                    return label_size - d.depth;
+                                })
+                                .style("fill", "silver")
+                                .text(label);
 
 
                         }
@@ -3235,7 +3293,7 @@
                         }
 
 
-                        for (var i = 0; i < root.path(d).length - 1; i++) {
+                        for (var i = 0; i < root.path(d).length; i++) {
                             path.push(root.path(d)[i].data.data.child);
                             var id = root.path(d)[i].data.data.child
                                 .replaceAll(/\//g, "")
@@ -3258,7 +3316,17 @@
                                 d3.select(".mergedtree_" + id + "_inner")
                                     .style("stroke", "gold")
                                     .style("stroke-width", circle_stroke + 3);
+
+
                             }
+
+
+                            d3.select(".mergedtree_" + id + ".text")
+                                .style("font-size", "16px")
+                                .style("fill", "red")
+                                .text(function (d) {
+                                    return d.data.data.title;
+                                });
 
 
                         }
@@ -3280,7 +3348,7 @@
 
                         var type = "";
                         if (d.data.data.isbn == "category") {
-                            type = "<b>Category</b>";
+                            type = "<b>Genre</b>";
                             label = d.data.data.title + "\nLoC Code: " + d.data.data.description;
                         }
                         else
@@ -3293,9 +3361,13 @@
                         else
                             type = type + " available in " + afterh + " and " + beforeh;
 
+                        text = type + "<hr class='border border-danger border-1 opacity-50'>" + label;
 
 
-                        text = type + "<hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
+
+
+
+
 
 
                         /*  if (h2text == h1text)
@@ -3307,6 +3379,7 @@
                         d3.select("#tooltip")
                             .html(text)
                             .style("width", "300px")
+                            .style("height", "auto")
                             .style("left", parseInt(d3.event.pageX + 100) + "px")
                             .style("top", parseInt(d3.event.pageY) + "px")
                             .style("text-align", "left")
@@ -3314,28 +3387,18 @@
 
                         //console.log(text + "     " + text.length);
 
-                        if (text.length > 80 && text.length < 120)
-                            d3.select("#tooltip")
-                                .style("height", "200px");
-                        else if (text.length > 120 && text.length < 200)
-                            d3.select("#tooltip")
-                                .style("height", "250px");
-                        else if (text.length > 200)
-                            d3.select("#tooltip")
-                                .style("height", "350px");
+                        /*  if (text.length > 80 && text.length < 120)
+                             d3.select("#tooltip")
+                                 .style("height", "200px");
+                         else if (text.length > 120 && text.length < 200)
+                             d3.select("#tooltip")
+                                 .style("height", "250px");
+                         else if (text.length > 200)
+                             d3.select("#tooltip")
+                                 .style("height", "350px"); */
 
 
 
-                        /* d3.select(this)
-                            .transition()
-                            .attr("r", mtree_radius + 5); */
-
-
-
-                        //}
-
-
-                        // console.log(h2_root.descendants());
 
 
 
@@ -3387,6 +3450,30 @@
                                     .style("stroke", "green")
                                     .style("stroke-width", "0px");
                             }
+
+
+                            var label = root.path(d)[i].data.data.title;
+
+                            if (label.length > label_len) {
+                                if (label.includes(".")) {
+                                    var start = label.lastIndexOf(".");
+                                    var len = label.length;
+                                    var templen = label.substr(start, len).length;
+
+                                    label = label.substring(0, label_len - templen) + label.substr(start, len);
+
+                                }
+                                else {
+                                    label = label.substring(0, label_len);
+                                }
+                            }
+
+                            d3.select(".mergedtree_" + id + ".text")
+                                .style("font-size", function (d) {
+                                    return label_size - d.depth;
+                                })
+                                .style("fill", "silver")
+                                .text(label);
 
                         }
 
@@ -3544,6 +3631,7 @@
                         //console.log(d);
                         //var label = d.name;
                         var label = d.data.data.title;
+                        //console.log(label);
 
                         if (label.length > label_len) {
                             if (label.includes(".")) {
@@ -3583,7 +3671,7 @@
                         d3.select(this)
                             //.attr("transform", "rotate(0)")
 
-                            .style("font-size", 30)
+                            .style("font-size", 17)
                             .style("fill", "red")
                             .style("cursor", "pointer")
                             .text(d.data.data.title);
@@ -3749,9 +3837,7 @@
                     })
                     //.style("stroke", "#ccc")
                     .style("stroke", function (d) {
-                        //if (d.source.data.data.shape == "h2" || (d.source.data.data.shape == "h1" && d.source.data.data.linkcolor != "red" && d.target.data.data.linkcolor != "red"))
-                        //  return "green";
-                        //else
+
                         return d.target.data.data.linkcolor;
                     })
                     .style("fill", "none")
@@ -3805,107 +3891,6 @@
                     d3.selectAll(".altlink").remove();
                 }
 
-                function showlinks_updated() {
-
-                    nodes = mtree.descendants();
-                    links = mtree.links();
-
-                    d3.selectAll(".altlink").remove();
-
-                    //alternate parent links
-                    links
-                        .forEach(function (d, i) {
-
-                            //console.log(d);
-                            //console.log(d.target.data.data.title);
-
-
-                            var altparent = d.target.data.data.alternateparent.replaceAll(/\//g, "").replaceAll(".", "");
-                            var child = d.target.data.data.child.replaceAll(/\//g, "").replaceAll(".", "");
-                            var h1parent = d.target.data.data.h1parent.replaceAll(/\//g, "").replaceAll(".", "");
-
-                            //console.log("c:" + child + " ap:" + altparent + " h2:" + d.target.data.data.h2parent + " h1:" + h1parent);
-
-                            if (altparent != "") {
-
-                                //console.log("c:" + child + " ap:" + altparent + " h2:" + d.target.data.data.h2parent + " h1:" + h1parent);
-
-                                var sourcex = "";
-                                var sourcey = "";
-
-                                for (var j = 0; j < nodes.length; j++) {
-                                    if (nodes[j].data.data.child == altparent) {
-                                        sourcex = nodes[j].x;
-                                        sourcey = nodes[j].data.data.level === 0 ? 50 : nodes[j].data.data.level * level_offset;
-                                    }
-                                }
-
-                                var targetx = d3.select("#mergedtree").select("#mergedtree_" + child.toLowerCase())._groups[0][0].__data__.x;
-                                var targety = d.target.data.data.level === 0 ? 50 : d.target.data.data.level * level_offset;
-
-                                d3.select("#mergedtree").append("path")
-                                    .attr("class", function (d) {
-                                        return "altlink";
-                                    })
-                                    .classed(altparent + "-" + child, true)
-                                    .attr("d", function (d) {
-
-                                        if (targety == sourcey) {
-                                            console.log("SAME LEVEL");
-                                            if (sourcex < targetx)
-                                                return "M" + sourcex + "," + (sourcey + mtree_radius)
-                                                    + "L" + sourcex + "," + (sourcey + mtree_radius + 50)
-                                                    + "L" + (targetx - mtree_radius - 20) + "," + (targety + mtree_radius + 50)
-                                                    + "L" + (targetx - mtree_radius - 20) + "," + (targety - mtree_radius - 50)
-                                                    + "L" + (targetx) + "," + (targety - mtree_radius - 50)
-                                                    + "L" + (targetx) + "," + (targety + mtree_radius);
-
-                                            else
-                                                return "M" + sourcex + "," + (sourcey + mtree_radius)
-                                                    + "L" + sourcex + "," + (sourcey + mtree_radius + 50)
-                                                    + "L" + (targetx - mtree_radius - 20) + "," + (targety + mtree_radius + 50)
-                                                    + "L" + (targetx - mtree_radius - 20) + "," + (targety - mtree_radius - 50)
-                                                    + "L" + (targetx) + "," + (targety - mtree_radius - 50)
-                                                    + "L" + (targetx) + "," + (targety + mtree_radius);
-
-                                        }
-
-                                        if (targety < sourcey) {
-                                            console.log("RECURSIVE PARENT");
-                                            return "M" + targetx + "," + (targety - mtree_radius)
-                                                + "L" + targetx + "," + (targety - 50)
-                                                + "L" + (targetx + 50) + "," + (targety - 50)
-                                                + "L " + (sourcex + 50) + "," + (sourcey + 50)
-                                                + "L" + (sourcex) + "," + (sourcey + 50)
-                                                + "L" + sourcex + "," + (sourcey + mtree_radius);
-                                        }
-
-                                        else {
-                                            console.log("NORMAL/LOWER LEVEL");
-                                            return "M" + sourcex + "," + sourcey
-                                                + "C" + sourcex + "," + (sourcey + targety) / 2
-                                                + " " + targetx + "," + (sourcey + targety) / 2
-                                                + " " + targetx + "," + targety;
-                                        }
-
-                                    })
-                                    .style("opacity", function (d) {
-                                        return 1;
-                                    })
-                                    .style("stroke", "green")
-                                    .style("stroke-dasharray", "3,3")
-                                    //.style("stroke-dasharray", "3,3")
-                                    .style("fill", "none")
-                                    .style("stroke-width", "4px");
-
-                            }
-
-                        });
-                    //console.log("show links");
-                    //console.log(d3.selectAll(".link.merged"));
-                    //d3.selectAll(".link.merged").style("opacity", 0.3);
-                    //d3.selectAll(".link.h2parent").style("opacity", 0);
-                }
 
 
                 function showlinks() {
@@ -5275,6 +5260,151 @@
 
 
         }
+
+
+        function showlinks_updated() {
+
+            d3.selectAll(".altlink").remove();
+
+            nodes = mtree.descendants();
+            links = mtree.links();
+
+
+
+            //alternate parent links
+            links
+                .forEach(function (d, i) {
+
+                    //console.log(d);
+                    //console.log(d.target.data.data.title);
+
+
+                    var altparent = d.target.data.data.alternateparent.replaceAll(/\//g, "").replaceAll(".", "");
+                    var child = d.target.data.data.child.replaceAll(/\//g, "").replaceAll(".", "");
+                    var h1parent = d.target.data.data.h1parent.replaceAll(/\//g, "").replaceAll(".", "");
+
+                    //console.log("c:" + child + " ap:" + altparent + " h2:" + d.target.data.data.h2parent + " h1:" + h1parent);
+
+                    if (altparent != "") {
+
+                        //console.log("c:" + child + " ap:" + altparent + " h2:" + d.target.data.data.h2parent + " h1:" + h1parent);
+
+                        var sourcex = "";
+                        var sourcey = "";
+
+                        for (var j = 0; j < nodes.length; j++) {
+                            if (nodes[j].data.data.child == altparent) {
+                                sourcex = nodes[j].x;
+                                sourcey = nodes[j].data.data.level === 0 ? 50 : nodes[j].data.data.level * level_offset;
+                            }
+                        }
+
+                        var targetx = d3.select("#mergedtree").select("#mergedtree_" + child.toLowerCase())._groups[0][0].__data__.x;
+                        var targety = d.target.data.data.level === 0 ? 50 : d.target.data.data.level * level_offset;
+
+                        d3.select("#mergedtree").append("path")
+                            .attr("class", function (d) {
+                                return "altlink";
+                            })
+                            .classed(altparent + "-" + child, true)
+                            .attr("d", function (d) {
+
+                                if (targety == sourcey) {
+                                    //console.log("SAME LEVEL");
+                                    if (sourcex < targetx)
+                                        return "M" + sourcex + "," + (sourcey + mtree_radius)
+                                            + "L" + sourcex + "," + (sourcey + mtree_radius + 50)
+                                            + "L" + (targetx - mtree_radius - 20) + "," + (targety + mtree_radius + 50)
+                                            + "L" + (targetx - mtree_radius - 20) + "," + (targety - mtree_radius - 50)
+                                            + "L" + (targetx) + "," + (targety - mtree_radius - 50)
+                                            + "L" + (targetx) + "," + (targety + mtree_radius);
+
+                                    else
+                                        return "M" + sourcex + "," + (sourcey + mtree_radius)
+                                            + "L" + sourcex + "," + (sourcey + mtree_radius + 50)
+                                            + "L" + (targetx - mtree_radius - 20) + "," + (targety + mtree_radius + 50)
+                                            + "L" + (targetx - mtree_radius - 20) + "," + (targety - mtree_radius - 50)
+                                            + "L" + (targetx) + "," + (targety - mtree_radius - 50)
+                                            + "L" + (targetx) + "," + (targety + mtree_radius);
+
+                                }
+
+                                if (targety < sourcey) {
+                                    //console.log("RECURSIVE PARENT");
+                                    return "M" + targetx + "," + (targety - mtree_radius)
+                                        + "L" + targetx + "," + (targety - 50)
+                                        + "L" + (targetx + 50) + "," + (targety - 50)
+                                        + "L " + (sourcex + 50) + "," + (sourcey + 50)
+                                        + "L" + (sourcex) + "," + (sourcey + 50)
+                                        + "L" + sourcex + "," + (sourcey + mtree_radius);
+                                }
+
+                                else {
+                                    //console.log("NORMAL/LOWER LEVEL");
+                                    return "M" + sourcex + "," + sourcey
+                                        + "C" + sourcex + "," + (sourcey + targety) / 2
+                                        + " " + targetx + "," + (sourcey + targety) / 2
+                                        + " " + targetx + "," + targety;
+                                }
+
+                            })
+                            .style("opacity", function (d) {
+                                return 1;
+                            })
+                            .style("stroke", "green")
+                            .style("stroke-dasharray", "3,3")
+                            //.style("stroke-dasharray", "3,3")
+                            .style("fill", "none")
+                            .style("stroke-width", "3px")
+                            .on("mouseover", function (d) {
+                                var node_class = d3.select(this).attr("class");
+                                node_class = node_class.replace("altlink ", "");
+
+                                var parent = node_class.split("-")[0];
+                                var child = node_class.split("-")[1];
+
+                                console.log(parent);
+
+                                d3.select(this)
+                                    .style("stroke-width", "8px");
+
+                                d3.select(".mergedtree_" + parent + ".text")
+                                    .style("fill", "red")
+                                    .style("font-size", "15px");
+
+                                d3.select(".mergedtree_" + child + ".text")
+                                    .style("fill", "red")
+                                    .style("font-size", "15px");
+
+                            })
+                            .on("mouseleave", function (d) {
+                                var node_class = d3.select(this).attr("class");
+                                node_class = node_class.replace("altlink ", "");
+
+                                var parent = node_class.split("-")[0];
+                                var child = node_class.split("-")[1];
+
+                                d3.select(this)
+                                    .style("stroke-width", "3px");
+
+                                d3.select(".mergedtree_" + parent + ".text")
+                                    .style("fill", "silver")
+                                    .style("font-size", "10px");
+
+                                d3.select(".mergedtree_" + child + ".text")
+                                    .style("fill", "silver")
+                                    .style("font-size", "10px");
+                            });
+
+                    }
+
+                });
+            //console.log("show links");
+            //console.log(d3.selectAll(".link.merged"));
+            //d3.selectAll(".link.merged").style("opacity", 0.3);
+            //d3.selectAll(".link.h2parent").style("opacity", 0);
+        }
+
 
         function update_log(pageID, elementID, elementType, elementDescription, eventDescription, questionID, question, useranswer, answer, score) {
             var date = new Date();

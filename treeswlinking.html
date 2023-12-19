@@ -885,8 +885,19 @@
             h2_tree_original = h2_tree.descendants().slice(0);
 
 
+
+
             var nodes_list = [];
-            var h1list = [], h2list = [];
+            var h1list = [], h2list = [], intersection = [], h1diff = [], h2diff = [];
+
+
+
+
+
+
+
+
+
 
             if (data_source == "books") {
                 for (i = 0; i < h2_root.descendants().length; i++) {
@@ -895,7 +906,7 @@
                         type = "Genre";
                     else
                         type = "Book";
-                    h2list.push({ "value": h2_root.descendants()[i].data.data.description_child, "title": h2_root.descendants()[i].data.data.title, "type": type });
+                    h2list.push({ "value": h2_root.descendants()[i].data.data.child, "title": h2_root.descendants()[i].data.data.title, "type": type });
                 }
                 for (i = 0; i < h1_root.descendants().length; i++) {
                     //h1list.push(h1_root.descendants()[i].data.data.description_child);
@@ -904,21 +915,35 @@
                         type = "Genre";
                     else
                         type = "Book";
-                    h1list.push({ "value": h1_root.descendants()[i].data.data.description_child, "title": h1_root.descendants()[i].data.data.title, "type": type });
+                    h1list.push({ "value": h1_root.descendants()[i].data.data.child, "title": h1_root.descendants()[i].data.data.title, "type": type });
                 }
-                let intersection = h1list.filter(x => h2list.includes(x.value));
 
-                let h1diff = h1list.filter(x => !h2list.includes(x.value));
-                let h2diff = h2list.filter(x => !h1list.includes(x.value));
 
-                for (var i = 0; i < intersection.length; i++)
-                    nodes_list.push(intersection[i]);
+                for (var i = 0; i < h1list.length; i++) {
+                    for (var j = 0; j < h2list.length; j++) {
+                        if (h1list[i].value == h2list[j].value && !intersection.includes(h1list[i].value)) {
+                            intersection.push(h1list[i].value);
+                            nodes_list.push(h1list[i]);
+                        }
+                    }
+                }
 
-                for (var i = 0; i < h1diff.length; i++)
-                    nodes_list.push(h1diff[i]);
 
-                for (var i = 0; i < h2diff.length; i++)
-                    nodes_list.push(h2diff[i]);
+
+                for (var i = 0; i < h1list.length; i++) {
+                    if (!intersection.includes(h1list[i].value)) {
+                        intersection.push(h1list[i].value);
+                        nodes_list.push(h1list[i]);
+                    }
+                }
+
+
+                for (var i = 0; i < h2list.length; i++) {
+                    if (!intersection.includes(h2list[i].value)) {
+                        intersection.push(h2list[i].value);
+                        nodes_list.push(h2list[i]);
+                    }
+                }
 
 
                 //console.log(nodes_list);
@@ -1000,7 +1025,7 @@
 
 
                 commonElementsList(h2_tree.descendants(), h1_tree.descendants());
-                console.log(commonElementsArr);
+                //console.log(commonElementsArr);
                 var flag = 0;
                 h2_tree.descendants().reverse().forEach(function (element) {
                     flag = 0;
@@ -1011,7 +1036,7 @@
                         }
                     }
                     if (flag == 1) {
-                        console.log("collapse h2 element " + element.data.data.description_child);
+                        //console.log("collapse h2 element " + element.data.data.description_child);
                         collapse(element);
                     }
                 });
@@ -1028,7 +1053,7 @@
                         collapse(element);
                     }
                 });
-                console.log(h1_tree.descendants()[0]);
+                //console.log(h1_tree.descendants()[0]);
                 h2tree(h2_tree.descendants()[0], h2_root);
                 h1tree(h1_tree.descendants()[0], h1_root);
             }
@@ -1254,6 +1279,12 @@
                                         trynow();
                                     }, 3000);
 
+                                    d3.select("#lines").remove();
+
+                                    setTimeout(() => {
+                                        commonElements(h2_tree.descendants(), h1_tree.descendants());
+                                    }, 2000);
+
 
 
 
@@ -1463,12 +1494,14 @@
                                     }, 1000);
 
                                     setTimeout(() => {
-                                        //h2tree(h2_tree.descendants()[0], h2_root);
-
                                         trynow();
                                     }, 3000);
 
+                                    d3.select("#lines").remove();
 
+                                    setTimeout(() => {
+                                        commonElements(h2_tree.descendants(), h1_tree.descendants());
+                                    }, 2000);
 
 
                                     //if (layout_flag == 1) {
@@ -1582,6 +1615,7 @@
 
                     }
                     //end of h2 tree search
+
 
                 }
 
@@ -2378,6 +2412,13 @@
                                 d3.select("#h2tree_" + id)
                                     .attr("r", radius + 10)
                                     .style("opacity", 1);
+
+                        d3.select(".h2tree_" + id + "_text")
+                            .style("fill", "red")
+                            .style("font-size", 15)
+                            .text(function (d) {
+                                return d.data.data.title;
+                            });
                     }
 
 
@@ -2467,6 +2508,45 @@
                                 d3.select("#h2tree_" + id)
                                     .attr("r", radius - 4)
                                     .style("opacity", opacity);
+
+
+
+
+                        d3.select(".h2tree_" + id + "_text")
+                            .style("fill", "silver")
+                            .style("font-size", function (d) {
+                                return label_size - d.depth;
+                            })
+                            .text(function (d) {
+                                var label = "";
+
+                                if (data_source == "books") {
+                                    label = root.path(d)[i].data.data.title;
+                                }
+
+                                else {
+                                    label = root.path(d)[i].data.data.child;
+                                    if (label.includes("_"))
+                                        label = label.substring(label.indexOf("/") + 1, label.length);
+                                    if (label.includes("/"))
+                                        label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                                }
+
+                                if (label.length > label_len) {
+                                    if (label.includes(".")) {
+                                        var start = label.indexOf(".");
+                                        var len = label.length;
+                                        var templen = label.substr(start, len).length;
+
+                                        label = label.substring(0, label_len - templen) + ".." + label.substr(start, len);
+
+                                    }
+                                    else {
+                                        label = label.substring(0, label_len);
+                                    }
+                                }
+                                return label;
+                            });
                     }
 
                     /* d3.select(this)
@@ -2785,6 +2865,7 @@
                         update_log("ltree", "h1 node " + d.data.data.child, "node", "collapse/expand nodes", "click", "", "", "", "", "");
                         click(d);
                         h1tree(d, h1_root);
+
                         //commonElementsList(h2_tree.descendants(), h1_tree.descendants());
                         setTimeout(() => {
                             commonElements(h2_tree.descendants(), h1_tree.descendants());
@@ -2857,6 +2938,7 @@
                         });
 
                         h1tree(d, h1_root);
+                        d3.select("#lines").remove();
                         setTimeout(() => {
                             commonElements(h2_tree.descendants(), h1_tree.descendants());
                         }, 800);
@@ -3178,6 +3260,13 @@
                                 d3.select("#h1tree_" + id)
                                     .attr("r", radius + 10)
                                     .style("opacity", 1);
+
+                        d3.select(".h1tree_" + id + "_text")
+                            .style("fill", "red")
+                            .style("font-size", 15)
+                            .text(function (d) {
+                                return d.data.data.title;
+                            });
                     }
 
                     var label = "", child = "", parent = "", text = "", type = "";
@@ -3270,6 +3359,45 @@
                                 d3.select("#h1tree_" + id)
                                     .attr("r", radius - 4)
                                     .style("opacity", opacity);
+
+
+
+
+                        d3.select(".h1tree_" + id + "_text")
+                            .style("fill", "silver")
+                            .style("font-size", function (d) {
+                                return label_size - d.depth;
+                            })
+                            .text(function () {
+                                var label = "";
+
+                                if (data_source == "books") {
+                                    label = root.path(d)[i].data.data.title;
+                                }
+
+                                else {
+                                    label = root.path(d)[i].data.data.child;
+                                    if (label.includes("_"))
+                                        label = label.substring(label.indexOf("/") + 1, label.length);
+                                    if (label.includes("/"))
+                                        label = label.substring(label.lastIndexOf("/") + 1, label.length);
+                                }
+
+                                if (label.length > label_len) {
+                                    if (label.includes(".")) {
+                                        var start = label.indexOf(".");
+                                        var len = label.length;
+                                        var templen = label.substr(start, len).length;
+
+                                        label = label.substring(0, label_len - templen) + ".." + label.substr(start, len);
+
+                                    }
+                                    else {
+                                        label = label.substring(0, label_len);
+                                    }
+                                }
+                                return label;
+                            });
                     }
 
 
@@ -4518,7 +4646,7 @@
             //console.log("expand");
             //console.log(arr);
             //console.log("collapse");
-            console.log(commonElementsArr);
+            //console.log(commonElementsArr);
 
 
 
@@ -4586,7 +4714,7 @@
 
             var loop_counter = 0;
 
-            console.log(commonElementsArr);
+            //console.log(commonElementsArr);
 
 
             for (var h1 = 0; h1 < h1_desc.length; h1++) {

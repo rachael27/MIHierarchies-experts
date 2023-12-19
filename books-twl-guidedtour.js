@@ -9,7 +9,7 @@ function twl_guidedtour() {
             intro: "<p class='text-left'>You can interact with each highlighted element in the tour to see it in action. <hr class='border border-danger border-2 opacity-50'> Pop-up boxes will guide you through every step of the tour. If at times the boxes are hidden, please scroll the screen to find them. <hr class='border border-danger border-2 opacity-50'>In addition to the back and next buttons, you can also use the left and right arrow keys to move through the tour.</p>"
         },
         {
-            title: " Arrangement of nodes in the BeforeH and AfterH<hr class='border border-primary border-3 opacity-75'>",
+            title: " Arrangement of nodes in the BaseH and TargetH<hr class='border border-primary border-3 opacity-75'>",
             intro: "Nodes are arranged in an alphabetical order from top-to-bottom for easy access in each tree and sub-tree."
         },
         {
@@ -24,9 +24,9 @@ function twl_guidedtour() {
             intro: "<p class='text-justify'>If the node doesn't have a border, it is a book. </p>"
         },
         {
-            element: document.querySelector("#link_f800"),
+            element: document.querySelector("#link_g"),
             title: "A connecting link between genres <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Consider the blue links for this step of the tour. <hr class='border border-danger border-2 opacity-50'> If a link is drawn between 2 genres, it means that the genre along with the books that belong to it are common to both hierarchies. <hr class='border border-danger border-2 opacity-50'> Hovering on a link (hover on the first blue link) highlights the BeforeH and AfterH nodes that the link connects and display the node details."
+            intro: "Consider the yellow link for this step of the tour. <hr class='border border-danger border-2 opacity-50'> If a link is drawn between 2 genres, it means that the genre along with the books that belong to it are common to both hierarchies. <hr class='border border-danger border-2 opacity-50'> Hovering on a link (hover on the yellow link) highlights the BaseH and TargetH nodes that the link connects and display the node details."
         },
         {
             element: document.querySelector('[id="link_4dtahs"]'),
@@ -37,7 +37,7 @@ function twl_guidedtour() {
         {
             element: document.querySelector('[id="legend"]'),
             title: "Color of the links connecting the common elements <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This legend shows the colors of the connecting links which is based on the level of the node in the BeforeH."
+            intro: "This legend shows the colors of the connecting links which is based on the level of the node in the BaseH."
         },
 
         {
@@ -46,7 +46,7 @@ function twl_guidedtour() {
             intro: "You can hover on a node to view a tooltip which displays the details about a node. <br><hr class='border border-danger border-2 opacity-50'> It also highlights the path from the node to the root."
         },
         {
-            element: document.querySelector('[id="h1tree_f400"]'),
+            element: document.querySelector('[id="h1tree_ja10"]'),
             title: "Tree levels <hr class='border border-primary border-3 opacity-75'>",
             intro: "The level of a node is the number of ancestors from the given node until the root node. <hr class='border border-danger border-2 opacity-50'> To calculate the level, simply count the number of highlighted nodes starting from the root node at level 0. Hence, the level of the selected node is 2.  <hr class='border border-danger border-2 opacity-50'> The root node is at level 0."
         },
@@ -59,7 +59,7 @@ function twl_guidedtour() {
         {
             element: document.querySelector('[id="h1tree_f"]'),
             title: "Interacting with a node - collapse/expand <hr class='border border-primary border-3 opacity-75'>",
-            intro: "You can click on a node (with a green triangle) to expand its children. <br><hr class='border border-danger border-2 opacity-50'> Click on the node again to collapse it."
+            intro: "You can click on a node (with a green triangle) to expand its children. <br><hr class='border border-danger border-2 opacity-50'> Clicking on the node again will collapse it."
         },
 
         {
@@ -72,12 +72,12 @@ function twl_guidedtour() {
         {
             element: document.querySelector('[id="search-nodes"]'),
             title: "Search nodes <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Enter the genre/book name, for e.g. type 'america' will give you a list of all genres/books named america. <hr class='border border-danger border-2 opacity-50'> Choose the <b>Book:</b><i>American Colonies</i>."
+            intro: "Enter the genre/book name, for e.g. type '444' will give you a list of all genres/books which has 444 in its title. <hr class='border border-danger border-2 opacity-50'> Choose the <b>Book:</b><i>444: The hostages remember</i>."
         },
         {
             element: document.querySelector('[id="btn-search"]'),
             title: "Search nodes <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Now, click on the search button. Automatic scrolling will take you to the node that you searched for. <hr class='border border-danger border-2 opacity-50'> The searched node and the nodes on its path to the root node are surrounded by gold squares and have red-colored labels."
+            intro: "Now, click on the search button. Automatic scrolling will take you to the node that you searched for. <hr class='border border-danger border-2 opacity-50'> The searched node and the nodes on its path to the root node are surrounded by gold squares and have gold-colored labels."
         },
         {
             element: document.querySelector('[id="btn-clear"]'),
@@ -99,28 +99,28 @@ function twl_guidedtour() {
         {
             element: document.querySelector('[id="btn-zoom"]'),
             title: "Zoom <hr class='border border-primary border-3 opacity-75'>",
-            intro: "You can use the zoom-in and zoom-out buttons to zoom in and out of the visualization. <br><hr class='border border-danger border-2 opacity-50'> You can click on any empty (white) space and drag the visualization. <br><hr class='border border-danger border-2 opacity-50'> Finally click on the Zoom button or press the Esc key to switch off the zoom mode. <br><hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/books-twl-zoom.mov" type="video/mp4"></video>'
+            intro: "You can use the zoom-in and zoom-out buttons to zoom in and out of the visualization. <br><hr class='border border-danger border-2 opacity-50'> You can click on any empty (white) space and drag the visualization. <br><hr class='border border-danger border-2 opacity-50'> Finally click on the Zoom button or press the Esc key to switch off the zoom mode. <br><hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-zoom.mov" type="video/mp4"></video>'
 
         },
 
         {
             element: document.querySelector('[id="btn-reset"]'),
             title: "Zoom Reset (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "To reset the zoom magnigications, click on the zoom reset button. <br><hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/books-twl-reset.mov" type="video/mp4"></video>'
+            intro: "To reset the zoom magnigications, click on the zoom reset button. <br><hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-reset.mov" type="video/mp4"></video>'
 
         },
 
         {
-            element: document.querySelector('[id="btn-expand-genre"]'),
+            element: document.querySelector('[id="btn-expand-folder"]'),
             title: "Expand Node (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This button can be used to expand only one genre and collapse every other genre. <hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/books-twl-expand.mov" type="video/mp4"></video>'
+            intro: "This button can be used to expand only one genre and collapse every other genre. <hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-expand.mov" type="video/mp4"></video>'
 
         },
 
         {
-            element: document.querySelector('[id="btn-collapse-genre"]'),
+            element: document.querySelector('[id="btn-collapse-folder"]'),
             title: "Collapse genre (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This button can be used to collapse only one genre and collapse every other genre.<hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/books-twl-collapse.mov" type="video/mp4"></video>'
+            intro: "This button can be used to collapse only one genre and collapse every other genre.<hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-collapse.mov" type="video/mp4"></video>'
 
         },
         {

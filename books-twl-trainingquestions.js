@@ -22,66 +22,96 @@ function twl_trainingquestions(qcounter) {
         },
         {
             "qid": "T1.",
-            "question": "How many levels does the BeforeH (starting from the root at level 0) have?",
-            "hint": "The level of a tree is defined by the node at the deepest/highest level. <br>The nodes at the deepest level in the BeforeH are <i>root/hcil/piccolo/learn/doc-0.5/doc-0.5-api/doc-0.5-api-index.html</i> and <i>root/hcil/piccolo/learn/doc-0.5/doc-0.5-tutorial/doc-0.5-api-tutorial-index.html</i>.",
-            "answer": "6",
+            "question": 'What is the path of the <b>genre:</b><i>Armies Troops</i> to the <i>root node</i>?',
+            "hint": "The path refers to the shortest set of parent nodes that need to be traversed to reach the root node from the given node. Hover, on a node to see its path highlighted to the root node.",
+            "answer": "<i>root -> America and United States -> Armies Troops</i>",
             "numoptions": 3,
-            "options": ["4", "6", "8"]
+            "options": ["<i>root -> America and United States -> Armies Troops</i>", "<i>root -> America and United States -> America -> Armies Troops</i>", "<i>root -> America -> The Revolution -> Armies Troops</i>"]
+
 
         },
 
         {
             "qid": "T2.",
-            "question": 'What is the path of the folder:<i>press</i> to the <i>root node</i>?',
-            "hint": "The path refers to the shortest set of parent nodes that need to be traversed to reach the root node from the given node. Hover, on a node to see its path highlighted to the root node.",
-            "answer": "<i>root/hcil/about/press</i>",
+            "question": "What is the level of node <b>genre:</b><i>Generalities</i> in the base and target hierarchies?",
+            "hint": "The level of a node is a count of the number of highlighted nodes between a given node and the root node (at level 0).",
+            "answer": "Level 2 in the BaseH and Level 2 in the TargetH",
             "numoptions": 3,
-            "options": ["<i>root/hcil/about/press</i>", "<i>root/hcil/members/press</i>", "<i>root/hcil/collaborators/press</i>"]
-
+            "options": ["Level 3 in the BaseH and Level 2 in the TargetH", "Level 2 in the BaseH and Level 2 in the TargetH", "Level 4 in the BaseH and Level 3 in the TargetH"]
 
         },
-
-
 
         {
             "qid": "T3.",
-            "question": "What is the level of node filename:<i>root/hcil/privacy-policy.shtml</i> in the before and after hierarchies?",
-            "hint": "Count the number of parent nodes (these nodes are highlighted when you hover on the <i>privacy-policy.shtml</i> node) it takes to reach the root node (the root node is at level 0).",
-            "answer": "Level 2 in the BeforeH and Level 2 in the AfterH",
-            "numoptions": 3,
-            "options": ["Level 3 in the BeforeH and Level 2 in the AfterH", "Level 2 in the BeforeH and Level 2 in the AfterH", "Level 4 in the BeforeH and Level 3 in the AfterH"]
+            "question": "How many levels does the BaseH (starting from the root at level 0) have?",
+            "hint": "The level of a tree is defined by the node at the deepest/highest level. The highest BaseH level line is the Level 5 dotted/dashed grey line. <br>The nodes at the deepest level are <i>root -> America and United States -> United States -> History -> General -> Historical Geography</i> (the path is highlighted when you hover on the deepest node) and nodes <i>The Political Quarterly in the thirties</i> and <i>The Political Quarterly in the fifties</i>.",
+            "answer": "5",
+            "numoptions": 4,
+            "options": ["3", "5", "7", "9"]
 
         },
+
+
+
+        /* {
+            "qid": "T4.",
+            "question": "Choose the best description of folder:<i>root/hcil/treemap3</i>.",
+            "hint": "The folder:<i>treemap3</i> has only red and green links. The absence of blue links show that no files were retained. Consequently, the red links indicate that all the files in the BaseH were deleted. The green links show that some files were newly added in the TargetH. ",
+            "answer": "The folder existed in the BaseH but all files were deleted and some were newly added in the TargetH",
+            "numoptions": 4,
+            "options": ["It was newly created in the TargetH", "The folder existed in the BaseH but all files were deleted and no new files were added", "The folder existed in the BaseH but some files were deleted", "The folder existed in the BaseH but all files were deleted and some were newly added in the TargetH"]
+        }, */
 
         {
             "qid": "T4.",
-            "question": "Choose the best description of folder:<i>root/hcil/treemap3</i>",
-            "hint": "You can see that the node:<i>treemap3</i> exists in both hierarchies, but it has no common links connecting the nodes in the BeforeH and the AfterH. The absence of connecting links shows that all the files in the BeforeH were deleted and that new files were created in the AfterH.",
-            "answer": "The folder existed in the BeforeH but all files were deleted and some were newly added in the AfterH",
-            "numoptions": 4,
-            "options": ["It was newly created in the AfterH", "The folder existed in the BeforeH but all files were deleted and no new files were added", "The folder existed in the BeforeH but some files were deleted", "The folder existed in the BeforeH but all files were deleted and some were newly added in the AfterH"]
+            "question": "All books belonging to this genre are found only at the GreenValley library? Which genre is this?",
+            "hint": "The presence of connecting links indicate that the sub-genres/books belong to both RedPark and GreenValley. Check for the genre/sub-genre that belongs only to the TargetH and has no connecting links.",
+            "answer": "The Revolution",
+            "numoptions": 3,
+            "options": ["History", "United States", "The Revolution"]
+
         },
-
-
 
         {
             "qid": "T5.",
-            "question": "What happened to the file:<i>jrexxlab.jpg</i>?",
-            "hint": "When you search for the file, it is not available in the BeforeH but available in the AfterH. Also, there is no link connecting the node:<i>jrexxlab.jpg</i> from the BeforeH, indicating that it was newly created in the AfterH.",
-            "answer": "The file was not present in the BeforeH but was newly created in the AfterH",
+            "question": "How many books belong to the <b>genre:<b><i>History of the Americas</i></b>?",
+            "hint": "Expand the green triangle to view the books that belong to History.",
+            "answer": "4",
             "numoptions": 3,
-            "options": ["The file was present in the BeforeH but deleted in the AfterH", "The file was not present in the BeforeH but was newly created in the AfterH", "The file is present in the BeforeH and the AfterH"]
+            "options": ["3", "4", "5"]
+
+        },
+
+        {
+            "qid": "T6.",
+            "question": "Does the <b>book:</b><i>Relations with individual countries</i> belong to the same genre/sub-genre in both libraries?",
+            "hint": "Manually check the genre/sub-genre to which the book is connected in the BaseH and TargetH.",
+            "answer": "No. It belongs to the <b>genre:<i>History</i></b> in the BaseH and <b>genre:<i>America and United States</i></b> in the TargetH",
+            "numoptions": 3,
+            "options": ["No. It belongs to <b>genre:<i>History</i></b> in the BaseH and <b>genre:<i>The Revolution</i></b> in the TargetH", "No. It belongs to the <b>genre:<i>History</i></b> in the BaseH and <b>genre:<i>America and United States</i></b> in the TargetH", "Yes. It belongs to the same genre/sub-genre in both libraries."]
 
         },
 
 
+        /* {
+            "qid": "T5.",
+            "question": "What happened to the file:<i>jrexxlab.jpg</i>?",
+            "hint": "The node is a green dot/filled-circle with a green link which shows that the file was newly created in the TargetH.",
+            "answer": "The file was not present in the BaseH but was newly created in the TargetH",
+            "numoptions": 3,
+            "options": ["The file was present in the BaseH but deleted in the TargetH", "The file was not present in the BaseH but was newly created in the TargetH", "The file is present in the BaseH and the TargetH"]
+
+        }, */
+
+
         {
-            "qid": "T6.",
+            "qid": "T7.",
             "question": "You're done with the training questions! Proceed to the experiment questions!",
             "hint": "Good luck!"
 
 
         }
+
 
 
 

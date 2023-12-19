@@ -20,98 +20,131 @@ function twl_experimentquestions(qcounter) {
         },
         {
             "qid": "E1.",
-            "question": "Does the AfterH have the same number of levels as the Before?",
-            "answer": "No. The AfterH has one level more than the BeforeH",
-            "options": ["Yes", "No. The AfterH has one level more than the BeforeH", "No. The AfterH has one level less than the BeforeH"]
+            "question": "Does the TargetH have the same number of levels as the BaseH?",
+            "answer": "No. The TargetH has one level less than the BaseH",
+            "options": ["Yes", "No. The TargetH has one level more than the BaseH", "No. The TargetH has one level less than the BaseH", "No. The TargetH has two levels less than the BaseH"]
 
         },
 
         {
             "qid": "E2.",
-            "question": "What is the path of the node:<i>treeml.dtd</i> to the root node?",
-            "answer": "<i>root/hcil/iv03contest/datasets/treeml.dtd</i>",
-            "options": ["<i>root/hcil/census/JavaProto/demo_files/treeml.dtd</i>", "<i>root/hcil/iv03contest/datasets/treeml.dtd</i>", "<i>root/hcil/about/pictures/treeml.dtd</i>", "<i>root/hcil/treemaps/treeml.dtd</i>"]
+            "question": "What is the path of the node <b>book:</b><i>Elements in Political Science</i> to the root node?",
+            "answer": "root -> Political Science -> Generalities -> Current trends; research activities etc. -> Elements in Political Science",
+            "options": ["root -> Political Science -> Generalities -> Current trends; research activities etc. -> Elements in Political Science", "root -> Political Science -> Elements in Political Science", "root -> Political Science -> Generalities -> Political thought -> Elements in Political Science"]
 
         },
 
-
         {
             "qid": "E3.",
-            "question": "What is the level of node filename:<i>root/hcil/piccolo/newsroom/newsroom-index.shtml</i> in the before and after hierarchies?",
-            "answer": "Level 4 in the BeforeH and Level 4 in the AfterH",
-            "options": ["Level 4 in the BeforeH and Level 4 in the AfterH", "Level 4 in the BeforeH and Level 5 in the AfterH", "Level 5 in the BeforeH and Level 6 in the AfterH"]
+            "question": "What is the level of the <b>book:</b><i>The shadow of the panther..</i>?",
+            "answer": "Level 4 in RedPark and Level 2 in GreenValley",
+            "options": ["Level 4 in RedPark and GreenValley", "Level 2 in RedPark and GreenValley", "Level 4 in RedPark and Level 2 in GreenValley", "Level 2 in RedPark and Level 4 in GreenValley"]
 
         },
 
         {
             "qid": "E4.",
-            "question": "Which folder has the maximum number of files deletions?",
-            "answer": "treemap3",
-            "options": ["snap", "oh99", "treemap3", "spacetree"]
+            "question": "Which book belongs to different genres/sub-genres in the two libraries?",
+            "answer": "Tom Paine's America..",
+            "options": ["Tom Paine's America..", "Slavery by another me..", "The shoemaker and the tea party.."]
 
         },
+
 
         {
             "qid": "E5.",
-            "question": "Is the element filename:<i>root/hcil/about/pictures/reddot.gif</i> available in both hierarchies?",
-            "answer": "No. It is available only in the AfterH",
-            "options": ["Yes. It is available in both hierarchies", "No. It is available only in the BeforeH", "No. It is available only in the AfterH"]
+            "question": "Choose the best description of the <b>genre:</b><i>Generalities (root -> Political Science -> Generalities)</i> in the RedPark and GreenValley libraries?",
+            "answer": "Some of its sub-genres belong only to GreenValley and others are common to both",
+            "options": ["All of its sub-genres belong to RedPark", "All of its sub-genres belong to GreenValley", "Some of its sub-genres belong only to GreenValley and others are common to both", "Some of its sub-genres belong only to RedPark and others are common to both"]
 
         },
 
-        /* {
-            "qid": "E6.",
-            "question": "Node file:<i>root/hcil/pda/thesis/thesis-pda/postscript.html</i> in the BeforeH has gone through a change/s. What is/are the change/s?",
-            "answer": "The file has moved up one level in to the folder<i>root/hcil/pda/thesis</i>.",
-            "options": ["The file has moved to a different folder on the same level.", "The file has moved down one level in to a sub-folder inside the parent folder:<i>root/hcil/pda/thesis/thesis-pda/thesis-draft/postscript.html</i>.", "The file has moved up one level in to the folder<i>root/hcil/pda/thesis</i>."]
- 
-        },
- */
         {
             "qid": "E6.",
-            "question": "Choose the best description for the folder:<i>root/hcil/piccolo/applications</i> changed?",
-            "answer": "One folder and a file that belongs to it have been retained",
-            "options": ["Some files have been deleted", "The folder contents have not changed at all", "One folder and a file that belongs to it have been retained", "One file has been added"]
+            "question": "Choose the best description of these three <b>books:</b><i>Revolutiory characters: What made the founders different?, To begin the world anew..., The rise of American democracy...</i>?",
+            "answer": "They belong to both libraries but belong to different genres",
+            "options": ["They belong only to GreenValley", "They belong only to RedPark", "They belong to both libraries but belong to the same genre", "They belong to both libraries but belong to different genres"]
 
         },
 
         {
             "qid": "E7.",
-            "question": "Find the siblings of folder:<i>root/hcil/photomesa/help.html</i>",
-            "answer": "[licensing.shtml;hand-button.gif;hcil-logo-small.gif]",
-            "options": ["[figure01.jpg;figure02.jpg;figure03.jpg]", "[spotfire;touchscreens;timesearcher]", "[licensing.shtml;hand-button.gif;hcil-logo-small.gif]"]
+            "question": "Which book belongs to the <b>genre:</b><i>Dictionaries and encyclopedias</i> at RedPark but to <b>genre:</b><i>Fundamental concepts and ideologies</i> at GreenValley",
+            "answer": "Oxford handbook of governance",
+            "options": ["The loss and recovery of truth..", "The Ellen Meiksins Wood reader", "Ethics in hard times", "Oxford handbook of governance"]
 
         },
+
         {
             "qid": "E8.",
-            "question": "Which folder in the BeforeH has the most number of newly created files in the AfterH?",
-            "answer": "<i>root/hcil/treemap3</i>",
-            "options": ["<i>root/hcil/treemap3</i>", "<i>root/hcil/about/pictures</i>", "<i>root/hcil/agile2d</i>"]
+            "question": "Sub-genre A belongs to Genre B in one library. Alternatively, B is a sub-genre that belongs to genre A in the other library. Which genre/sub-genre pair describes this behavior? ",
+            "answer": "Middle East and Arab World",
+            "options": ["Political Science and Generalities", "America and Afro-Americans", "Colonial History and Queen Anne's War", "Middle East and Arab World"]
 
         },
+
         {
             "qid": "E9.",
-            "question": "Which folder in the BeforeH was deleted in the AfterH?",
-            "answer": "<i>root/hcil/visumillion</i>",
-            "options": ["<i>root/hcil/treemaps</i>", "<i>root/hcil/about</i>", "<i>root/hcil/visumillion</i>"]
+            "question": "Which sub-genre of <b>genre:</b><i>Political Science</i> only exists in the GreenValley library?",
+            "answer": "Political thought",
+            "options": ["Generalities", "Political thought", "Political institutions and public administration", "Political Science and public administration"]
 
         },
 
         {
             "qid": "E10.",
-            "question": "What changes are common to folder:<i>root/hcil/members/mvenkatraman</i> and folder:<i>root/hcil/members/rsalter</i>?",
-            "answer": "One file was deleted; one file was added and one file was retained",
-            "options": ["All files were deleted", "One file was added and one file was deleted", "One file was deleted; one file was added and one file was retained", "Two files were retained and the rest were deleted"]
+            "question": "Which node is on Level 5 in RedPark and on Level 4 at GreenValley?",
+            "answer": "<b>book:</b><i>The Political Quarterly in the thirties</i>",
+            "options": ["<b>genre:</b><i>Middle East</i>", "<b>book:</b><i>The Political Quarterly in the thirties</i>", "<b>book:</b><i>Dictionary of the United States Congress</i>", "<b>genre:</b><i>Collected works of American Statemen</i>"]
 
         },
 
         {
             "qid": "E11.",
+            "question": "Which library has the most number of books on the <b>genre:</b><i>Theory. Relations to other subjects</i>?",
+            "answer": "RedPark",
+            "options": ["RedPark", "GreenValley", "They have exactly the same number of books"]
+
+        },
+
+        {
+            "qid": "E12.",
+            "question": "What's the best description of the <b>book:<b><i>Black like me</i>?",
+            "answer": "It belongs to both libraries and belongs to the American sub-genre in the GreenValley library",
+            "options": ["It is available only at the RedPark library", "It is available only at the GreenValley library and belongs to the Afro-American sub-genre", "It belongs to both libraries and belongs to the Afro-American sub-genre in the GreenValley library", "It belongs to both libraries and belongs to the American sub-genre in the GreenValley library"]
+
+        },
+
+        {
+            "qid": "E13.",
+            "question": "Which sub-genre has the same books in both libraries?",
+            "answer": "History",
+            "options": ["Political Science", "History", "The Revolution", "Queen Anne's War"]
+
+        },
+
+        {
+            "qid": "E14.",
+            "question": "Is the <b>book:</b><i>US Policy toward Iraq</i> classified under the same genre at RedPark and GreenValley?",
+            "answer": "No. It is classified under <b>genre:</b><i>Middle Eastern Relationships</i> at RedPark and under <b>genre:<b><i>Political Science and Public Administration</i> at GreenValley",
+            "options": ["Yes. It is classified under the <b>genre:</b><i>Middle Eastern Relationships</i> at both libraries", "Yes. It is classified under the <b>genre:</b><i>Political Science and Public Administration</i> at both libraries", "No. It is classified under <b>genre:</b><i>Political Science at RedPark and under genre:Political thought</i> at GreenValley", "No. It is classified under <b>genre:</b><i>Middle Eastern Relationships</i> at RedPark and under <b>genre:</b><i>Political Science and Public Administration</i> at GreenValley"]
+
+        },
+
+        {
+            "qid": "E15.",
+            "question": "Choose the option with the best description of the <b>sub-genre:</b><i>Political Science and Public Administration</i>",
+            "answer": "It belongs to different genres and different levels in the two libraries",
+            "options": ["It belongs to different levels (but same genre) in the two libraries", "It belongs to different genres (but same level) in the two libraries", "It belongs to the same genre but is at different levels", "It belongs to different genres and different levels in the two libraries", "It is at the same level but belongs to different genres"]
+
+        },
+
+        {
+            "qid": "E16.",
             "question": "You're done with the experiment! Thank you so much for your time!",
         }
 
     ];
-
 
     //console.log(list_questions[qcounter]);
     //console.log(document.getElementsByName("traininganswer").length);
