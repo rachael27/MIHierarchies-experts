@@ -51,9 +51,9 @@ function experimentquestions(qcounter) {
         }, */
         {
             "qid": "E4.",
-            "question": "Which book belongs to different genres/sub-genres in the two libraries?",
+            "question": "Which book belongs to different genres/sub-genres (only considering the immediate parent) in the two libraries?",
             "answer": "Tom Paine's America..",
-            "options": ["Tom Paine's America..", "A history of American history", "The shoemaker and the tea party.."]
+            "options": ["Tom Paine's America..", "The political quarterly in the thirties", "The shoemaker and the tea party.."]
 
         },
 

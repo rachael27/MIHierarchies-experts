@@ -31,7 +31,7 @@ function twl_guidedtour() {
         {
             element: document.querySelector('[id="link_4dtahs"]'),
             title: "A connecting link between books <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Consider the orange links for this step of the tour. <hr class='border border-danger border-2 opacity-50'>  If a link is drawn between 2 books, it means that the book is common to both hierarchies."
+            intro: "Consider the orange link for this step of the tour. <hr class='border border-danger border-2 opacity-50'>  If a link is drawn between 2 books, it means that the book is common to both hierarchies."
         },
 
         {

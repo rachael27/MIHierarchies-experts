@@ -337,7 +337,20 @@
                     else
                         runScript_tabs(h1, h2);
                 });
-                */h1_root
+                */
+
+            d3.select("#search-nodes").node().value = "";
+
+            if (!d3.select(".search-rect").empty()) {
+                d3.selectAll(".search-rect").remove();
+                d3.selectAll(".selected_text").each(function (d) {
+                    d3.select(this)
+                        .style("fill", label_color)
+                        .style("opacity", label_opacity)
+                        .style("font-size", label_size - d.depth)
+                        .classed("selected_text", false);
+                });
+            }
         });
 
         d3.select("#btn-entirelayout").on("click", function () {
@@ -375,6 +388,19 @@
                         runScript_tabs(h1, h2);
                 });
                 */
+
+            d3.select("#search-nodes").node().value = "";
+
+            if (!d3.select(".search-rect").empty()) {
+                d3.selectAll(".search-rect").remove();
+                d3.selectAll(".selected_text").each(function (d) {
+                    d3.select(this)
+                        .style("fill", label_color)
+                        .style("opacity", label_opacity)
+                        .style("font-size", label_size - d.depth)
+                        .classed("selected_text", false);
+                });
+            }
         });
 
 
@@ -1292,6 +1318,7 @@
                                     //if (layout_flag == 1) {
                                     function trynow() {
                                         for (var j = 0; j < element.ancestors().length; j++) {
+
                                             var id = element.ancestors()[j].data.data.child
                                                 .replaceAll(/\//g, "")
                                                 .replaceAll(".", "")
@@ -4841,8 +4868,8 @@
                                 //console.log(h2);
 
                                 //console.log(h2_desc[h2]);
-                                console.log(e);
-                                console.log(d);
+                                //console.log(e);
+                                //console.log(d);
 
 
 

@@ -1302,6 +1302,19 @@
 
 
             d3.select("#btn-changeonlylayout").on("click", function () {
+                d3.select("#search-nodes").node().value = "";
+
+                if (!d3.select(".search-rect").empty()) {
+                    d3.selectAll(".search-rect").remove();
+                    d3.selectAll(".selected_text").each(function (d) {
+                        d3.select(this)
+                            .style("fill", label_color)
+                            .style("opacity", label_opacity)
+                            .style("font-size", label_size - d.depth)
+                            .classed("selected_text", false);
+                    });
+                }
+
                 layout = "changeonlylayout";
                 update_log("mtree", "btn-changeonlylayout", "button", "display changes-only layout", "click", "", "", "", "", "", "");
                 var flag = 0;
@@ -1331,7 +1344,7 @@
 
                 });
                 mergedtree(mtree.descendants()[0], hier_root);
-                console.log("finished layout");
+                //console.log("finished layout");
                 setTimeout(() => {
                     console.log("drawing links");
                     showlinks_updated(), 90000
@@ -1340,6 +1353,19 @@
             });
 
             d3.select("#btn-entirelayout").on("click", function () {
+                d3.select("#search-nodes").node().value = "";
+
+                if (!d3.select(".search-rect").empty()) {
+                    d3.selectAll(".search-rect").remove();
+                    d3.selectAll(".selected_text").each(function (d) {
+                        d3.select(this)
+                            .style("fill", label_color)
+                            .style("opacity", label_opacity)
+                            .style("font-size", label_size - d.depth)
+                            .classed("selected_text", false);
+                    });
+                }
+
                 layout = "entirelayout";
                 update_log("mtree", "btn-entirelayout", "button", "display the entire layout", "click", "", "", "", "", "", "");
                 d3.select("#mergedtree").selectAll("g").remove();
