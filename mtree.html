@@ -546,7 +546,7 @@
 
         var width = window.innerWidth;
         var height = 1200;
-        var level_offset = 150;
+        var level_offset = 170;
 
 
 
@@ -646,7 +646,7 @@
                 .style("overflow-x", "scroll")
                 .append("svg")
                 .attr("id", "mergedtree_svg")
-                .attr("width", window.innerWidth * 1.4)
+                .attr("width", window.innerWidth)
                 .attr("height", 1000);
 
 
@@ -1800,13 +1800,13 @@
             info_svg
                 .append("g")
                 .attr("id", "notations-key")
-                .attr("transform", "translate(" + Math.round(.38 * width) + ",100)")
+                .attr("transform", "translate(" + Math.round(.36 * width) + ",70)")
                 .append("image")
                 .attr("id", "img-key")
                 //.attr('x', -9)
                 //.attr('y', -12)
-                .attr('width', width * .2)
-                .attr('height', height * .1)
+                .attr('width', width * .25)
+                .attr('height', height * .15)
                 .attr("xlink:href", "Images/notations-key.png");
 
             d3.select("#notations-key")
@@ -1863,6 +1863,7 @@
 
                 info_svg.select("#h1tree")
                     .append("rect")
+                    .attr("id", "h1tree-rect")
                     .attr('x', -30)
                     .attr('y', -30)
                     .attr('width', Math.round(.3 * width) + 50)
@@ -2133,7 +2134,7 @@
                 var tree = d3
                     .tree()
                     //.nodeSize([9, 10]);
-                    .size([1.2 * window.innerWidth, .95 * window.innerHeight]);
+                    .size([window.innerWidth * .85, .95 * window.innerHeight]);
 
                 //.size([Math.round(width * .9), Math.round(height * .65)]);
                 //.size([Math.round(width * .9), Math.round(height * .75)]);
@@ -2233,7 +2234,7 @@
                         //console.log("Sel_toolbox " + sel_toolbox);
                         if (sel_toolbox == "") {
                             //console.log("click folder");
-                            update_log("mtree", "mtree node " + d.data.data.child, "node", "collapse/expand nodes", "click", "", "", "", "", "");
+                            update_log("mtree", "mtree node", "node", "collapse/expand nodes " + d.data.data.child, "click", "", "", "", "", "");
                             click(d, hier_root);
 
                             setTimeout(() => {
@@ -2242,7 +2243,7 @@
                         }
                         else if (sel_toolbox == "btn-expand-folder") {
 
-                            update_log("mtree", "mtree node " + d.data.data.child, "node", "expand nodes of ", "click", "", "", "", "", "");
+                            update_log("mtree", "mtree node", "node", "expand nodes of " + d.data.data.child, "click", "", "", "", "", "");
                             //console.log(mtree.descendants());
                             //console.log(mtree.ancestors());
                             var max_depth = 0;
@@ -2287,7 +2288,7 @@
                         }
                         else if (sel_toolbox == "btn-collapse-folder") {
 
-                            update_log("mtree", "mtree node " + d.data.data.child, "node", "collapse nodes of", "click", "", "", "", "", "");
+                            update_log("mtree", "mtree node", "node", "collapse nodes of " + d.data.data.child, "click", "", "", "", "", "");
                             //anc_desc = [];
 
                             d.descendants().forEach(function (element) {
@@ -2730,8 +2731,7 @@
                             .style("opacity", 1);
 
                         d3.select("#h2tree")
-                            .selectAll(".text")
-                            .selectAll(".h2tree_" + circle_id)
+                            .selectAll(".text.h2tree_" + circle_id)
                             .style("opacity", 1);
 
                         for (var i = 1; i < h2_root.descendants().length; i++) {
@@ -2782,8 +2782,7 @@
                             .style("opacity", 1);
 
                         d3.select("#h1tree")
-                            .selectAll(".text")
-                            .selectAll(".h1tree_" + circle_id)
+                            .selectAll(".text.h1tree_" + circle_id)
                             .style("opacity", 1);
                         //console.log(h1path);
 
@@ -3182,8 +3181,8 @@
                             .style("opacity", 1);
 
                         d3.select("#h2tree")
-                            .selectAll(".text")
-                            .selectAll(".h2tree_" + circle_id)
+                            //.selectAll(".text")
+                            .selectAll(".text.h2tree_" + circle_id)
                             .style("opacity", 1);
 
 
@@ -4059,7 +4058,7 @@
                         })
                         .attr("x2", function (d) {
 
-                            return width * 1.3;
+                            return width * .9;
                         })
                         .attr("y2", function (d) {
                             return d;
@@ -4139,7 +4138,7 @@
                         .attr("dy", "4em")
                         .attr("x", function (d) {
                             //return -150;
-                            return width * 1.25;
+                            return width * .9;
 
                         })
                         .attr("y", function (d) {
@@ -4344,6 +4343,7 @@
                             if (d3.select(this).style("stroke") == "grey") {
 
                                 d3.select("#btn-zoom").select("rect").style("stroke", "red");
+                                update_log("mtree", "btn-zoom", "button", "select zoom", "click", "", "", "", "", "");
                             }
                             else {
                                 d3.selectAll(".toolbox-icon")
@@ -4360,7 +4360,7 @@
 
                                 sel_toolbox = "";
                                 document.getElementById("mergedtree_svg").style.cursor = "default";
-
+                                update_log("mtree", "btn-zoom", "button", "deselect zoom", "click", "", "", "", "", "");
 
                             }
                         });
@@ -4437,7 +4437,7 @@
                                 .call(zooms.scaleBy, 1.3);
 
 
-
+                            update_log("mtree", "btn-zoom-in", "button", "select zoom in", "click", "", "", "", "", "");
 
                         })
                         .append("rect")
@@ -4532,6 +4532,8 @@
                                 .transition()
                                 .call(zooms.scaleBy, 1 / 1.3);
 
+                            update_log("mtree", "btn-zoom-out", "button", "select zoom out", "click", "", "", "", "", "");
+
                         })
                         .append("rect")
                         .attr("class", "toolbox-icon")
@@ -4615,6 +4617,8 @@
                                     .transition()
                                     .call(zooms.transform,
                                         d3.zoomIdentity);
+
+                                update_log("mtree", "btn-zoom-reset", "button", "select reset zoom", "click", "", "", "", "", "");
                             }
                             else {
                                 sel_toolbox = "";
@@ -4623,6 +4627,8 @@
                                 d3.selectAll(".toolbox-icon")
                                     .style("fill", "white")
                                     .style("stroke", "grey");
+
+                                update_log("mtree", "btn-zoom-reset", "button", "deselect zoom reset", "click", "", "", "", "", "");
                             }
 
 
@@ -4720,7 +4726,7 @@
 
                                 document.getElementById("mergedtree_svg").style.cursor = "pointer";
 
-
+                                update_log("mtree", "btn-expand-folder", "button", "select expand folder", "click", "", "", "", "", "");
                             }
                             else {
                                 anc_desc = [];
@@ -4730,6 +4736,8 @@
                                 d3.selectAll(".toolbox-icon")
                                     .style("fill", "white")
                                     .style("stroke", "grey");
+
+                                update_log("mtree", "btn-expand-folder", "button", "deselect expand folder", "click", "", "", "", "", "");
                             }
                         })
                         .append("rect")
@@ -4817,7 +4825,7 @@
                                 d3.select(this)
                                     .classed("selected", true);
 
-
+                                update_log("mtree", "btn-collapse-folder", "button", "select  collapse folder", "click", "", "", "", "", "");
                             }
                             else {
                                 anc_desc = [];
@@ -4827,6 +4835,8 @@
                                 d3.selectAll(".toolbox-icon")
                                     .style("fill", "white")
                                     .style("stroke", "grey");
+
+                                update_log("mtree", "btn-collapse-folder", "button", "deselect  collapse folder", "click", "", "", "", "", "");
                             }
                         })
                         .append("rect")
@@ -5179,7 +5189,7 @@
                         });
 
 
-                    datapoints.push({ "x": width * 1.3, "y": h2levels[l], "node": "dummy" });
+                    datapoints.push({ "x": width * .9, "y": h2levels[l], "node": "dummy" });
                     //console.log(node_levels);
 
 
@@ -5363,18 +5373,24 @@
                                 var parent = node_class.split("-")[0];
                                 var child = node_class.split("-")[1];
 
-                                console.log(parent);
+                                //console.log(parent);
 
                                 d3.select(this)
                                     .style("stroke-width", "8px");
 
                                 d3.select(".mergedtree_" + parent + ".text")
                                     .style("fill", "red")
-                                    .style("font-size", "15px");
+                                    .style("font-size", "15px")
+                                    .text(function (d) {
+                                        return d.data.data.title;
+                                    })
 
                                 d3.select(".mergedtree_" + child + ".text")
                                     .style("fill", "red")
-                                    .style("font-size", "15px");
+                                    .style("font-size", "15px")
+                                    .text(function (d) {
+                                        return d.data.data.title;
+                                    })
 
                             })
                             .on("mouseleave", function (d) {
@@ -5389,11 +5405,57 @@
 
                                 d3.select(".mergedtree_" + parent + ".text")
                                     .style("fill", "silver")
-                                    .style("font-size", "10px");
+                                    .style("font-size", function (d) {
+                                        return label_size - d.depth;
+                                    })
+                                    .text(function (d) {
+                                        var label = d.data.data.title;
+                                        var label_len = 8;
+
+                                        if (label.length > label_len) {
+                                            if (label.includes(".")) {
+                                                var start = label.lastIndexOf(".");
+                                                var len = label.length;
+                                                var templen = label.substr(start, len).length;
+
+                                                label = label.substring(0, label_len - templen) + label.substr(start, len);
+
+                                            }
+                                            else {
+                                                label = label.substring(0, label_len);
+                                            }
+                                        }
+
+
+                                        return label;
+                                    });
 
                                 d3.select(".mergedtree_" + child + ".text")
                                     .style("fill", "silver")
-                                    .style("font-size", "10px");
+                                    .style("font-size", function (d) {
+                                        return label_size - d.depth;
+                                    })
+                                    .text(function (d) {
+                                        var label = d.data.data.title;
+                                        var label_len = 8;
+
+                                        if (label.length > label_len) {
+                                            if (label.includes(".")) {
+                                                var start = label.lastIndexOf(".");
+                                                var len = label.length;
+                                                var templen = label.substr(start, len).length;
+
+                                                label = label.substring(0, label_len - templen) + label.substr(start, len);
+
+                                            }
+                                            else {
+                                                label = label.substring(0, label_len);
+                                            }
+                                        }
+
+
+                                        return label;
+                                    });
                             });
 
                     }
@@ -5438,12 +5500,13 @@
         function KeyPress(e) {
             var evtobj = window.event ? event : e
             if (evtobj.keyCode == 27) { //escape key
-                console.log("esc key pressed " + sel_toolbox);
+                //console.log("esc key pressed " + sel_toolbox);
                 sel_toolbox = "";
                 anc_desc = [];
                 document.getElementById("mergedtree_svg").style.cursor = "default";
                 d3.selectAll(".toolbox-icon")
                     .style("stroke", "grey");
+                update_log("mtree", "esc key", "key press", "deselect toolbox", "key press", "", "", "", "", "");
             }
 
         }

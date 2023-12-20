@@ -103,7 +103,11 @@
 
     d3.select("#btn-info")
         .on("click", function (d) {
-            window.location.href = 'consent.html';
+            if (window.innerWidth < 500) {
+                alert("You must take the study on a laptop or desktop!");
+            }
+            else
+                window.location.href = 'consent.html';
         });
 
 

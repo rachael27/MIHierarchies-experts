@@ -10,15 +10,23 @@ function guidedtour() {
             intro: "You can interact with each highlighted element in the tour to see it in action. <hr class='border border-danger border-2 opacity-50'> Pop-up boxes will guide you through every step of the tour. If at times the boxes are hidden, please scroll to find them. <hr class='border border-danger border-2 opacity-50'>In addition to the back and next buttons, you can also use the left and right arrow keys to move through the tour."
         },
 
+
         {
             title: "Arrangement of nodes in the BaseH and TargetH<hr class='border border-primary border-3 opacity-75'>",
             intro: "Nodes are arranged in an alphabetical order from left-to-right for easy access in each tree and sub-tree."
         },
 
         {
+            element: document.querySelector("#h1tree-rect"),
+            title: "BaseH - RedPark Library Preview <hr class='border border-primary border-3 opacity-75'>",
+            intro: "<p class='text-justify'>This is a preview of the nodes in the RedPark library. <hr class='border border-danger border-2 opacity-50'> On the right, you can see a preview of the TargetH - GreenValley library.</p>"
+        },
+
+
+        {
             element: document.querySelector("#mergedtree_root"),
             title: "A Merged Node <hr class='border border-primary border-3 opacity-75'>",
-            intro: "<p class='text-justify'>The root node is a merged node (i.e.) it belongs to both - BaseH (left) and TargetH (right) hierarchies.  <hr class='border border-danger border-2 opacity-50'> A merged node is represented by a green dot within a red hollow circle.</p>"
+            intro: "<p class='text-justify'>The root node is a merged node (i.e.) it belongs to both - BaseH (left) and TargetH (right) hierarchies.  <hr class='border border-danger border-2 opacity-50'> A merged node is represented by a green dot within a red hollow circle.</p><hr class='border border-danger border-2 opacity-50'> Hovering on the node, highlights and shows the position of the node in the BaseH and TargetH previews"
         },
         {
             element: document.querySelector("#mergedtree_e11-143"),
@@ -28,12 +36,12 @@ function guidedtour() {
         {
             element: document.querySelector("#mergedtree_e100"),
             title: "A node that belongs to only the TargetH (right) hierarchy <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Node <i>genre:<b>America</b></i> about belongs only to the TargetH. <hr class='border border-danger border-2 opacity-50'> It is represented by a green dot (filled circle). The link is also colored in green to show that this relationship belongs only to the TargetH."
+            intro: "Node <i>genre:<b>American Literature</b></i> about belongs only to the TargetH. <hr class='border border-danger border-2 opacity-50'> It is represented by a green dot (filled circle). The link is also colored in green to show that this relationship belongs only to the TargetH."
         },
         {
             element: document.querySelector(".altlink.e-e1838"),
             title: "A link that only belongs to the TargetH <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The <i>book:<b>Relations with individual countries</b></i> belongs to the BaseH and the TargetH. However, it belongs to two different genres in the BaseH and TargetH which is represented by the two different link connecting the node.<hr class='border border-danger border-2 opacity-50'> Hover on the green-dotted link to see the alternate parent to which the book belongs to in the TargetH."
+            intro: "The <i>book:<b>Relations with individual countries</b></i> belongs to the BaseH and the TargetH. However, it belongs to two different genres in the BaseH and TargetH which is represented by the two different link connecting the node.<hr class='border border-danger border-2 opacity-50'> Hover on the green-dotted link to see the alternate parent <i>genre:<b>America</b></i> to which the book belongs to in the TargetH."
         },
 
         {
@@ -50,7 +58,7 @@ function guidedtour() {
         {
             element: document.querySelector("#levellines > line"),
             title: "Level of a node in the BaseH (dotted/dashed grey level lines) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The grey level lines show the position of a node as it appears in the BaseH. <hr class='border border-danger border-2 opacity-50'> These lines run from <b>left-to-right</b>. <hr class='border border-danger border-2 opacity-50'> To find the level of node in the BaseH, simply look for the grey line passing through it. The node:<i>rooot</i> in the BaseH is on level 0 and is represented by the Level 0 grey dotted/dashed line passing through it."
+            intro: "The grey level lines show the position of a node as it appears in the BaseH. <hr class='border border-danger border-2 opacity-50'> These lines run from <b>left-to-right</b>. <hr class='border border-danger border-2 opacity-50'> To find the level of node in the BaseH, simply look for the grey line passing through it. The <i>node:<b>root</b></i> in the BaseH is on level 0 and is represented by the Level 0 grey dotted/dashed line passing through it."
         },
 
         /*  {
@@ -61,7 +69,7 @@ function guidedtour() {
         {
             element: document.querySelector("#line-chart-l1"),
             title: "Level of a node in the TargetH (solid multi-colored level lines) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The solid multi-colored level lines show the position of a node as it appears in the TargetH. <hr class='border border-danger border-2 opacity-50'> These lines run from <b>right-to-left</b>. Scroll to the right to see the matching colored label. <hr class='border border-danger border-2 opacity-50'>To find the level of node in the TargetH, simply look for the solid colored line passing through it. <hr class='border border-danger border-2 opacity-50'> The node:<i>root</i> in the TargetH is on level 0 represented by the Level 0 solid orange-colored line passing through it. <hr class='border border-danger border-2 opacity-50'> <b>Some nodes might be on different levels in the BaseH and TargetH.</b>"
+            intro: "The solid multi-colored level lines show the position of a node as it appears in the TargetH. <hr class='border border-danger border-2 opacity-50'> These lines run from <b>right-to-left</b>. Scroll to the right to see the matching colored label. <hr class='border border-danger border-2 opacity-50'>To find the level of node in the TargetH, simply look for the solid colored line passing through it. <hr class='border border-danger border-2 opacity-50'> The <i>node:<b>Political Science</b></i> in the TargetH is on level 1 represented by the Level 1 solid orange-colored line passing through it. <hr class='border border-danger border-2 opacity-50'> <b>Some nodes might be on different levels in the BaseH and TargetH.</b>"
         },
         /*
                 {
@@ -90,7 +98,7 @@ function guidedtour() {
         {
             element: document.querySelector('[id="search-nodes"]'),
             title: "Search nodes <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Enter the genre/book name, for e.g. type 'America' will give you a list of all genres/books named America. <hr class='border border-danger border-2 opacity-50'> Choose the <i>book:</i><i>American Colonies</i>."
+            intro: "Enter the genre/book name, for e.g. type 'war' will give you a list of all genres/books with 'war' in its title. <hr class='border border-danger border-2 opacity-50'> Choose the <i>genre:<b>Queen Anne's War</b></i>."
         },
         {
             element: document.querySelector('[id="btn-search"]'),
@@ -117,28 +125,28 @@ function guidedtour() {
         {
             element: document.querySelector('[id="btn-zoom"]'),
             title: "Zoom <hr class='border border-primary border-3 opacity-75'>",
-            intro: "You can use the zoom-in and zoom-out buttons to zoom in and out of the visualization. <br><hr class='border border-danger border-2 opacity-50'> You can click on any empty (white) space and drag the visualization. <br><hr class='border border-danger border-2 opacity-50'> Finally click on the Zoom button or press the Esc key to switch off the zoom mode. <br><hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-zoom.mov" type="video/mp4"></video>'
+            intro: "You can use the zoom-in and zoom-out buttons to zoom in and out of the visualization. <br><hr class='border border-danger border-2 opacity-50'> You can click on any empty (white) space and drag the visualization. <br><hr class='border border-danger border-2 opacity-50'> Finally click on the Zoom button to switch off the zoom mode. <br><hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-zoom.mov" type="video/mp4"></video>'
 
         },
 
         {
             element: document.querySelector('[id="btn-reset"]'),
             title: "Zoom Reset (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "To reset the zoom magnigications, click on the zoom reset button. <br><hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-reset.mov" type="video/mp4"></video>'
+            intro: "To reset the zoom magnigications, click on the zoom reset button. <br><hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-reset.mov" type="video/mp4"></video>'
 
         },
 
         {
             element: document.querySelector('[id="btn-expand-folder"]'),
             title: "Expand Node (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This button can be used to expand only one folder and collapse every other folder. <hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-expand.mov" type="video/mp4"></video>'
+            intro: "This button can be used to expand only one folder and collapse every other folder. <hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-expand.mov" type="video/mp4"></video>'
 
         },
 
         {
             element: document.querySelector('[id="btn-collapse-folder"]'),
             title: "Collapse Folder (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This button can be used to collapse only one folder and collapse every other folder.<hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-collapse.mov" type="video/mp4"></video>'
+            intro: "This button can be used to collapse only one folder and collapse every other folder.<hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-collapse.mov" type="video/mp4"></video>'
 
         },
 

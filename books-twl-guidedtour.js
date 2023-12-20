@@ -99,28 +99,28 @@ function twl_guidedtour() {
         {
             element: document.querySelector('[id="btn-zoom"]'),
             title: "Zoom <hr class='border border-primary border-3 opacity-75'>",
-            intro: "You can use the zoom-in and zoom-out buttons to zoom in and out of the visualization. <br><hr class='border border-danger border-2 opacity-50'> You can click on any empty (white) space and drag the visualization. <br><hr class='border border-danger border-2 opacity-50'> Finally click on the Zoom button or press the Esc key to switch off the zoom mode. <br><hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-zoom.mov" type="video/mp4"></video>'
+            intro: "You can use the zoom-in and zoom-out buttons to zoom in and out of the visualization. <br><hr class='border border-danger border-2 opacity-50'> You can click on any empty (white) space and drag the visualization. <br><hr class='border border-danger border-2 opacity-50'> Finally click on the Zoom button to switch off the zoom mode. <br><hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-zoom.mov" type="video/mp4"></video>'
 
         },
 
         {
             element: document.querySelector('[id="btn-reset"]'),
             title: "Zoom Reset (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "To reset the zoom magnigications, click on the zoom reset button. <br><hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-reset.mov" type="video/mp4"></video>'
+            intro: "To reset the zoom magnigications, click on the zoom reset button. <br><hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-reset.mov" type="video/mp4"></video>'
 
         },
 
         {
             element: document.querySelector('[id="btn-expand-folder"]'),
             title: "Expand Node (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This button can be used to expand only one genre and collapse every other genre. <hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-expand.mov" type="video/mp4"></video>'
+            intro: "This button can be used to expand only one genre and collapse every other genre. <hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-expand.mov" type="video/mp4"></video>'
 
         },
 
         {
             element: document.querySelector('[id="btn-collapse-folder"]'),
             title: "Collapse genre (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This button can be used to collapse only one genre and collapse every other genre.<hr class='border border-danger border-2 opacity-50'> To exit the mode, either click the button again or press the Esc key<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-collapse.mov" type="video/mp4"></video>'
+            intro: "This button can be used to collapse only one genre and collapse every other genre.<hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/twl-collapse.mov" type="video/mp4"></video>'
 
         },
         {

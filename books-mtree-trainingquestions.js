@@ -24,7 +24,7 @@ function trainingquestions(qcounter) {
         },
         {
             "qid": "T1.",
-            "question": 'What is the path of the <b>genre:</b><i>Armies Troops</i> to the <i>root node</i>?',
+            "question": 'What is the path of the <b>genre:</b><i>Armies Troops</i> to the node:<i>root</i>?',
             "hint": "The path refers to the shortest set of parent nodes that need to be traversed to reach the root node from the given node. Hover, on a node to see its path highlighted to the root node.",
             "answer": "<i>root -> America and United States -> Armies Troops</i>",
             "numoptions": 3,
@@ -57,27 +57,27 @@ function trainingquestions(qcounter) {
         {
             "qid": "T4.",
             "question": "All books belonging to this genre are found only at the GreenValley library? Which genre is this?",
-            "hint": "The presence of red links indicate that the sub-genres/books belong only to RedPark and the presence of green links indicate sub-genres/books belong only to GreenValley. The presence of blue links that the sub-genres/books belong to both libraries. Check which genre has only green links and nodes.",
+            "hint": "The presence of red hollow circles indicate that the genres/books belong only to RedPark and the presence of green dots indicate that the sub-genres/books belong only to GreenValley. The presence of the green dots within the red hollow circle indicate that the sub-genres/books belong to both libraries. Check which genre has only green links and nodes.",
             "answer": "The Revolution",
             "numoptions": 3,
-            "options": ["History", "United States", "The Revolution"]
+            "options": ["History", "America", "The Revolution"]
 
         },
 
         {
             "qid": "T5.",
             "question": "How many books belong to the <b>genre:</b><i>History of the Americas</i>?",
-            "hint": "Expand the green triangle to view the books that belong to <b>genre:<i>History</i></b>.",
+            "hint": "Expand the green triangle to view the books that belong to <b>genre:<i>History of the Americas</i></b>.",
             "answer": "4",
             "numoptions": 3,
-            "options": ["3", "4", "5"]
+            "options": ["0", "4", "5"]
 
         },
 
         {
             "qid": "T6.",
-            "question": "Does the <b>book:</b><i>Relations with individual countries</i> belong to the same genre/sub-genre in both libraries?",
-            "hint": "The node has a blue link which represents the genre/sub-genre it belongs to in the BaseH. The presence of the green-dotted link represents the genre/sub-genre it belongs to in the TargetH.",
+            "question": "Does the <b>genre:</b><i>Relations with individual countries</i> belong to the same genre/sub-genre in both libraries?",
+            "hint": "The node has a red link which represents the genre/sub-genre it belongs to in the BaseH. The presence of the green-dotted link represents the genre/sub-genre it belongs to in the TargetH.",
             "answer": "No. It belongs to the <b>genre:<i>History</i></b> in the BaseH and <b>genre:<i>America and United States</i></b> in the TargetH",
             "numoptions": 3,
             "options": ["No. It belongs to <b>genre:<i>History</i></b> in the BaseH and <b>genre:<i>The Revolution</i></b> in the TargetH", "No. It belongs to the <b>genre:<i>History</i></b> in the BaseH and <b>genre:<i>America and United States</i></b> in the TargetH", "Yes. It belongs to the same genre/sub-genre in both libraries."]

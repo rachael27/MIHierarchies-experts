@@ -53,7 +53,7 @@ function experimentquestions(qcounter) {
             "qid": "E4.",
             "question": "Which book belongs to different genres/sub-genres in the two libraries?",
             "answer": "Tom Paine's America..",
-            "options": ["Tom Paine's America..", "Slavery by another me..", "The shoemaker and the tea party.."]
+            "options": ["Tom Paine's America..", "A history of American history", "The shoemaker and the tea party.."]
 
         },
 
@@ -68,7 +68,7 @@ function experimentquestions(qcounter) {
 
         {
             "qid": "E6.",
-            "question": "Choose the best description of these three <b>books:</b><i>Revolutiory characters: What made the founders different?, To begin the world anew..., The rise of American democracy...</i>?",
+            "question": "Choose the best description of these three <b>books:</b><i>Revolutiory characters: What made the founders different?; To begin the world anew...; The rise of American democracy...</i>?",
             "answer": "They belong to both libraries but belong to different genres",
             "options": ["They belong only to GreenValley", "They belong only to RedPark", "They belong to both libraries but belong to the same genre", "They belong to both libraries but belong to different genres"]
 
@@ -108,7 +108,7 @@ function experimentquestions(qcounter) {
 
         {
             "qid": "E8.",
-            "question": "Sub-genre A belongs to Genre B in one library. Alternatively, B is a sub-genre that belongs to genre A in the other library. Which genre/sub-genre pair describes this behavior? ",
+            "question": "Sub-genre A belongs to Genre B in one library. Alternatively; B is a sub-genre that belongs to genre A in the other library. Which genre/sub-genre pair describes this behavior? ",
             "answer": "Middle East and Arab World",
             "options": ["Political Science and Generalities", "America and Afro-Americans", "Colonial History and Queen Anne's War", "Middle East and Arab World"]
 
@@ -133,14 +133,14 @@ function experimentquestions(qcounter) {
         {
             "qid": "E10.",
             "question": "Which node is on Level 5 in RedPark and on Level 4 at GreenValley?",
-            "answer": "<b>book:</b><i>The Political Quarterly in the thirties</i>",
-            "options": ["<b>genre:</b><i>Middle East</i>", "<b>book:</b><i>The Political Quarterly in the thirties</i>", "<b>book:</b><i>Dictionary of the United States Congress</i>", "<b>genre:</b><i>Collected works of American Statemen</i>"]
+            "answer": "The Political Quarterly in the thirties",
+            "options": ["Middle East", "The Political Quarterly in the thirties", "Dictionary of the United States Congress", "Collected works of American Statemen"]
 
         },
 
         {
             "qid": "E11.",
-            "question": "Which library has the most number of books on the <b>genre:</b><i>Theory. Relations to other subjects</i>?",
+            "question": "Which library has the most number of books on the <b>genre:</b><i>Theory: Relations to other subjects</i>?",
             "answer": "RedPark",
             "options": ["RedPark", "GreenValley", "They have exactly the same number of books"]
 
@@ -149,24 +149,24 @@ function experimentquestions(qcounter) {
         {
             "qid": "E12.",
             "question": "What's the best description of the <b>book:<b><i>Black like me</i>?",
-            "answer": "It belongs to both libraries and belongs to the American sub-genre in the GreenValley library",
-            "options": ["It is available only at the RedPark library", "It is available only at the GreenValley library and belongs to the Afro-American sub-genre", "It belongs to both libraries and belongs to the Afro-American sub-genre in the GreenValley library", "It belongs to both libraries and belongs to the American sub-genre in the GreenValley library"]
+            "answer": "It belongs to both libraries and belongs to the <i>genre:<b>America and United States</b></i> in the GreenValley library",
+            "options": ["It is available only at the RedPark library", "It is available only at the GreenValley library and belongs to the <i>genre:<b>Afro-American</b></i>", "It belongs to both libraries and belongs to the <i>genre:<b>Afro-American</b></i> in the GreenValley library", "It belongs to both libraries and belongs to the <i>genre:<b>America and United States</b></i> in the GreenValley library"]
 
         },
 
         {
             "qid": "E13.",
             "question": "Which sub-genre has the same books in both libraries?",
-            "answer": "History",
-            "options": ["Political Science", "History", "The Revolution", "Queen Anne's War"]
+            "answer": "History of the Americas",
+            "options": ["Political Science", "History of the Americas", "The Revolution", "Queen Anne's War"]
 
         },
 
         {
             "qid": "E14.",
             "question": "Is the <b>book:</b><i>US Policy toward Iraq</i> classified under the same genre at RedPark and GreenValley?",
-            "answer": "No. It is classified under <b>genre:</b><i>Middle Eastern Relationships</i> at RedPark and under <b>genre:<b><i>Political Science and Public Administration</i> at GreenValley",
-            "options": ["Yes. It is classified under the <b>genre:</b><i>Middle Eastern Relationships</i> at both libraries", "Yes. It is classified under the <b>genre:</b><i>Political Science and Public Administration</i> at both libraries", "No. It is classified under <b>genre:</b><i>Political Science at RedPark and under genre:Political thought</i> at GreenValley", "No. It is classified under <b>genre:</b><i>Middle Eastern Relationships</i> at RedPark and under <b>genre:</b><i>Political Science and Public Administration</i> at GreenValley"]
+            "answer": "No. It is classified under <i>genre:<b>Middle Eastern Relationships</b></i> at RedPark and under <i>genre:<b><i>Political Science and Public Administration</b></i> at GreenValley",
+            "options": ["Yes. It is classified under the <i>genre:<b>Middle Eastern Relationships</b></i> at both libraries", "Yes. It is classified under the <i>genre:<b>Political Science and Public Administration</b></i> at both libraries", "No. It is classified under <i>genre:<b>Political Science</b></i> at RedPark and under <i>genre:<b>Political thought</b></i> at GreenValley", "No. It is classified under <i>genre:<b>Middle Eastern Relationships</b></i> at RedPark and under <i>genre:<b><i>Political Science and Public Administration</b></i> at GreenValley"]
 
         },
 

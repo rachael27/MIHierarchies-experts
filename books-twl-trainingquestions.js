@@ -68,23 +68,23 @@ function twl_trainingquestions(qcounter) {
             "hint": "The presence of connecting links indicate that the sub-genres/books belong to both RedPark and GreenValley. Check for the genre/sub-genre that belongs only to the TargetH and has no connecting links.",
             "answer": "The Revolution",
             "numoptions": 3,
-            "options": ["History", "United States", "The Revolution"]
+            "options": ["History", "America", "The Revolution"]
 
         },
 
         {
             "qid": "T5.",
             "question": "How many books belong to the <b>genre:<b><i>History of the Americas</i></b>?",
-            "hint": "Expand the green triangle to view the books that belong to History.",
+            "hint": "Expand the green triangle to view the books that belong to <b>genre:<i>History of the Americas</i></b>.",
             "answer": "4",
             "numoptions": 3,
-            "options": ["3", "4", "5"]
+            "options": ["0", "4", "5"]
 
         },
 
         {
             "qid": "T6.",
-            "question": "Does the <b>book:</b><i>Relations with individual countries</i> belong to the same genre/sub-genre in both libraries?",
+            "question": "Does the <b>genre:</b><i>Relations with individual countries</i> belong to the same genre/sub-genre in both libraries?",
             "hint": "Manually check the genre/sub-genre to which the book is connected in the BaseH and TargetH.",
             "answer": "No. It belongs to the <b>genre:<i>History</i></b> in the BaseH and <b>genre:<i>America and United States</i></b> in the TargetH",
             "numoptions": 3,
