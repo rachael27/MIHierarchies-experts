@@ -7,7 +7,7 @@ function guidedtour() {
     var stepsArr = [
         {
             title: "Welcome to the Guided Tour! <hr class='border border-primary border-3 opacity-75'>",
-            intro: "You can interact with each highlighted element in the tour to see it in action. <hr class='border border-danger border-2 opacity-50'> Pop-up boxes will guide you through every step of the tour. If at times the boxes are hidden, please scroll to find them. <hr class='border border-danger border-2 opacity-50'>In addition to the back and next buttons, you can also use the left and right arrow keys to move through the tour."
+            intro: "You can interact with highlighted elements in the tour to see it in action. <hr class='border border-danger border-2 opacity-50'> Pop-up boxes will guide you through every step of the tour. If at times the boxes are hidden, please scroll to find them. <hr class='border border-danger border-2 opacity-50'>In addition to the back and next buttons, you can also use the left and right arrow keys to move through the tour."
         },
 
 
@@ -39,21 +39,34 @@ function guidedtour() {
             intro: "Node <i>genre:<b>American Literature</b></i> about belongs only to the TargetH. <hr class='border border-danger border-2 opacity-50'> It is represented by a green dot (filled circle). The link is also colored in green to show that this relationship belongs only to the TargetH."
         },
         {
-            element: document.querySelector(".altlink.e-e1838"),
+
             title: "A link that only belongs to the TargetH <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The <i>book:<b>Relations with individual countries</b></i> belongs to the BaseH and the TargetH. However, it belongs to different genres in the BaseH and TargetH which is represented by the two types of links connecting the nodes.<hr class='border border-danger border-2 opacity-50'> Hover on the green-dotted link to see the alternate parent <i>genre:<b>America</b></i> to which the book belongs to in the TargetH."
+            intro: "The <i>book:<b>Relations with individual countries</b></i> belongs to the BaseH and the TargetH. However, it belongs to different genres in the BaseH and TargetH which is represented by the two types of links connecting the nodes.<hr class='border border-danger border-2 opacity-50'> Hover on the green-dotted link to see the alternate parent <i>genre:<b>America</b></i> to which the book belongs to in the TargetH.",
+            preChange: function () {
+                this.element = document.querySelector(".altlink.e-e1838");
+                this.position = "right";
+            }
         },
 
         {
-            element: document.querySelector(".triangle-f"),
+
             title: "The green triangle <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The green triangle indicates that a node has been collapsed (i.e. the children of that node are hidden)."
+            intro: "The green triangle indicates that a node has been collapsed (i.e. the children of that node are hidden).",
+            preChange: function () {
+                this.element = document.querySelector(".triangle-f");
+                this.position = "right";
+            }
+
         },
 
         {
-            element: document.querySelector('[id="mergedtree_f"]'),
+
             title: "Interacting with a node - collapse/expand <hr class='border border-primary border-3 opacity-75'>",
-            intro: "You can click on a node (with a green triangle) to expand its children. <br><hr class='border border-danger border-2 opacity-50'> Click on the node again to collapse it."
+            intro: "You can click on a node (with a green triangle) to expand its children. <br><hr class='border border-danger border-2 opacity-50'> Click on the node again to collapse it.",
+            preChange: function () {
+                this.element = document.querySelector('[id="mergedtree_f"]');
+                this.position = "right";
+            }
         },
         {
             element: document.querySelector("#levellines > line"),
@@ -66,11 +79,23 @@ function guidedtour() {
              title: "Level of a node in the BaseH <hr class='border border-primary border-3 opacity-75'>",
              intro: "The level of a node in the BaseH is the number of ancestors from the given node until the root node. <hr class='border border-danger border-2 opacity-50'> To calculate the level, simply count the number of highlighted nodes starting from the root node at level 0. Hence, the level of the selected node is 2.  <hr class='border border-danger border-2 opacity-50'> The root node is at level 0."
          }, */
+
+        /*  {
+             element: document.querySelector('[id="line-chart-l1"]'),
+             title: "Level of a node in the TargetH (solid multi-colored level lines) <hr class='border border-primary border-3 opacity-75'>",
+             intro: "The solid multi-colored level lines show the position of a node as it appears in the TargetH. <hr class='border border-danger border-2 opacity-50'> These lines are labelled on the <b>right</b>. Scroll to the right to see the matching colored label. <hr class='border border-danger border-2 opacity-50'>To find the level of node in the TargetH, simply look for the solid colored line passing through it. <hr class='border border-danger border-2 opacity-50'> The <i>node:<b>Political Science</b></i> in the TargetH is on level 1 represented by the Level 1 solid orange-colored line passing through it. <hr class='border border-danger border-2 opacity-50'> <b>Some nodes might be on different levels in the BaseH and TargetH.</b>"
+         }, */
+
         {
-            element: document.querySelector("#line-chart-l1"),
+
             title: "Level of a node in the TargetH (solid multi-colored level lines) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The solid multi-colored level lines show the position of a node as it appears in the TargetH. <hr class='border border-danger border-2 opacity-50'> These lines are labelled on the <b>right</b>. Scroll to the right to see the matching colored label. <hr class='border border-danger border-2 opacity-50'>To find the level of node in the TargetH, simply look for the solid colored line passing through it. <hr class='border border-danger border-2 opacity-50'> The <i>node:<b>Political Science</b></i> in the TargetH is on level 1 represented by the Level 1 solid orange-colored line passing through it. <hr class='border border-danger border-2 opacity-50'> <b>Some nodes might be on different levels in the BaseH and TargetH.</b>"
+            intro: "The solid multi-colored level lines show the position of a node as it appears in the TargetH. <hr class='border border-danger border-2 opacity-50'> These lines are labelled on the <b>right</b>. Scroll to the right to see the matching colored label. <hr class='border border-danger border-2 opacity-50'>To find the level of node in the TargetH, simply look for the solid colored line passing through it. <hr class='border border-danger border-2 opacity-50'> The <i>node:<b>Political Science</b></i> in the TargetH is on level 1 represented by the Level 1 solid orange-colored line passing through it. <hr class='border border-danger border-2 opacity-50'> <b>Some nodes might be on different levels in the BaseH and TargetH.</b>",
+            preChange: function () {
+                this.element = document.querySelector('[id="line-chart-l1"]');
+                this.position = "right";
+            }
         },
+
         /*
                 {
                     element: document.querySelector("#line-chart-l1 .line"),
@@ -247,8 +272,15 @@ function guidedtour() {
             update_log("introjs-nextbutton", "button", "Completed guided tour. Redirect to landing page.", "click")
             window.location.href = 'landingpage.html?page=guidedtour';
         })
-        .onchange(function () {
+        .onbeforechange(function () {
             console.log(this._currentStep);
+            console.log(this._introItems[this._currentStep].preChange);
+            if (this._introItems[this._currentStep].preChange) {
+                this._introItems[this._currentStep].preChange();
+            }
+        })
+        .onchange(function () {
+            //console.log(this._currentStep);
             update_log("introjs-nextbutton", "button", "display tooltip " + this._currentStep, "click");
         })
 
