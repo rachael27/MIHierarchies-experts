@@ -26,12 +26,12 @@ function guidedtour() {
         {
             element: document.querySelector("#mergedtree_root"),
             title: "A Merged Node <hr class='border border-primary border-3 opacity-75'>",
-            intro: "<p class='text-justify'>The root node is a merged node (i.e.) it belongs to both - BaseH (left) and TargetH (right) hierarchies.  <hr class='border border-danger border-2 opacity-50'> A merged node is represented by a green dot within a red hollow circle.</p><hr class='border border-danger border-2 opacity-50'> Hovering on the node, highlights and shows the position of the node in the BaseH and TargetH previews"
+            intro: "<p class='text-justify'>The root node is a merged node (i.e.) it belongs to both - BaseH (left) and TargetH (right) hierarchies. <hr class='border border-danger border-2 opacity-50'> A merged node is represented by a green dot within a red circle.</p><hr class='border border-danger border-2 opacity-50'> Hovering on the node, highlights and shows the position of the node in the BaseH and TargetH previews"
         },
         {
             element: document.querySelector("#mergedtree_e11-143"),
             title: "A node that belongs to only the BaseH (RedPark library) hierarchy <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Node <i>genre:<b>America</b></i> belongs only to the BaseH. <hr class='border border-danger border-2 opacity-50'> It is represented by a red hollow circle. The link is also colored in red to show that this relationship belongs only to the BaseH."
+            intro: "Node <i>genre:<b>America</b></i> belongs only to the BaseH. <hr class='border border-danger border-2 opacity-50'> It is represented by a red circle. The link is also colored in red to show that this relationship belongs only to the BaseH."
         },
         {
             element: document.querySelector("#mergedtree_e100"),
@@ -41,7 +41,7 @@ function guidedtour() {
         {
             element: document.querySelector(".altlink.e-e1838"),
             title: "A link that only belongs to the TargetH <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The <i>book:<b>Relations with individual countries</b></i> belongs to the BaseH and the TargetH. However, it belongs to two different genres in the BaseH and TargetH which is represented by the two different link connecting the node.<hr class='border border-danger border-2 opacity-50'> Hover on the green-dotted link to see the alternate parent <i>genre:<b>America</b></i> to which the book belongs to in the TargetH."
+            intro: "The <i>book:<b>Relations with individual countries</b></i> belongs to the BaseH and the TargetH. However, it belongs to different genres in the BaseH and TargetH which is represented by the two types of links connecting the nodes.<hr class='border border-danger border-2 opacity-50'> Hover on the green-dotted link to see the alternate parent <i>genre:<b>America</b></i> to which the book belongs to in the TargetH."
         },
 
         {
@@ -58,7 +58,7 @@ function guidedtour() {
         {
             element: document.querySelector("#levellines > line"),
             title: "Level of a node in the BaseH (dotted/dashed grey level lines) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The grey level lines show the position of a node as it appears in the BaseH. <hr class='border border-danger border-2 opacity-50'> These lines run from <b>left-to-right</b>. <hr class='border border-danger border-2 opacity-50'> To find the level of node in the BaseH, simply look for the grey line passing through it. The <i>node:<b>root</b></i> in the BaseH is on level 0 and is represented by the Level 0 grey dotted/dashed line passing through it."
+            intro: "The grey level lines show the position of a node as it appears in the BaseH. <hr class='border border-danger border-2 opacity-50'> These lines are labelled on the <b>left</b>. <hr class='border border-danger border-2 opacity-50'> To find the level of node in the BaseH, simply look for the grey line passing through it. The <i>node:<b>root</b></i> in the BaseH is on level 0 and is represented by the Level 0 grey dotted/dashed line passing through it."
         },
 
         /*  {
@@ -69,7 +69,7 @@ function guidedtour() {
         {
             element: document.querySelector("#line-chart-l1"),
             title: "Level of a node in the TargetH (solid multi-colored level lines) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The solid multi-colored level lines show the position of a node as it appears in the TargetH. <hr class='border border-danger border-2 opacity-50'> These lines run from <b>right-to-left</b>. Scroll to the right to see the matching colored label. <hr class='border border-danger border-2 opacity-50'>To find the level of node in the TargetH, simply look for the solid colored line passing through it. <hr class='border border-danger border-2 opacity-50'> The <i>node:<b>Political Science</b></i> in the TargetH is on level 1 represented by the Level 1 solid orange-colored line passing through it. <hr class='border border-danger border-2 opacity-50'> <b>Some nodes might be on different levels in the BaseH and TargetH.</b>"
+            intro: "The solid multi-colored level lines show the position of a node as it appears in the TargetH. <hr class='border border-danger border-2 opacity-50'> These lines are labelled on the <b>right</b>. Scroll to the right to see the matching colored label. <hr class='border border-danger border-2 opacity-50'>To find the level of node in the TargetH, simply look for the solid colored line passing through it. <hr class='border border-danger border-2 opacity-50'> The <i>node:<b>Political Science</b></i> in the TargetH is on level 1 represented by the Level 1 solid orange-colored line passing through it. <hr class='border border-danger border-2 opacity-50'> <b>Some nodes might be on different levels in the BaseH and TargetH.</b>"
         },
         /*
                 {
@@ -92,7 +92,7 @@ function guidedtour() {
         {
             element: document.querySelector(".mergedtree_g.text"),
             title: "Interacting with a label <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The label displays the truncated file/folder name along with the extension (of the file). <hr class='border border-danger border-2 opacity-50'> You can hover on a label to magnify the text and to view the entire file/folder name."
+            intro: "The label displays the truncated node name. <hr class='border border-danger border-2 opacity-50'> You can hover on a label to magnify the text and to view the entire node name."
         },
 
         {
@@ -103,7 +103,7 @@ function guidedtour() {
         {
             element: document.querySelector('[id="btn-search"]'),
             title: "Search nodes <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Now, click on the search button. Automatic scrolling will take you to the node that you searched for. <hr class='border border-danger border-2 opacity-50'> The searched node and the nodes on its path to the root node are surrounded by gold squares and have red-colored labels."
+            intro: "Now, click on the search button. Automatic scrolling will take you to the node that you searched for. <hr class='border border-danger border-2 opacity-50'> The searched node and the nodes on its path to the root node are surrounded by gold squares and have red highlighted labels."
         },
         {
             element: document.querySelector('[id="btn-clear"]'),
@@ -113,13 +113,13 @@ function guidedtour() {
         {
             element: document.querySelector('[id="btn-changeonlylayout"]'),
             title: "View changes-only layout <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The default layout expands only those folders that have undergone changes while hiding the children of those nodes that did not change from the BaseH to TargetH."
+            intro: "The default layout expands only those nodes that have undergone changes while hiding the children of those nodes that did not change from the BaseH to TargetH."
         },
 
         {
             element: document.querySelector('[id="btn-entirelayout"]'),
             title: "View the entire layout <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This layout expands all folders - those that have undergone changes and those that have not. <hr class='border border-danger border-2 opacity-50'> You can toogle between the two layouts depending on the task."
+            intro: "This layout expands all nodes - those that have undergone changes and those that have not. <hr class='border border-danger border-2 opacity-50'> You can toogle between the two layouts depending on the task."
         },
 
         {
@@ -139,16 +139,16 @@ function guidedtour() {
         {
             element: document.querySelector('[id="btn-expand-folder"]'),
             title: "Expand Node (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This button can be used to expand only one folder and collapse every other folder. <hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-expand.mov" type="video/mp4"></video>'
+            intro: "This button can be used to expand only one sub-tree and collapse every other sub-tree. <hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again. <hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-expand.mov" type="video/mp4"></video>'
 
         },
 
-        {
-            element: document.querySelector('[id="btn-collapse-folder"]'),
-            title: "Collapse Folder (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "This button can be used to collapse only one folder and collapse every other folder.<hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-collapse.mov" type="video/mp4"></video>'
+        /* {
+            element: document.querySelector('[id="btn-collapse-node"]'),
+            title: "Collapse node (toggle button) <hr class='border border-primary border-3 opacity-75'>",
+            intro: "This button can be used to collapse only one node and collapse every other node.<hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-collapse.mov" type="video/mp4"></video>'
 
-        },
+        }, */
 
 
         {
@@ -170,12 +170,12 @@ function guidedtour() {
     /*
         d3.select("#mergedtree_root")
             .attr("data-title", "A Merged Node")
-            .attr("data-intro", "The root node is a merged node (i.e.) it belongs to both - BaseH (left) and TargetH (right) hierarchies. A merged node is represented by a dot within a hollow circle. ")
+            .attr("data-intro", "The root node is a merged node (i.e.) it belongs to both - BaseH (left) and TargetH (right) hierarchies. A merged node is represented by a dot within a  circle. ")
             .attr("data-step", 1);
     
         d3.select("#h1tree_root")
             .attr("data-title", "A node that belongs to only the BaseH (left) hierarchy")
-            .attr("data-intro", "Node C belongs only to the BaseH. It is represented by a hollow circle. Some of the other nodes that belong to only BaseH are D, E, F, L5, L6, L7 and L8.")
+            .attr("data-intro", "Node C belongs only to the BaseH. It is represented by a  circle. Some of the other nodes that belong to only BaseH are D, E, F, L5, L6, L7 and L8.")
             .attr("data-step", 2);
     
         d3.select("#h2tree_root")

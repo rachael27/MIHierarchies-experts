@@ -2312,6 +2312,7 @@
                             });
 
                         }
+                        /*
                         else if (sel_toolbox == "btn-collapse-folder") {
 
                             update_log("mtree", "mtree node", "node", "collapse nodes of " + d.data.data.child, "click", "", "", "", "", "");
@@ -2342,6 +2343,7 @@
 
 
                         }
+                        */
                     });
 
 
@@ -4801,108 +4803,109 @@
                         .style("stroke", "#155446")
                         .style("fill", "black");
 
-
-                    bt++;
-                    cal = bt_start + (bt * icon_offset);
-
-
-                    d3.select("#btn-toolbox")
-                        .append("g")
-                        .attr("class", "toolbox-g")
-                        .attr("id", "btn-collapse-folder")
-                        .on("mouseover", function (d) {
-                            d3.select(this).style("cursor", "pointer");
-                            d3.select("#tooltip")
-                                .html("<tt>Collapse only this node</tt>")
-                                .classed("hovertt", true)
-                                .style("width", "auto")
-                                .style("height", "auto")
-                                .style("left", parseInt(d3.event.pageX) + "px")
-                                .style("top", parseInt(d3.event.pageY + 50) + "px")
-                                .style("text-align", "left")
-                                .style("opacity", 1);
-                        })
-                        .on("mouseleave", function () {
-                            d3.select("#tooltip")
-                                .html("")
-                                .classed("hovertt", false)
-                                .style("width", 0)
-                                .style("height", 0)
-                                .style("left", "0px")
-                                .style("top", "0px")
-                                .style("opacity", 0);
-                        })
-                        .attr("transform", "translate(" + cal + ",0)")
-
-                        .on("click", function () {
-                            console.log("Collapse");
-                            if (d3.select(this).select("rect").style("fill") == "rgb(255, 255, 255)" || d3.select(this).select("rect").style("fill") == "white") {
-                                d3.selectAll(".toolbox-icon")
-                                    .style("fill", "white")
-                                    .style("stroke", "grey");
-
-                                d3.select(this)
-                                    .select("rect")
-                                    .style("fill", "rgb(136, 178, 131)")
-                                    .style("stroke", "red");
-
-                                sel_toolbox = "btn-collapse-folder";
-
-                                d3.select(this)
-                                    .classed("selected", true);
-
-                                update_log("mtree", "btn-collapse-folder", "button", "select  collapse folder", "click", "", "", "", "", "");
-                            }
-                            else {
-                                anc_desc = [];
-                                sel_toolbox = "";
-                                document.getElementById("mergedtree_svg").style.cursor = "default";
-
-                                d3.selectAll(".toolbox-icon")
-                                    .style("fill", "white")
-                                    .style("stroke", "grey");
-
-                                update_log("mtree", "btn-collapse-folder", "button", "deselect  collapse folder", "click", "", "", "", "", "");
-                            }
-                        })
-                        .append("rect")
-                        .attr("class", "toolbox-icon")
-                        .attr("height", 40)
-                        .attr("width", 40)
-                        .attr("x", 0)
-                        .attr("y", 0)
-                        ;
-
-
-
-                    d3.select("#btn-collapse-folder")
-                        .append("path")
-                        .attr("d", "M35 44H5a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3h12.12a4.979 4.979 0 0 1 3.9 1.875l5 6.249A4.97 4.97 0 0 0 29.92 18H47a1 1 0 0 0 0-2H29.92a2.979 2.979 0 0 1-2.339-1.125l-5-6.251A6.971 6.971 0 0 0 17.12 6H5a5.006 5.006 0 0 0-5 5v30a5.006 5.006 0 0 0 5 5h30a1 1 0 0 0 0-2z")
-                        .attr("transform", "translate(3,3)scale(0.5,0.5)")
-                        .attr("font-size", "10px")
-                        .style("stroke-width", 2)
-                        .style("stroke", "black")
-                        .style("fill", "black");
-
-                    d3.select("#btn-collapse-folder")
-                        .append("path")
-                        .attr("d", "M28 11h19a3 3 0 0 1 3 3v15a1 1 0 0 0 2 0V14a5.006 5.006 0 0 0-5-5H28a1 1 0 0 0 0 2zM51 32a13 13 0 1 0 13 13 13.015 13.015 0 0 0-13-13zm0 24a11 11 0 1 1 11-11 11.013 11.013 0 0 1-11 11z")
-                        .attr("transform", "translate(3,3)scale(0.5,0.5)")
-                        .attr("font-size", "10px")
-                        .style("stroke-width", 2)
-                        .style("stroke", "black")
-                        .style("fill", "black");
-
-                    d3.select("#btn-collapse-folder")
-                        .append("path")
-                        .attr("d", "M57 44H45a1 1 0 0 0 0 2h12a1 1 0 0 0 0-2z")
-                        .attr("transform", "translate(3,3)scale(0.5,0.5)")
-                        .attr("font-size", "10px")
-                        .style("stroke-width", 2)
-                        .style("stroke", "red")
-                        .style("fill", "black");
-
-
+                    /*
+                                            
+                                        bt++;
+                                        cal = bt_start + (bt * icon_offset);
+                    
+                    
+                                        d3.select("#btn-toolbox")
+                                            .append("g")
+                                            .attr("class", "toolbox-g")
+                                            .attr("id", "btn-collapse-folder")
+                                            .on("mouseover", function (d) {
+                                                d3.select(this).style("cursor", "pointer");
+                                                d3.select("#tooltip")
+                                                    .html("<tt>Collapse only this node</tt>")
+                                                    .classed("hovertt", true)
+                                                    .style("width", "auto")
+                                                    .style("height", "auto")
+                                                    .style("left", parseInt(d3.event.pageX) + "px")
+                                                    .style("top", parseInt(d3.event.pageY + 50) + "px")
+                                                    .style("text-align", "left")
+                                                    .style("opacity", 1);
+                                            })
+                                            .on("mouseleave", function () {
+                                                d3.select("#tooltip")
+                                                    .html("")
+                                                    .classed("hovertt", false)
+                                                    .style("width", 0)
+                                                    .style("height", 0)
+                                                    .style("left", "0px")
+                                                    .style("top", "0px")
+                                                    .style("opacity", 0);
+                                            })
+                                            .attr("transform", "translate(" + cal + ",0)")
+                    
+                                            .on("click", function () {
+                                                console.log("Collapse");
+                                                if (d3.select(this).select("rect").style("fill") == "rgb(255, 255, 255)" || d3.select(this).select("rect").style("fill") == "white") {
+                                                    d3.selectAll(".toolbox-icon")
+                                                        .style("fill", "white")
+                                                        .style("stroke", "grey");
+                    
+                                                    d3.select(this)
+                                                        .select("rect")
+                                                        .style("fill", "rgb(136, 178, 131)")
+                                                        .style("stroke", "red");
+                    
+                                                    sel_toolbox = "btn-collapse-folder";
+                    
+                                                    d3.select(this)
+                                                        .classed("selected", true);
+                    
+                                                    update_log("mtree", "btn-collapse-folder", "button", "select  collapse folder", "click", "", "", "", "", "");
+                                                }
+                                                else {
+                                                    anc_desc = [];
+                                                    sel_toolbox = "";
+                                                    document.getElementById("mergedtree_svg").style.cursor = "default";
+                    
+                                                    d3.selectAll(".toolbox-icon")
+                                                        .style("fill", "white")
+                                                        .style("stroke", "grey");
+                    
+                                                    update_log("mtree", "btn-collapse-folder", "button", "deselect  collapse folder", "click", "", "", "", "", "");
+                                                }
+                                            })
+                                            .append("rect")
+                                            .attr("class", "toolbox-icon")
+                                            .attr("height", 40)
+                                            .attr("width", 40)
+                                            .attr("x", 0)
+                                            .attr("y", 0)
+                                            ;
+                    
+                    
+                    
+                                        d3.select("#btn-collapse-folder")
+                                            .append("path")
+                                            .attr("d", "M35 44H5a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3h12.12a4.979 4.979 0 0 1 3.9 1.875l5 6.249A4.97 4.97 0 0 0 29.92 18H47a1 1 0 0 0 0-2H29.92a2.979 2.979 0 0 1-2.339-1.125l-5-6.251A6.971 6.971 0 0 0 17.12 6H5a5.006 5.006 0 0 0-5 5v30a5.006 5.006 0 0 0 5 5h30a1 1 0 0 0 0-2z")
+                                            .attr("transform", "translate(3,3)scale(0.5,0.5)")
+                                            .attr("font-size", "10px")
+                                            .style("stroke-width", 2)
+                                            .style("stroke", "black")
+                                            .style("fill", "black");
+                    
+                                        d3.select("#btn-collapse-folder")
+                                            .append("path")
+                                            .attr("d", "M28 11h19a3 3 0 0 1 3 3v15a1 1 0 0 0 2 0V14a5.006 5.006 0 0 0-5-5H28a1 1 0 0 0 0 2zM51 32a13 13 0 1 0 13 13 13.015 13.015 0 0 0-13-13zm0 24a11 11 0 1 1 11-11 11.013 11.013 0 0 1-11 11z")
+                                            .attr("transform", "translate(3,3)scale(0.5,0.5)")
+                                            .attr("font-size", "10px")
+                                            .style("stroke-width", 2)
+                                            .style("stroke", "black")
+                                            .style("fill", "black");
+                    
+                                        d3.select("#btn-collapse-folder")
+                                            .append("path")
+                                            .attr("d", "M57 44H45a1 1 0 0 0 0 2h12a1 1 0 0 0 0-2z")
+                                            .attr("transform", "translate(3,3)scale(0.5,0.5)")
+                                            .attr("font-size", "10px")
+                                            .style("stroke-width", 2)
+                                            .style("stroke", "red")
+                                            .style("fill", "black");
+                    
+                    */
 
                     d3.selectAll(".toolbox-icon")
                         .style("stroke", "grey");
