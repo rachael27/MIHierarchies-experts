@@ -49,6 +49,12 @@ function guidedtour() {
         },
 
         {
+            element: document.querySelector(".mergedtree_g.text"),
+            title: "Interacting with a label <hr class='border border-primary border-3 opacity-75'>",
+            intro: "The label displays the truncated node name. <hr class='border border-danger border-2 opacity-50'> You can hover on a label to magnify the text and to view the entire node name."
+        },
+
+        {
 
             title: "The green triangle <hr class='border border-primary border-3 opacity-75'>",
             intro: "The green triangle indicates that a node has been collapsed (i.e. the children of that node are hidden).",
@@ -114,11 +120,7 @@ function guidedtour() {
             title: "TargetH level lines button <hr class='border border-primary border-3 opacity-75'>",
             intro: "Alternatively, you can click on the button to show/hide all level lines. <hr class='border border-danger border-2 opacity-50'> Clicking on the button on the left does the same for the BaseH level lines. "
         },
-        {
-            element: document.querySelector(".mergedtree_g.text"),
-            title: "Interacting with a label <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The label displays the truncated node name. <hr class='border border-danger border-2 opacity-50'> You can hover on a label to magnify the text and to view the entire node name."
-        },
+
 
         {
             element: document.querySelector('[id="search-nodes"]'),
@@ -128,36 +130,44 @@ function guidedtour() {
         {
             element: document.querySelector('[id="btn-search"]'),
             title: "Search nodes <hr class='border border-primary border-3 opacity-75'>",
-            intro: "Now, click on the search button. Automatic scrolling will take you to the node that you searched for. <hr class='border border-danger border-2 opacity-50'> The searched node and the nodes on its path to the root node are surrounded by gold squares and have red highlighted labels."
+            intro: "Now, click on the search button. Automatic scrolling will take you to the node that you searched for. <hr class='border border-danger border-2 opacity-50'> The searched node and the nodes on its path to the root node are surrounded by gold highlighted squares and have red highlighted labels."
         },
         {
             element: document.querySelector('[id="btn-clear"]'),
             title: "Complete your search <hr class='border border-primary border-3 opacity-75'>",
-            intro: "ONLY when you click on the clear button, the highlighted squares are removed."
+            intro: "Click on the clear button to remove the highlighting.  The highlighting is only removed when you use the clear button."
         },
         {
             element: document.querySelector('[id="btn-changeonlylayout"]'),
-            title: "View changes-only layout <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The default layout expands only those nodes that have undergone changes while hiding the children of those nodes that did not change from the BaseH to TargetH."
+            title: "Reset layout <hr class='border border-primary border-3 opacity-75'>",
+            intro: "This resets the current layout to the default layout."
         },
 
+        /*  {
+             element: document.querySelector('[id="btn-changeonlylayout"]'),
+             title: "View changes-only layout <hr class='border border-primary border-3 opacity-75'>",
+             intro: "The default layout expands only those nodes that have undergone changes while hiding the children of those nodes that did not change from the BaseH to TargetH."
+         }, */
+
+        /*
         {
             element: document.querySelector('[id="btn-entirelayout"]'),
             title: "View the entire layout <hr class='border border-primary border-3 opacity-75'>",
             intro: "This layout expands all nodes - those that have undergone changes and those that have not. <hr class='border border-danger border-2 opacity-50'> You can toogle between the two layouts depending on the task."
         },
+        */
 
         {
             element: document.querySelector('[id="btn-zoom"]'),
             title: "Zoom <hr class='border border-primary border-3 opacity-75'>",
-            intro: "You can use the zoom-in and zoom-out buttons to zoom in and out of the visualization. <br><hr class='border border-danger border-2 opacity-50'> You can click on any empty (white) space and drag the visualization. <br><hr class='border border-danger border-2 opacity-50'> Finally click on the Zoom button to switch off the zoom mode. <br><hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-zoom.mov" type="video/mp4"></video>'
+            intro: "You can use the zoom-in and zoom-out buttons to zoom in and out of the visualization. <br><hr class='border border-danger border-2 opacity-50'> You can click on any empty (white) space and drag the visualization. <br><hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-zoom.mov" type="video/mp4"></video>'
 
         },
 
         {
             element: document.querySelector('[id="btn-reset"]'),
-            title: "Zoom Reset (toggle button) <hr class='border border-primary border-3 opacity-75'>",
-            intro: "To reset the zoom magnigications, click on the zoom reset button. <br><hr class='border border-danger border-2 opacity-50'> To exit the mode, click the toggle button again<hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-reset.mov" type="video/mp4"></video>'
+            title: "Zoom Reset <hr class='border border-primary border-3 opacity-75'>",
+            intro: "To reset the zoom magnifications, click on the zoom reset button. <br><hr class='border border-danger border-2 opacity-50'>" + '<video width="320" height="240" controls><source src="Images/mtree-reset.mov" type="video/mp4"></video>'
 
         },
 

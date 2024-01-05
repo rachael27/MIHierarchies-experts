@@ -24,6 +24,12 @@ function twl_guidedtour() {
             intro: "<p class='text-justify'>If the node doesn't have a border, it is a book. </p>"
         },
         {
+            element: document.querySelector(".h2tree_addsas_text"),
+            title: "Interacting with a label <hr class='border border-primary border-3 opacity-75'>",
+            intro: "The label displays the truncated book/genre name. <hr class='border border-danger border-2 opacity-50'> You can hover on a label to magnify the text and to view the entire book/genre name."
+        },
+
+        {
             element: document.querySelector("#link_g"),
             title: "A connecting link between genres <hr class='border border-primary border-3 opacity-75'>",
             intro: "Consider the yellow link for this step of the tour. <hr class='border border-danger border-2 opacity-50'> If a link is drawn between 2 genres, it means that the genre along with the books that belong to it are common to both hierarchies. <hr class='border border-danger border-2 opacity-50'> Hovering on a link (hover on the yellow link) highlights the BaseH and TargetH nodes that the link connects and display the node details."
@@ -62,11 +68,7 @@ function twl_guidedtour() {
             intro: "You can click on a node (with a green triangle) to expand its children. <br><hr class='border border-danger border-2 opacity-50'> Clicking on the node again will collapse it."
         },
 
-        {
-            element: document.querySelector(".h2tree_addsas_text"),
-            title: "Interacting with a label <hr class='border border-primary border-3 opacity-75'>",
-            intro: "The label displays the truncated book/genre name along with the extension (of the book). <hr class='border border-danger border-2 opacity-50'> You can hover on a label to magnify the text and to view the entire book/genre name."
-        },
+
 
 
         {
@@ -82,9 +84,15 @@ function twl_guidedtour() {
         {
             element: document.querySelector('[id="btn-clear"]'),
             title: "Complete your search <hr class='border border-primary border-3 opacity-75'>",
-            intro: "ONLY when you click on the clear button, the highlighted squares are removed."
+            intro: "Click on the clear button to remove the highlighting.  The highlighting is only removed when you use the clear button."
         },
         {
+            element: document.querySelector('[id="btn-changeonlylayout"]'),
+            title: "Reset layout <hr class='border border-primary border-3 opacity-75'>",
+            intro: "This resets the current layout to the default layout."
+        },
+
+        /* {
             element: document.querySelector('[id="btn-changeonlylayout"]'),
             title: "View changes-only layout <hr class='border border-primary border-3 opacity-75'>",
             intro: "The default layout expands only those genres that have undergone changes while hiding the children of those nodes that did not change from the BaseH to TargetH."
@@ -94,7 +102,7 @@ function twl_guidedtour() {
             element: document.querySelector('[id="btn-entirelayout"]'),
             title: "View the entire layout <hr class='border border-primary border-3 opacity-75'>",
             intro: "This layout expands all genres - those that have undergone changes and those that have not. <hr class='border border-danger border-2 opacity-50'> You can toogle between the two layouts depending on the task."
-        },
+        }, */
 
         {
             element: document.querySelector('[id="btn-zoom"]'),

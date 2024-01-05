@@ -36,7 +36,7 @@ function experimentquestions(qcounter) {
 
         {
             "qid": "E3.",
-            "question": "What is the level of the <b>book:</b><i>The shadow of the panther..</i>?",
+            "question": "What are the levels of the <b>book:</b><i>The shadow of the panther..</i>?",
             "answer": "Level 4 in RedPark and Level 2 in GreenValley",
             "options": ["Level 4 in RedPark and GreenValley", "Level 2 in RedPark and GreenValley", "Level 4 in RedPark and Level 2 in GreenValley", "Level 2 in RedPark and Level 4 in GreenValley"]
 

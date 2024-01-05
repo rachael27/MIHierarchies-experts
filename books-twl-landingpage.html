@@ -195,21 +195,23 @@
         </div>
 
         <div class="col-10" align="left">
-            <div class="btn-group-vertical" role="group" aria-label="Slide button group" id="overview-btn">
+            <div class="btn-group" role="group" aria-label="Slide button group" id="overview-btn">
                 <button id="mihierarchies-btn" type="button" class="btn btn-success">
                     MI Hierarchies</button>
-                <button id="fsystemexample-btn" type="button" class="btn btn-success" disabled>Library Classification
+                <button id="fsystemexample-btn" type="button" class="btn btn-success" disabled>Library
 
                     Example</button>
 
-                <button id="fsystemchanges-btn" type="button" class="btn btn-success" disabled>Library Classification
+                <button id="fsystemchanges-btn" type="button" class="btn btn-success" disabled>Library
                     Changes</button>
 
 
 
                 <button id="connectinglinks-files-btn" type="button" class="btn btn-success" disabled> Connecting Links
                     - Genres/Sub-genres</button>
-
+            </div>
+            <div class="btn-group" role="group" aria-label="Slide button group" style="margin-top: .7%;"
+                id="overviews-btn">
                 <button id="connectinglinks-folders-btn" type="button" class="btn btn-success" disabled>Connecting Links
                     - Books</button>
 
@@ -235,15 +237,15 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="btn-group btn-group-lg" role="group" aria-label="Second group">
+            <div class="btn-group btn-group-lg" role="group" aria-label="Second group" style="margin-top: 50px;">
                 <button id="btn-back" type="button" class="btn" style="background-color:#155446; color: white;">
                     <i class="fa-solid fa-arrow-left"></i> Back</button>
                 <button id="btn-next" type="button" class="btn" style="margin-left: 2px; 
                         background-color:#155446; color: white; ">Next <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
-            <text id="scrolldown" style="color:#155446;;font-size: 30px;margin-left: 10px;">Scroll down <i
-                    class="fa-solid fa-arrow-down"></i> <i class="fa-solid fa-arrow-down"></i></text>
+            <!-- <text id="scrolldown" style="color:#155446;;font-size: 30px;margin-left: 10px;">Scroll down <i
+                    class="fa-solid fa-arrow-down"></i> <i class="fa-solid fa-arrow-down"></i></text> -->
             <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert"
                 style="opacity:0;width:50%;margin-left: 25%;margin-top: 1%;">
                 <strong>Please pause and play as required. Video has no sound.</strong>
@@ -299,7 +301,11 @@
 
         d3.select("#overview-btn")
             .selectAll("button")
-            .style("height", "30px");
+            .style("height", "35px");
+
+        d3.select("#overviews-btn")
+            .selectAll("button")
+            .style("height", "35px");
 
         //console.log(logObject);
         //console.log(JSON.parse(localStorage.getItem("logObject")));
@@ -360,14 +366,14 @@
                 .on("click", function (d) {
                     numofclicks++;
 
-                    if (numofclicks == 1) {
-                        d3.select("#scrolldown")
-                            .transition()
-                            .duration(1000)
-                            .style("opacity", 0)
-                            .remove();
-                        //document.getElementById("slidescarousel").scrollIntoView(true);
-                    }
+                    /*  if (numofclicks == 1) {
+                         d3.select("#scrolldown")
+                             .transition()
+                             .duration(1000)
+                             .style("opacity", 0)
+                             .remove();
+                        
+                     } */
 
 
 
@@ -508,10 +514,10 @@
 
             d3.select("#blockquote")
                 .append("p")
-                .html("The next phase (i.e.) the <b>training phase </b> is designed to help you evaluate your understanding of the visualization. <br><br> <b>Hints</b> will be available throughout this phase to guide you. <br><br><mark>You must choose the correct answer to proceed to the next question.</mark>")
+                .html("The next phase (i.e.) the <b>training phase </b> is designed to help you evaluate your understanding of the visualization. <br>You can only progress to the next question if the current question is answered correctly. <br><br> <b>Hints</b> will be available throughout this phase to guide you. <br><br><mark>You must choose the correct answer to proceed to the next question.</mark>")
 
             d3.select("#slidescarousel").remove();
-            d3.select("#scrolldown").remove();
+            //d3.select("#scrolldown").remove();
 
 
             for (var i = 0; i < slides.length; i++) {
@@ -588,7 +594,7 @@
                 .html("The last phase (i.e.) the <b>experiment phase</b> is designed to evaluate your understanding of the visualization. <br><br> <b> Hints </b> will NOT be available. <br><br> <mark>You must choose an option/answer to proceed to the next question. </mark>")
 
             d3.select("#slidescarousel").remove();
-            d3.select("#scrolldown").remove();
+            // d3.select("#scrolldown").remove();
 
             for (var i = 0; i < slides.length; i++) {
                 d3.select("#" + slides[i] + "-btn")._groups[0][0].disabled = false;
@@ -675,7 +681,7 @@
                 .html("<code style='font-size:25px; color:#155446;'>Thank you for your participation! <br><br> Don't forget to download and email the MIHierarchiesLog.csv file to receive your amazon voucher code.</code>");
 
             d3.select("#slidescarousel").remove();
-            d3.select("#scrolldown").remove();
+            //d3.select("#scrolldown").remove();
 
             d3.select("#btn-downloadlog")
                 .style("display", "block");
