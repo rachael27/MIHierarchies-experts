@@ -9,7 +9,8 @@ function twl_guidedtour() {
             intro: "<p class='text-left'>You can interact with each highlighted element in the tour to see it in action. <hr class='border border-danger border-2 opacity-50'> Pop-up boxes will guide you through every step of the tour. If at times the boxes are hidden, please scroll the screen to find them. <hr class='border border-danger border-2 opacity-50'>In addition to the back and next buttons, you can also use the left and right arrow keys to move through the tour.</p>"
         },
         {
-            title: " Arrangement of nodes in the BaseH and TargetH<hr class='border border-primary border-3 opacity-75'>",
+            element: document.querySelector("#treeswlinking_svg"),
+            title: "Arrangement of nodes in the BaseH and TargetH<hr class='border border-primary border-3 opacity-75'>",
             intro: "Nodes are arranged in an alphabetical order from top-to-bottom for easy access in each tree and sub-tree."
         },
         {

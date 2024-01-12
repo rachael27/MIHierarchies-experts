@@ -12,7 +12,8 @@ function guidedtour() {
 
 
         {
-            title: "Arrangement of nodes in the BaseH and TargetH<hr class='border border-primary border-3 opacity-75'>",
+            element: document.querySelector("#mergedtree_svg"),
+            title: "Arrangement of nodes in the MergedTree<hr class='border border-primary border-3 opacity-75'>",
             intro: "Nodes are arranged in an alphabetical order from left-to-right for easy access in each tree and sub-tree."
         },
 

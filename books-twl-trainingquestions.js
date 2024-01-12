@@ -44,7 +44,7 @@ function twl_trainingquestions(qcounter) {
         {
             "qid": "T3.",
             "question": "How many levels does the BaseH (starting from the root at level 0) have?",
-            "hint": "The level of a tree is defined by the node at the deepest/highest level. The highest BaseH level line is the Level 5 dotted/dashed grey line. <br>The nodes at the deepest level are <i>root -> America and United States -> United States -> History -> General -> Historical Geography</i> (the path is highlighted when you hover on the deepest node) and nodes <i>The Political Quarterly in the thirties</i> and <i>The Political Quarterly in the fifties</i>.",
+            "hint": "The level of a tree is defined by the node at the deepest/highest level. <br>The nodes at the deepest level are <i>root -> America and United States -> United States -> History -> General -> Historical Geography</i> (the path is highlighted when you hover on the deepest node) and nodes <i>The Political Quarterly in the thirties</i> and <i>The Political Quarterly in the fifties</i>.",
             "answer": "5",
             "numoptions": 4,
             "options": ["3", "5", "7", "9"]
