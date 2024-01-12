@@ -215,7 +215,7 @@ function trainingquestions(qcounter) {
 
 
     else {
-        window.location.href = 'landingpage.html?page=trainingquestions';
+        window.location.href = 'books-landingpage.html?page=trainingquestions';
     }
 
 

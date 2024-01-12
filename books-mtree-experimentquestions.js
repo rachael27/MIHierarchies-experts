@@ -282,7 +282,7 @@ function experimentquestions(qcounter) {
 
 
     else {
-        window.location.href = 'landingpage.html?page=experimentquestions';
+        window.location.href = 'books-landingpage.html?page=experimentquestions';
     }
 
 

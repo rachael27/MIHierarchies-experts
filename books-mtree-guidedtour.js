@@ -283,7 +283,7 @@ function guidedtour() {
         })
         .oncomplete(function () {
             update_log("introjs-nextbutton", "button", "Completed guided tour. Redirect to landing page.", "click")
-            window.location.href = 'landingpage.html?page=guidedtour';
+            window.location.href = 'books-landingpage.html?page=guidedtour';
         })
         /* .onbeforechange(function () {
             //console.log(this._currentStep);

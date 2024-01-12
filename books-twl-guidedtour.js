@@ -209,7 +209,7 @@ function twl_guidedtour() {
         })
         .oncomplete(function () {
             update_log("introjs-nextbutton", "button", "Completed guided tour. Redirect to landing page", "click")
-            window.location.href = 'twl-landingpage.html?page=guidedtour';
+            window.location.href = 'books-twl-landingpage.html?page=guidedtour';
         })
         .onchange(function () {
             //console.log(this);

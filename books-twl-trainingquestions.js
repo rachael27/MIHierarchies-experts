@@ -224,7 +224,7 @@ function twl_trainingquestions(qcounter) {
 
 
     else {
-        window.location.href = 'twl-landingpage.html?page=trainingquestions';
+        window.location.href = 'books-twl-landingpage.html?page=trainingquestions';
     }
 
     d3.selectAll("input[name='traininganswer']")

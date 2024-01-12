@@ -290,6 +290,13 @@
         //console.log(logObject);
         //console.log(JSON.parse(localStorage.getItem("logObject")));
 
+        /*  console.log("setting class");
+         d3.select("#overview-btn")
+             .attr("class", "btn-group");
+ 
+         d3.select("#overviews-btn")
+             .attr("class", "btn-group"); */
+
         function displayAlert() {
 
             d3.select("#alert")
@@ -543,7 +550,7 @@
             d3.select("#btn-back")
                 .on("click", function (d) {
                     update_log("btn-next", "button", "redirect to overview", "click");
-                    window.location.href = 'landingpage.html?page=landingpage';
+                    window.location.href = 'books-landingpage.html?page=landingpage';
                 });
 
 
