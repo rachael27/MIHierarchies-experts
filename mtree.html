@@ -119,6 +119,9 @@
                 <fieldset class="border p-2" style="margin-top:2%;">
                     <!--<legend class="w-auto">Choose layout</legend>-->
                     <br>
+                    <button type="button" class="btn btn-md" id="btn-swapdataset"
+                        style="color: white;background-color:#155446;">Swap dataset</button>
+
                     <button type="button" class="btn btn-md" id="btn-changeonlylayout"
                         style="color: white;background-color:#155446;">Reset layout</button>
 
@@ -234,7 +237,7 @@
 
         //var fileversion = "File0";
 
-        var swapdataset = "h2";
+        var swapdataset = "h1";
 
         var h2 = "";
         var h1 = "";
@@ -273,21 +276,26 @@
 
         var h2color = "green", h1color = "red", mergedcolor = "";
 
-
-        title = ["BaseH - RedPark Library", "TargetH - GreenValley Library", "Merged Tree"];
+        if (swapdataset == "h1")
+            title = ["BaseH - RedPark Library", "TargetH - GreenValley Library", "Merged Tree"];
+        else
+            title = ["BaseH - GreenValley Library", "TargetH - RedPark Library", "Merged Tree"];
 
         d3.queue()
             //.defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced-v6.csv")
             //.defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced-v6.csv")
 
-            .defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
-            .defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
+            //.defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
+            //.defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
 
-            .await(function (error, h2, h1) {
+            .await(function (error, h1, h2) {
                 if (error) throw error;
 
-                else
+                else {
+                    console.log(h1);
+                    console.log(h2);
                     runScript_tabs(h1, h2);
+                }
             });
 
         /*
@@ -342,45 +350,47 @@
 */
 
 
-        /*
-                d3.select("#btn-swapdataset").on("click", function () {
-                    update_log("btn-swapdataset", "button", "swapping datasets");
-        
-                    console.log("Swapdataset");
-        
-                    fileversion = "File2";
-        
-        
-        
-                    if (swapdataset == "h2") {
-                        d3.queue()
-                            //.defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced.csv")
-                            //.defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced.csv")
-                            .defer(d3.csv, "File/" + fileversion + "-primaryH.csv")
-                            .defer(d3.csv, "File/" + fileversion + "-secondaryH.csv")
-                            .await(function (error, h2, h1) {
-                                if (error) throw error;
-        
-                                else
-                                    runScript_tabs(h2, h1);
-                            });
-                        swapdataset = "h1";
-                    }
-                    else {
-                        d3.queue()
-                            .defer(d3.csv, "File/" + fileversion + "-primaryH.csv")
-                            .defer(d3.csv, "File/" + fileversion + "-secondaryH.csv")
-                            .await(function (error, h2, h1) {
-                                if (error) throw error;
-        
-                                else
-                                    runScript_tabs(h2, h1);
-                            });
-                        swapdataset = "h2";
-                    }
-        
-                });
-                */
+
+        d3.select("#btn-swapdataset").on("click", function () {
+            update_log("btn-swapdataset", "button", "swapping datasets");
+
+            console.log("Swapdataset");
+
+            //fileversion = "File4";
+
+
+
+            if (swapdataset == "h2") {
+                d3.queue()
+                    //.defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced.csv")
+                    //.defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced.csv")
+
+                    .defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
+                    .defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
+
+                    .await(function (error, h1, h2) {
+                        if (error) throw error;
+
+                        else
+                            runScript_tabs(h1, h2);
+                    });
+                swapdataset = "h1";
+            }
+            else {
+                d3.queue()
+                    .defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
+                    .defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
+                    .await(function (error, h2, h1) {
+                        if (error) throw error;
+
+                        else
+                            runScript_tabs(h1, h2);
+                    });
+                swapdataset = "h2";
+            }
+
+        });
+
 
 
 
@@ -389,7 +399,60 @@
             //console.log(h2);
             //console.log(h1);
 
+            if (swapdataset == "h1")
+                title = ["BaseH - RedPark Library", "TargetH - GreenValley Library", "Merged Tree"];
+            else
+                title = ["BaseH - GreenValley Library", "TargetH - RedPark Library", "Merged Tree"];
 
+            console.log(title);
+            /*
+                        d3.select("#info_svg")
+                            .select(".titleg")
+                            .selectAll("text")
+                            .remove();
+            
+                        d3.select("#info_svg")
+                            .select(".titleg")
+                            .select("text")
+                            .data(title)
+                            .enter()
+                            .append("text")
+                            .style("font-size", "20px")
+                            .attr("dy", "4em")
+                            .attr("x", function (d, i) {
+                                if (i == 0)
+                                    return 150;
+                                else if (i == 1)
+                                    return width - 450;
+                                else
+                                    return 50;
+            
+                            })
+                            .attr("y", function (d, i) {
+                                if (i == 0 || i == 1)
+                                    return 210;
+                                else
+                                    return 410;
+            
+                            })
+                            .attr("text-anchor", function (d) {
+                                return "start";
+                            })
+                            .style("color", function (d) {
+                                return "red";
+                            })
+                            .style("opacity", 1)
+                            .style("text-decoration", "underline")
+                            .text(function (d) {
+                                return d;
+                            });
+                            */
+
+
+            if (!d3.select("#mergedtree_svg").empty()) {
+                d3.select("#mergedtree_svg").remove();
+                d3.select("#info_svg").remove();
+            }
             runScript_mergedtree(h2, h1);
 
 
@@ -717,6 +780,7 @@
             var h1list = [], h2list = [], intersection = [], h1diff = [], h2diff = [];
 
 
+
             for (i = 0; i < h2_root.descendants().length; i++) {
                 var type = "";
                 if (h2_root.descendants()[i].data.data.isbn == "category")
@@ -766,7 +830,7 @@
             //console.log(intersection.length);
 
 
-            console.log(nodes_list);
+            //console.log(nodes_list);
             //console.log(h1diff);
             nodes_list
                 .sort(function (x, y) {
@@ -1654,7 +1718,13 @@
                     })
                     .style("stroke", function () {
                         if (data_source == "books")
-                            return "green";
+                        // v0 return "green";
+                        {
+                            if (swapdataset == "h1")
+                                return "green"
+                            else
+                                return "red";
+                        }
                         else
                             return "grey";
                     })
@@ -1696,7 +1766,13 @@
                     })
                     .style("fill", function () {
                         if (data_source == "books")
-                            return "green";
+                        //v0 return "green";
+                        {
+                            if (swapdataset == "h1")
+                                return "green"
+                            else
+                                return "red";
+                        }
                         else
                             return "grey";
                     })
@@ -1930,7 +2006,13 @@
                     })
                     .style("stroke", function () {
                         if (data_source == "books")
-                            return "red";
+                        // v0 return "red";
+                        {
+                            if (swapdataset == "h1")
+                                return "red"
+                            else
+                                return "green";
+                        }
                         else
                             return "grey";
                     })
@@ -1967,8 +2049,16 @@
                     .style("fill", "white")
                     //.style("stroke", "grey")
                     .style("stroke", function () {
-                        if (data_source == "books")
-                            return "red";
+                        if (data_source == "books") {
+
+                            // v0  return "red";
+
+                            if (swapdataset == "h1")
+                                return "red"
+                            else
+                                return "green";
+                        }
+
                         else
                             return "grey";
                     })
@@ -2660,19 +2750,43 @@
 
 
 
-                        /*  if (d.data.data.shape == "h1")
+                        /*  
+                        v0
+                        
+                        if (d.data.data.shape == "h1")
                              return "green";
                          else if (d.data.data.shape == "h2")
                              return "white";
                          else
                              return "blue"; */
 
-                        if (d.data.data.shape == "h1")
-                            return "green";
+
+                        /* 
+                        v1  
+                      if (d.data.data.shape == "h1")
+                          return "green";
+                      else if (d.data.data.shape == "h2")
+                          return "transparent";
+                      else
+                          return "green";
+
+                          */
+
+
+                        if (d.data.data.shape == "h1") {
+                            if (swapdataset == "h1")
+                                return "green"
+                            else
+                                return "red";
+                        }
                         else if (d.data.data.shape == "h2")
                             return "transparent";
-                        else
-                            return "green";
+                        else {
+                            if (swapdataset == "h1")
+                                return "green"
+                            else
+                                return "red";
+                        }
 
 
 
@@ -2687,20 +2801,39 @@
 
 
 
-                        /*   if (d.data.data.shape == "h1")
+                        /*   
+                        v0
+                        if (d.data.data.shape == "h1")
                               return "green";
                           else if (d.data.data.shape == "h2")
                               return "none";
                           else
                               return "blue"; */
 
-                        if (d.data.data.shape == "h1")
-                            return "green";
+                        /*
+                        v1
+                  if (d.data.data.shape == "h1")
+                      return "green";
+                  else if (d.data.data.shape == "h2")
+                      return "none";
+                  else
+                      return "green";
+                  */
+
+                        if (d.data.data.shape == "h1") {
+                            if (swapdataset == "h1")
+                                return "green"
+                            else
+                                return "red";
+                        }
                         else if (d.data.data.shape == "h2")
                             return "none";
-                        else
-                            return "green";
-
+                        else {
+                            if (swapdataset == "h1")
+                                return "green"
+                            else
+                                return "red";
+                        }
 
 
 
@@ -2750,107 +2883,107 @@
                         var h2text = "";
                         var h1text = "";
 
-                        /*
-                                                for (var i = 0; i < h2_tree.descendants().length; i++) {
-                                                    if (h2_tree.descendants()[i].data.data.child == d.data.data.child) {
-                                                        for (var j = 0; j < h2root.path(h2_tree.descendants()[i]).length; j++)
-                                                            h2path.push(h2root.path(h2_tree.descendants()[i])[j].data.data.child);
-                                                    }
-                        
-                                                }
-                                                d3.select("#h2tree")
-                                                    .select("#h2tree_" + circle_id)
-                                                    .style("opacity", 1);
-                        
-                                                d3.select("#h2tree")
-                                                    .selectAll(".text.h2tree_" + circle_id)
-                                                    .style("opacity", 1);
-                        
-                                                for (var i = 1; i < h2_root.descendants().length; i++) {
-                                                    var name = h2_root.descendants()[i].data.data.child
-                                                        .replaceAll(/\//g, "")
-                                                        .replaceAll(".", "")
-                                                        .replaceAll(" ", "")
-                                                        .replaceAll("(", "")
-                                                        .replaceAll(")", "")
-                                                        .toLowerCase();
-                                                    if (name == circle_id) {
-                                                        var children = (h2_root.descendants()[0]).path(h2_root.descendants()[i]);
-                                                        // console.log(children);
-                        
-                                                        var node_id;
-                                                        for (var j = 0; j < children.length; j++) {
-                                                            // console.log(children[j]);
-                        
-                                                            node_id = children[j].data.id
-                                                                .replaceAll(/\//g, "")
-                                                                .replaceAll(".", "")
-                                                                .replaceAll(" ", "")
-                                                                .replaceAll("(", "")
-                                                                .replaceAll(")", "")
-                                                                .toLowerCase();
-                                                            //console.log(node_id);
-                                                            //console.log(children[j]);
-                                                            d3.select("#h2tree").select("#h2tree_" + node_id).style("opacity", "1");
-                                                            d3.select("#h2tree").selectAll(".text.h2tree_" + node_id).style("opacity", "1");
-                                                        }
-                        
-                                                    }
-                                                }
-                        
-                        
-                        
-                        
-                        
-                                                for (var i = 0; i < h1_tree.descendants().length; i++) {
-                                                    if (h1_tree.descendants()[i].data.data.child == d.data.data.child) {
-                                                        for (var j = 0; j < h1root.path(h1_tree.descendants()[i]).length; j++)
-                                                            h1path.push(h1root.path(h1_tree.descendants()[i])[j].data.data.child);
-                                                    }
-                        
-                                                }
-                                                d3.select("#h1tree")
-                                                    .select("#h1tree_" + circle_id)
-                                                    .style("opacity", 1);
-                        
-                                                d3.select("#h1tree")
-                                                    .selectAll(".text.h1tree_" + circle_id)
-                                                    .style("opacity", 1);
-                                                //console.log(h1path);
-                        
-                        
-                                                for (var i = 1; i < h1_root.descendants().length; i++) {
-                                                    var name = h1_root.descendants()[i].data.data.child
-                                                        .replaceAll(/\//g, "")
-                                                        .replaceAll(".", "")
-                                                        .replaceAll(" ", "")
-                                                        .replaceAll("(", "")
-                                                        .replaceAll(")", "")
-                                                        .toLowerCase();
-                                                    if (name == circle_id) {
-                                                        var children = (h1_root.descendants()[0]).path(h1_root.descendants()[i]);
-                                                        // console.log(children);
-                        
-                                                        var node_id;
-                                                        for (var j = 0; j < children.length; j++) {
-                                                            // console.log(children[j]);
-                                                            node_id = children[j].data.id
-                                                                .replaceAll(/\//g, "")
-                                                                .replaceAll(".", "")
-                                                                .replaceAll(" ", "")
-                                                                .replaceAll("(", "")
-                                                                .replaceAll(")", "")
-                                                                .toLowerCase();
-                        
-                                                            //console.log(node_id);
-                                                            //console.log(children[j]);
-                                                            d3.select("#h1tree").select("#h1tree_" + node_id).style("opacity", "1");
-                                                            d3.select("#h1tree").selectAll(".text.h1tree_" + node_id).style("opacity", "1");
-                                                        }
-                        
-                                                    }
-                                                }
-                                                */
+
+                        for (var i = 0; i < h2_tree.descendants().length; i++) {
+                            if (h2_tree.descendants()[i].data.data.child == d.data.data.child) {
+                                for (var j = 0; j < h2root.path(h2_tree.descendants()[i]).length; j++)
+                                    h2path.push(h2root.path(h2_tree.descendants()[i])[j].data.data.child);
+                            }
+
+                        }
+                        d3.select("#h2tree")
+                            .select("#h2tree_" + circle_id)
+                            .style("opacity", 1);
+
+                        d3.select("#h2tree")
+                            .selectAll(".text.h2tree_" + circle_id)
+                            .style("opacity", 1);
+
+                        for (var i = 1; i < h2_root.descendants().length; i++) {
+                            var name = h2_root.descendants()[i].data.data.child
+                                .replaceAll(/\//g, "")
+                                .replaceAll(".", "")
+                                .replaceAll(" ", "")
+                                .replaceAll("(", "")
+                                .replaceAll(")", "")
+                                .toLowerCase();
+                            if (name == circle_id) {
+                                var children = (h2_root.descendants()[0]).path(h2_root.descendants()[i]);
+                                // console.log(children);
+
+                                var node_id;
+                                for (var j = 0; j < children.length; j++) {
+                                    // console.log(children[j]);
+
+                                    node_id = children[j].data.id
+                                        .replaceAll(/\//g, "")
+                                        .replaceAll(".", "")
+                                        .replaceAll(" ", "")
+                                        .replaceAll("(", "")
+                                        .replaceAll(")", "")
+                                        .toLowerCase();
+                                    //console.log(node_id);
+                                    //console.log(children[j]);
+                                    d3.select("#h2tree").select("#h2tree_" + node_id).style("opacity", "1");
+                                    d3.select("#h2tree").selectAll(".text.h2tree_" + node_id).style("opacity", "1");
+                                }
+
+                            }
+                        }
+
+
+
+
+
+                        for (var i = 0; i < h1_tree.descendants().length; i++) {
+                            if (h1_tree.descendants()[i].data.data.child == d.data.data.child) {
+                                for (var j = 0; j < h1root.path(h1_tree.descendants()[i]).length; j++)
+                                    h1path.push(h1root.path(h1_tree.descendants()[i])[j].data.data.child);
+                            }
+
+                        }
+                        d3.select("#h1tree")
+                            .select("#h1tree_" + circle_id)
+                            .style("opacity", 1);
+
+                        d3.select("#h1tree")
+                            .selectAll(".text.h1tree_" + circle_id)
+                            .style("opacity", 1);
+                        //console.log(h1path);
+
+
+                        for (var i = 1; i < h1_root.descendants().length; i++) {
+                            var name = h1_root.descendants()[i].data.data.child
+                                .replaceAll(/\//g, "")
+                                .replaceAll(".", "")
+                                .replaceAll(" ", "")
+                                .replaceAll("(", "")
+                                .replaceAll(")", "")
+                                .toLowerCase();
+                            if (name == circle_id) {
+                                var children = (h1_root.descendants()[0]).path(h1_root.descendants()[i]);
+                                // console.log(children);
+
+                                var node_id;
+                                for (var j = 0; j < children.length; j++) {
+                                    // console.log(children[j]);
+                                    node_id = children[j].data.id
+                                        .replaceAll(/\//g, "")
+                                        .replaceAll(".", "")
+                                        .replaceAll(" ", "")
+                                        .replaceAll("(", "")
+                                        .replaceAll(")", "")
+                                        .toLowerCase();
+
+                                    //console.log(node_id);
+                                    //console.log(children[j]);
+                                    d3.select("#h1tree").select("#h1tree_" + node_id).style("opacity", "1");
+                                    d3.select("#h1tree").selectAll(".text.h1tree_" + node_id).style("opacity", "1");
+                                }
+
+                            }
+                        }
+
 
                         //console.log(circle_id + " " + d3.select(".mergedtree_" + circle_id + "_outer").style("stroke"));
 
@@ -3053,25 +3186,25 @@
 
 
 
-                        /*
-                        
-                                                d3.select("#h2tree")
-                                                    .selectAll(".node")
-                                                    .style("opacity", 0.3);
-                        
-                                                d3.select("#h1tree")
-                                                    .selectAll(".node")
-                                                    .style("opacity", 0.3);
-                        
-                                                d3.select("#h2tree")
-                                                    .selectAll(".text")
-                                                    .style("opacity", 0);
-                        
-                                                d3.select("#h1tree")
-                                                    .selectAll(".text")
-                                                    .style("opacity", 0);
-                        
-                        */
+
+
+                        d3.select("#h2tree")
+                            .selectAll(".node")
+                            .style("opacity", 0.3);
+
+                        d3.select("#h1tree")
+                            .selectAll(".node")
+                            .style("opacity", 0.3);
+
+                        d3.select("#h2tree")
+                            .selectAll(".text")
+                            .style("opacity", 0);
+
+                        d3.select("#h1tree")
+                            .selectAll(".text")
+                            .style("opacity", 0);
+
+
 
 
 
@@ -3118,19 +3251,44 @@
                     .style("stroke", function (d) {
 
 
-                        /*   if (d.data.data.shape == "h1")
+                        /*   
+                        v0
+                        if (d.data.data.shape == "h1")
                               return "none";
                           else if (d.data.data.shape == "h2")
                               return "red";
                           else
                               return "blue"; */
 
-                        if (d.data.data.shape == "h1")
+                        /*
+                        v1
+                              if (d.data.data.shape == "h1")
                             return "none";
                         else if (d.data.data.shape == "h2")
                             return "red";
                         else
                             return "red";
+                        */
+
+                        if (d.data.data.shape == "h1")
+                            return "none";
+                        else if (d.data.data.shape == "h2") {
+                            if (swapdataset == "h1")
+                                return "red"
+                            else
+                                return "green";
+
+                        }
+
+                        else {
+                            if (swapdataset == "h1")
+                                return "red"
+                            else
+                                return "green";
+
+                        }
+
+
 
 
                     })
@@ -3172,113 +3330,113 @@
                         var h2text = "";
                         var h1text = "";
 
-                        /*
-                                                for (var i = 0; i < h2_tree.descendants().length; i++) {
-                                                    if (h2_tree.descendants()[i].data.data.child == d.data.data.child) {
-                                                        for (var j = 0; j < h2root.path(h2_tree.descendants()[i]).length; j++)
-                                                            h2path.push(h2root.path(h2_tree.descendants()[i])[j].data.data.child);
-                                                    }
-                        
-                                                }
-                                                d3.select("#h2tree")
-                                                    .select("#h2tree_" + circle_id)
-                                                    .style("opacity", 1);
-                        
-                                                d3.select("#h2tree")
-                                                    //.selectAll(".text")
-                                                    .selectAll(".text.h2tree_" + circle_id)
-                                                    .style("opacity", 1);
-                        
-                        
-                        
-                        
-                                                for (var i = 1; i < h2_root.descendants().length; i++) {
-                                                    var name = h2_root.descendants()[i].data.data.child
-                                                        .replaceAll(/\//g, "")
-                                                        .replaceAll(".", "")
-                                                        .replaceAll(" ", "")
-                                                        .replaceAll("(", "")
-                                                        .replaceAll(")", "")
-                                                        .toLowerCase();
-                                                    if (name == circle_id) {
-                                                        var children = (h2_root.descendants()[0]).path(h2_root.descendants()[i]);
-                                                        // console.log(children);
-                        
-                                                        var node_id;
-                                                        for (var j = 0; j < children.length; j++) {
-                                                            // console.log(children[j]);
-                        
-                                                            node_id = children[j].data.id
-                                                                .replaceAll(/\//g, "")
-                                                                .replaceAll(".", "")
-                                                                .replaceAll(" ", "")
-                                                                .replaceAll("(", "")
-                                                                .replaceAll(")", "")
-                                                                .toLowerCase();
-                                                            //console.log(node_id);
-                                                            //console.log(children[j]);
-                                                            d3.select("#h2tree").select("#h2tree_" + node_id).style("opacity", "1");
-                                                            d3.select("#h2tree").selectAll(".text.h2tree_" + node_id).style("opacity", "1");
-                                                        }
-                        
-                                                    }
-                                                }
-                        
-                        
-                        
-                        
-                        
-                                                for (var i = 0; i < h1_tree.descendants().length; i++) {
-                                                    if (h1_tree.descendants()[i].data.data.child == d.data.data.child) {
-                                                        for (var j = 0; j < h1root.path(h1_tree.descendants()[i]).length; j++)
-                                                            h1path.push(h1root.path(h1_tree.descendants()[i])[j].data.data.child);
-                                                    }
-                        
-                                                }
-                                                d3.select("#h1tree")
-                                                    .select("#h1tree_" + circle_id)
-                                                    .style("opacity", 1);
-                        
-                                                d3.select("#h1tree")
-                                                    // .selectAll(".text")
-                                                    .selectAll(".text.h1tree_" + circle_id)
-                                                    .style("opacity", 1);
-                                                //console.log(h1path);
-                        
-                        
-                                                for (var i = 1; i < h1_root.descendants().length; i++) {
-                                                    var name = h1_root.descendants()[i].data.data.child
-                                                        .replaceAll(/\//g, "")
-                                                        .replaceAll(".", "")
-                                                        .replaceAll(" ", "")
-                                                        .replaceAll("(", "")
-                                                        .replaceAll(")", "")
-                                                        .toLowerCase();
-                                                    if (name == circle_id) {
-                                                        var children = (h1_root.descendants()[0]).path(h1_root.descendants()[i]);
-                                                        // console.log(children);
-                        
-                                                        var node_id;
-                                                        for (var j = 0; j < children.length; j++) {
-                                                            // console.log(children[j]);
-                                                            node_id = children[j].data.id
-                                                                .replaceAll(/\//g, "")
-                                                                .replaceAll(".", "")
-                                                                .replaceAll(" ", "")
-                                                                .replaceAll("(", "")
-                                                                .replaceAll(")", "")
-                                                                .toLowerCase();
-                        
-                                                            //console.log(node_id);
-                                                            //console.log(children[j]);
-                                                            d3.select("#h1tree").select("#h1tree_" + node_id).style("opacity", "1");
-                                                            d3.select("#h1tree").selectAll(".text.h1tree_" + node_id).style("opacity", "1");
-                                                        }
-                        
-                                                    }
-                                                }
-                        
-                                                */
+
+                        for (var i = 0; i < h2_tree.descendants().length; i++) {
+                            if (h2_tree.descendants()[i].data.data.child == d.data.data.child) {
+                                for (var j = 0; j < h2root.path(h2_tree.descendants()[i]).length; j++)
+                                    h2path.push(h2root.path(h2_tree.descendants()[i])[j].data.data.child);
+                            }
+
+                        }
+                        d3.select("#h2tree")
+                            .select("#h2tree_" + circle_id)
+                            .style("opacity", 1);
+
+                        d3.select("#h2tree")
+                            //.selectAll(".text")
+                            .selectAll(".text.h2tree_" + circle_id)
+                            .style("opacity", 1);
+
+
+
+
+                        for (var i = 1; i < h2_root.descendants().length; i++) {
+                            var name = h2_root.descendants()[i].data.data.child
+                                .replaceAll(/\//g, "")
+                                .replaceAll(".", "")
+                                .replaceAll(" ", "")
+                                .replaceAll("(", "")
+                                .replaceAll(")", "")
+                                .toLowerCase();
+                            if (name == circle_id) {
+                                var children = (h2_root.descendants()[0]).path(h2_root.descendants()[i]);
+                                // console.log(children);
+
+                                var node_id;
+                                for (var j = 0; j < children.length; j++) {
+                                    // console.log(children[j]);
+
+                                    node_id = children[j].data.id
+                                        .replaceAll(/\//g, "")
+                                        .replaceAll(".", "")
+                                        .replaceAll(" ", "")
+                                        .replaceAll("(", "")
+                                        .replaceAll(")", "")
+                                        .toLowerCase();
+                                    //console.log(node_id);
+                                    //console.log(children[j]);
+                                    d3.select("#h2tree").select("#h2tree_" + node_id).style("opacity", "1");
+                                    d3.select("#h2tree").selectAll(".text.h2tree_" + node_id).style("opacity", "1");
+                                }
+
+                            }
+                        }
+
+
+
+
+
+                        for (var i = 0; i < h1_tree.descendants().length; i++) {
+                            if (h1_tree.descendants()[i].data.data.child == d.data.data.child) {
+                                for (var j = 0; j < h1root.path(h1_tree.descendants()[i]).length; j++)
+                                    h1path.push(h1root.path(h1_tree.descendants()[i])[j].data.data.child);
+                            }
+
+                        }
+                        d3.select("#h1tree")
+                            .select("#h1tree_" + circle_id)
+                            .style("opacity", 1);
+
+                        d3.select("#h1tree")
+                            // .selectAll(".text")
+                            .selectAll(".text.h1tree_" + circle_id)
+                            .style("opacity", 1);
+                        //console.log(h1path);
+
+
+                        for (var i = 1; i < h1_root.descendants().length; i++) {
+                            var name = h1_root.descendants()[i].data.data.child
+                                .replaceAll(/\//g, "")
+                                .replaceAll(".", "")
+                                .replaceAll(" ", "")
+                                .replaceAll("(", "")
+                                .replaceAll(")", "")
+                                .toLowerCase();
+                            if (name == circle_id) {
+                                var children = (h1_root.descendants()[0]).path(h1_root.descendants()[i]);
+                                // console.log(children);
+
+                                var node_id;
+                                for (var j = 0; j < children.length; j++) {
+                                    // console.log(children[j]);
+                                    node_id = children[j].data.id
+                                        .replaceAll(/\//g, "")
+                                        .replaceAll(".", "")
+                                        .replaceAll(" ", "")
+                                        .replaceAll("(", "")
+                                        .replaceAll(")", "")
+                                        .toLowerCase();
+
+                                    //console.log(node_id);
+                                    //console.log(children[j]);
+                                    d3.select("#h1tree").select("#h1tree_" + node_id).style("opacity", "1");
+                                    d3.select("#h1tree").selectAll(".text.h1tree_" + node_id).style("opacity", "1");
+                                }
+
+                            }
+                        }
+
+
 
                         //mlexp
 
@@ -3484,26 +3642,26 @@
 
 
 
-                        /*
-  
-  
-                          d3.select("#h2tree")
-                              .selectAll(".node")
-                              .style("opacity", 0.3);
-  
-                          d3.select("#h1tree")
-                              .selectAll(".node")
-                              .style("opacity", 0.3);
-  
-                          d3.select("#h2tree")
-                              .selectAll(".text")
-                              .style("opacity", 0);
-  
-                          d3.select("#h1tree")
-                              .selectAll(".text")
-                              .style("opacity", 0);
-  
-  */
+
+
+
+                        d3.select("#h2tree")
+                            .selectAll(".node")
+                            .style("opacity", 0.3);
+
+                        d3.select("#h1tree")
+                            .selectAll(".node")
+                            .style("opacity", 0.3);
+
+                        d3.select("#h2tree")
+                            .selectAll(".text")
+                            .style("opacity", 0);
+
+                        d3.select("#h1tree")
+                            .selectAll(".text")
+                            .style("opacity", 0);
+
+
 
 
 
@@ -3813,8 +3971,29 @@
                     })
                     //.style("stroke", "#ccc")
                     .style("stroke", function (d) {
+                        console.log(d.target.data.data);
+                        // return d.target.data.data.linkcolor;
 
-                        return d.target.data.data.linkcolor;
+
+                        if (d.target.data.data.shape == "h1") {
+                            if (swapdataset == "h1")
+                                return "green"
+                            else
+                                return "red";
+                        }
+                        else if (d.target.data.data.shape == "h2") {
+                            if (swapdataset == "h1")
+                                return "red"
+                            else
+                                return "green";
+
+                        }
+
+                        else {
+                            return d.target.data.data.linkcolor;
+
+                        }
+
                     })
                     .style("fill", "none")
                     .style("stroke-width", link_strokewidth);
