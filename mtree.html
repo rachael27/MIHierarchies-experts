@@ -229,7 +229,9 @@
 
         var qcounter = 0;
         var logObject = [];
-        var data_source = "books";
+
+        //var data_source = "books";
+        var data_source = "files";
 
 
         //LOG FILES
@@ -242,8 +244,14 @@
         var h2 = "";
         var h1 = "";
 
-        var beforeh = "RedPark Library";
-        var afterh = "GreenValley Library";
+        if (data_source == "books") {
+            var beforeh = "RedPark Library";
+            var afterh = "GreenValley Library";
+        }
+        else {
+            var beforeh = "BeforeH";
+            var afterh = "AfterH";
+        }
 
         let sel_toolbox = "";
         var anc_desc = [];
@@ -276,27 +284,53 @@
 
         var h2color = "green", h1color = "red", mergedcolor = "";
 
-        if (swapdataset == "h1")
+        if (data_source == "books")
             title = ["BaseH - RedPark Library", "TargetH - GreenValley Library", "Merged Tree"];
         else
-            title = ["BaseH - GreenValley Library", "TargetH - RedPark Library", "Merged Tree"];
+            title = ["BeforeH", "AfterH", "MergedTree"];
 
-        d3.queue()
-            //.defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced-v6.csv")
-            //.defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced-v6.csv")
+        if (swapdataset == "h1") {
+            var swaptitle = title[0];
+            title[0] = title[1];
+            title[1] = swaptitle;
+        }
+        else {
+            var swaptitle = title[0];
+            title[0] = title[1];
+            title[1] = swaptitle;
+        }
 
-            //.defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
-            //.defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
+        if (data_source == "books") {
+            d3.queue()
 
-            .await(function (error, h1, h2) {
-                if (error) throw error;
+                .defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
+                .defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
 
-                else {
-                    console.log(h1);
-                    console.log(h2);
-                    runScript_tabs(h1, h2);
-                }
-            });
+                .await(function (error, h1, h2) {
+                    if (error) throw error;
+
+                    else {
+                        console.log(h1);
+                        console.log(h2);
+                        runScript_tabs(h1, h2);
+                    }
+                });
+        }
+        else {
+            d3.queue()
+                .defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced-v6.csv")
+                .defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced-v6.csv")
+
+                .await(function (error, h1, h2) {
+                    if (error) throw error;
+
+                    else {
+                        console.log(h1);
+                        console.log(h2);
+                        runScript_tabs(h1, h2);
+                    }
+                });
+        }
 
         /*
     d3.select("#btn-changeonlylayout").on("click", function () {
@@ -399,11 +433,21 @@
             //console.log(h2);
             //console.log(h1);
 
-            if (swapdataset == "h1")
+            if (data_source == "books")
                 title = ["BaseH - RedPark Library", "TargetH - GreenValley Library", "Merged Tree"];
             else
-                title = ["BaseH - GreenValley Library", "TargetH - RedPark Library", "Merged Tree"];
+                title = ["BeforeH", "AfterH", "MergedTree"];
 
+            if (swapdataset == "h1") {
+                var swaptitle = title[0];
+                title[0] = title[1];
+                title[1] = swaptitle;
+            }
+            else {
+                var swaptitle = title[0];
+                title[0] = title[1];
+                title[1] = swaptitle;
+            }
             console.log(title);
             /*
                         d3.select("#info_svg")
@@ -780,74 +824,118 @@
             var h1list = [], h2list = [], intersection = [], h1diff = [], h2diff = [];
 
 
+            if (data_source == "books") {
 
-            for (i = 0; i < h2_root.descendants().length; i++) {
-                var type = "";
-                if (h2_root.descendants()[i].data.data.isbn == "category")
-                    type = "Genre";
-                else
-                    type = "Book";
-                h2list.push({ "value": h2_root.descendants()[i].data.data.child, "title": h2_root.descendants()[i].data.data.title, "type": type });
-            }
-            for (i = 0; i < h1_root.descendants().length; i++) {
-                //h1list.push(h1_root.descendants()[i].data.data.description_child);
-                var type = "";
-                if (h1_root.descendants()[i].data.data.isbn == "category")
-                    type = "Genre";
-                else
-                    type = "Book";
-                h1list.push({ "value": h1_root.descendants()[i].data.data.child, "title": h1_root.descendants()[i].data.data.title, "type": type });
-            }
+                for (i = 0; i < h2_root.descendants().length; i++) {
+                    var type = "";
+                    if (h2_root.descendants()[i].data.data.isbn == "category")
+                        type = "Genre";
+                    else
+                        type = "Book";
+                    h2list.push({ "value": h2_root.descendants()[i].data.data.child, "title": h2_root.descendants()[i].data.data.title, "type": type });
+                }
+                for (i = 0; i < h1_root.descendants().length; i++) {
+                    //h1list.push(h1_root.descendants()[i].data.data.description_child);
+                    var type = "";
+                    if (h1_root.descendants()[i].data.data.isbn == "category")
+                        type = "Genre";
+                    else
+                        type = "Book";
+                    h1list.push({ "value": h1_root.descendants()[i].data.data.child, "title": h1_root.descendants()[i].data.data.title, "type": type });
+                }
 
-            //let intersection = h1list.filter(x => h2list.includes(x.value));
-            for (var i = 0; i < h1list.length; i++) {
-                for (var j = 0; j < h2list.length; j++) {
-                    if (h1list[i].value == h2list[j].value && !intersection.includes(h1list[i].value)) {
+                //let intersection = h1list.filter(x => h2list.includes(x.value));
+                for (var i = 0; i < h1list.length; i++) {
+                    for (var j = 0; j < h2list.length; j++) {
+                        if (h1list[i].value == h2list[j].value && !intersection.includes(h1list[i].value)) {
+                            intersection.push(h1list[i].value);
+                            nodes_list.push(h1list[i]);
+                        }
+                    }
+                }
+
+                //console.log(intersection.length);
+
+                for (var i = 0; i < h1list.length; i++) {
+                    if (!intersection.includes(h1list[i].value)) {
                         intersection.push(h1list[i].value);
                         nodes_list.push(h1list[i]);
                     }
                 }
-            }
 
-            //console.log(intersection.length);
+                //console.log(intersection.length);
 
-            for (var i = 0; i < h1list.length; i++) {
-                if (!intersection.includes(h1list[i].value)) {
-                    intersection.push(h1list[i].value);
-                    nodes_list.push(h1list[i]);
+                for (var i = 0; i < h2list.length; i++) {
+                    if (!intersection.includes(h2list[i].value)) {
+                        intersection.push(h2list[i].value);
+                        nodes_list.push(h2list[i]);
+                    }
                 }
+
+                //console.log(intersection.length);
+
+
+                //console.log(nodes_list);
+                //console.log(h1diff);
+                nodes_list
+                    .sort(function (x, y) {
+                        //console.log(x.title);
+                        return d3.ascending(x.x, y.x);
+                    });
+
+                d3.select("#search-nodes-list")
+                    .selectAll("option")
+                    .data(nodes_list)
+                    .enter()
+                    .append("option")
+                    .attr("value", function (d) {
+                        //console.log(d.data.data.description_child);
+                        //return d.value;
+                        return d.type + ": " + d.title;
+                    })
             }
+            else {
+                for (i = 0; i < h2_root.descendants().length; i++) {
 
-            //console.log(intersection.length);
-
-            for (var i = 0; i < h2list.length; i++) {
-                if (!intersection.includes(h2list[i].value)) {
-                    intersection.push(h2list[i].value);
-                    nodes_list.push(h2list[i]);
+                    h2list.push(h2_root.descendants()[i].data.data.description_child);
                 }
+                for (i = 0; i < h1_root.descendants().length; i++) {
+                    h1list.push(h1_root.descendants()[i].data.data.description_child);
+                }
+                let intersection = h1list.filter(x => h2list.includes(x));
+
+                let h1diff = h1list.filter(x => !h2list.includes(x));
+                let h2diff = h2list.filter(x => !h1list.includes(x));
+
+                for (var i = 0; i < intersection.length; i++)
+                    nodes_list.push(intersection[i]);
+
+                for (var i = 0; i < h1diff.length; i++)
+                    nodes_list.push(h1diff[i]);
+
+                for (var i = 0; i < h2diff.length; i++)
+                    nodes_list.push(h2diff[i]);
+
+                //console.log(nodes_list);
+                nodes_list
+                    .sort(function (x, y) {
+                        //console.log(x);
+                        return d3.ascending(x.x, y.x);
+                    });
+
+                d3.select("#search-nodes-list")
+                    .selectAll("option")
+                    .data(nodes_list)
+                    .enter()
+                    .append("option")
+                    .attr("value", function (d) {
+                        //console.log(d.data.data.description_child);
+                        return d;
+                    })
+                    .text(function (d) {
+                        return d;
+                    });
             }
-
-            //console.log(intersection.length);
-
-
-            //console.log(nodes_list);
-            //console.log(h1diff);
-            nodes_list
-                .sort(function (x, y) {
-                    //console.log(x.title);
-                    return d3.ascending(x.x, y.x);
-                });
-
-            d3.select("#search-nodes-list")
-                .selectAll("option")
-                .data(nodes_list)
-                .enter()
-                .append("option")
-                .attr("value", function (d) {
-                    //console.log(d.data.data.description_child);
-                    //return d.value;
-                    return d.type + ": " + d.title;
-                })
             /*
             .attr("label", function (d) {
                 return d.type + ": " + d.title;
@@ -2076,6 +2164,7 @@
                     .on("mouseover", function (d, i) {
                         var text = "";
                         var label = d.data.data.title;
+
                         if (label == "")
                             label = d.data.data.description;
 
@@ -2259,7 +2348,7 @@
                 //.size([Math.round(width * .9), Math.round(height * .65)]);
                 //.size([Math.round(width * .9), Math.round(height * .75)]);
 
-                //console.log(hier_root);
+                console.log(hier_root);
                 var cluster = d3
                     .cluster()
                     //.nodeSize([200, 600]);
@@ -3155,7 +3244,11 @@
                                     .style("stroke-width", "0px");
                             }
 
-                            var label = root.path(d)[i].data.data.title;
+                            if (data_source == "books")
+                                var label = root.path(d)[i].data.data.title;
+                            else
+                                var label = root.path(d)[i].data.data.child;
+
 
                             if (label.length > label_len) {
                                 if (label.includes(".")) {
@@ -3613,8 +3706,10 @@
                                     .style("stroke-width", "0px");
                             }
 
-
-                            var label = root.path(d)[i].data.data.title;
+                            if (data_source == "books")
+                                var label = root.path(d)[i].data.data.title;
+                            else
+                                var label = root.path(d)[i].data.data.child;
 
                             if (label.length > label_len) {
                                 if (label.includes(".")) {
@@ -3762,9 +3857,11 @@
                         return "rotate(90)";
                     }) */
                     .text(function (d) {
-                        //console.log(d);
-                        //var label = d.name;
-                        var label = d.data.data.title;
+                        //console.log(d.da)
+                        if (data_source == "books")
+                            var label = d.data.data.title;
+                        else
+                            var label = d.data.data.child;
                         //console.log(label);
 
                         if (label.length > label_len) {
@@ -3827,7 +3924,11 @@
                                 .style("fill", "silver")
                                 .style("cursor", "default")
                                 .text(function (d) {
-                                    var label = d.data.data.title;
+                                    if (data_source == "books")
+                                        var label = d.data.data.title;
+                                    else
+                                        var label = d.data.data.child;
+
                                     if (label.includes("_"))
                                         label = label.substring(label.indexOf("/") + 1, label.length);
                                     if (label.includes("/"))
@@ -3971,7 +4072,7 @@
                     })
                     //.style("stroke", "#ccc")
                     .style("stroke", function (d) {
-                        console.log(d.target.data.data);
+                        //console.log(d.target.data.data);
                         // return d.target.data.data.linkcolor;
 
 
@@ -3990,7 +4091,7 @@
                         }
 
                         else {
-                            return d.target.data.data.linkcolor;
+                            return "blue";
 
                         }
 
