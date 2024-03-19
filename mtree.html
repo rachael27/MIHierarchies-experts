@@ -2301,7 +2301,7 @@
                             else {
                                 type = "Book"
                             }
-                            type = "TargetH " + type;
+                            type = "BaseH " + type;
                             text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
                         }
                         else {
@@ -2323,7 +2323,7 @@
                                 else
                                     type = "Folder"
                             }
-                            type = "AfterH " + type;
+                            type = "BeforeH " + type;
                             var text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + parent + "/<b>" + child + "</b>";
 
                         }
@@ -3274,22 +3274,36 @@
                         var text = ""; var label = "";
 
                         if (data_source == "books") {
+
                             label = d.data.data.title;
-                            console.log(label);
+                            if (label == "")
+                                label = d.data.data.description;
 
-                            //update_log("mtree", "h2 node " + label, "node", "display tooltip", "mouseover", "", "", "", "", "");
+                            var type = ""; var text = "";
+                            //console.log(label);
 
-
-                            var type = "";
                             if (d.data.data.isbn == "category") {
-                                type = "Genre";
-                                //  type = type + " Code:" + d.data.data.description_child;
+                                type = "<b>Genre</b>";
+                                label = d.data.data.title + "\nLoC Code: " + d.data.data.description;
                             }
                             else {
-                                type = "Book"
+                                type = "<b>Book</b>";
+                                label = d.data.data.title;
                             }
-                            type = "TargetH " + type;
-                            text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
+
+                            if (d.data.data.shape == "h1")
+                                type = type + " available only in " + afterh;
+                            else if (d.data.data.shape == "h2")
+                                type = type + " available only in " + beforeh;
+                            else
+                                type = type + " available in " + afterh + " and " + beforeh;
+
+
+                            type = type + "<hr class='border border-danger border-1 opacity-50'>";
+
+
+
+                            text = type + "" + label + "<b>";
                         }
                         else {
                             var label = path, child = "root", parent = "";
@@ -3771,21 +3785,34 @@
 
                         if (data_source == "books") {
                             label = d.data.data.title;
+                            if (label == "")
+                                label = d.data.data.description;
+
+                            var type = ""; var text = "";
                             //console.log(label);
 
-                            //update_log("mtree", "h2 node " + label, "node", "display tooltip", "mouseover", "", "", "", "", "");
-                            console.log(d.data.data);
-
-                            var type = "";
                             if (d.data.data.isbn == "category") {
-                                type = "Genre";
-                                //type = type + " Code:" + d.data.data.description_child;
+                                type = "<b>Genre</b>";
+                                label = d.data.data.title + "\nLoC Code: " + d.data.data.description;
                             }
                             else {
-                                type = "Book"
+                                type = "<b>Book</b>";
+                                label = d.data.data.title;
                             }
-                            type = "TargetH " + type;
-                            text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
+
+                            if (d.data.data.shape == "h1")
+                                type = type + " available only in " + afterh;
+                            else if (d.data.data.shape == "h2")
+                                type = type + " available only in " + beforeh;
+                            else
+                                type = type + " available in " + afterh + " and " + beforeh;
+
+
+                            type = type + "<hr class='border border-danger border-1 opacity-50'>";
+
+
+
+                            text = type + "" + label + "<b>";
                         }
                         else {
                             var label = path, child = "root", parent = "";
