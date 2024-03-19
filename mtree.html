@@ -118,6 +118,19 @@
 
                 <fieldset class="border p-2" style="margin-top:2%;">
                     <!--<legend class="w-auto">Choose layout</legend>-->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDataset" value="files" checked>
+                        <label class="form-check-label" for="filedataset">
+                            Digital resources dataset
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDataset" value="books">
+                        <label class="form-check-label" for="booksdataset">
+                            Books Dataset
+                        </label>
+                    </div>
+
                     <br>
                     <button type="button" class="btn btn-md" id="btn-swapdataset"
                         style="color: white;background-color:#155446;">Swap dataset</button>
@@ -227,11 +240,14 @@
 
 
 
+
         var qcounter = 0;
         var logObject = [];
 
         //var data_source = "books";
-        var data_source = "files";
+        var data_source = "";
+        data_source = d3.select('input[name="radioDataset"]:checked').node().value;
+
 
 
         //LOG FILES
@@ -289,16 +305,7 @@
         else
             title = ["BeforeH", "AfterH", "MergedTree"];
 
-        if (swapdataset == "h1") {
-            var swaptitle = title[0];
-            title[0] = title[1];
-            title[1] = swaptitle;
-        }
-        else {
-            var swaptitle = title[0];
-            title[0] = title[1];
-            title[1] = swaptitle;
-        }
+
 
         if (data_source == "books") {
             d3.queue()
@@ -383,18 +390,23 @@
 
 */
 
+        d3.selectAll("input[name='radioDataset']").on("change", function () {
+            //update_log("btn-swapdataset", "button", "swapping datasets");
 
-
-        d3.select("#btn-swapdataset").on("click", function () {
-            update_log("btn-swapdataset", "button", "swapping datasets");
-
-            console.log("Swapdataset");
+            data_source = d3.select('input[name="radioDataset"]:checked').node().value;
+            console.log("datasource " + data_source);
 
             //fileversion = "File4";
+            if (data_source == "books")
+                title = ["BaseH - RedPark Library", "TargetH - GreenValley Library", "Merged Tree"];
+            else
+                title = ["BeforeH", "AfterH", "MergedTree"];
 
 
 
-            if (swapdataset == "h2") {
+
+
+            if (data_source == "books") {
                 d3.queue()
                     //.defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced.csv")
                     //.defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced.csv")
@@ -409,18 +421,106 @@
                             runScript_tabs(h1, h2);
                     });
                 swapdataset = "h1";
+
             }
             else {
                 d3.queue()
-                    .defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
-                    .defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
+                    .defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced-v6.csv")
+                    .defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced-v6.csv")
                     .await(function (error, h2, h1) {
                         if (error) throw error;
 
                         else
                             runScript_tabs(h1, h2);
                     });
-                swapdataset = "h2";
+                swapdataset = "h1";
+            }
+
+        });
+
+
+
+
+        d3.select("#btn-swapdataset").on("click", function () {
+            update_log("btn-swapdataset", "button", "swapping datasets");
+
+            console.log("Swapdataset");
+            console.log("datasource " + data_source);
+
+            //fileversion = "File4";
+            if (data_source == "books")
+                title = ["BaseH - RedPark Library", "TargetH - GreenValley Library", "Merged Tree"];
+            else
+                title = ["BeforeH", "AfterH", "MergedTree"];
+
+            var swaptitle = title[0];
+            title[0] = title[1];
+            title[1] = swaptitle;
+
+
+
+            if (data_source == "books") {
+                if (swapdataset == "h2") {
+                    d3.queue()
+                        //.defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced.csv")
+                        //.defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced.csv")
+
+                        .defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
+                        .defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
+
+                        .await(function (error, h1, h2) {
+                            if (error) throw error;
+
+                            else
+                                runScript_tabs(h1, h2);
+                        });
+                    swapdataset = "h1";
+
+                }
+                else {
+                    d3.queue()
+                        .defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
+                        .defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
+                        .await(function (error, h2, h1) {
+                            if (error) throw error;
+
+                            else
+                                runScript_tabs(h1, h2);
+                        });
+                    swapdataset = "h2";
+                }
+            }
+            else {
+                if (swapdataset == "h2") {
+                    d3.queue()
+                        .defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced-v6.csv")
+                        .defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced-v6.csv")
+
+                        //.defer(d3.csv, "LibraryFiles/PrimaryH-v3.csv")
+                        //.defer(d3.csv, "LibraryFiles/SecondaryH-v3.csv")
+
+                        .await(function (error, h1, h2) {
+                            if (error) throw error;
+
+                            else
+                                runScript_tabs(h1, h2);
+                        });
+                    swapdataset = "h1";
+
+                }
+                else {
+                    d3.queue()
+                        .defer(d3.csv, "File/" + fileversion + "-primaryHA-reduced-v6.csv")
+                        .defer(d3.csv, "File/" + fileversion + "-secondaryHE-reduced-v6.csv")
+
+                        .await(function (error, h2, h1) {
+                            if (error) throw error;
+
+                            else
+                                runScript_tabs(h1, h2);
+                        });
+                    swapdataset = "h2";
+                }
             }
 
         });
@@ -433,21 +533,20 @@
             //console.log(h2);
             //console.log(h1);
 
-            if (data_source == "books")
-                title = ["BaseH - RedPark Library", "TargetH - GreenValley Library", "Merged Tree"];
-            else
-                title = ["BeforeH", "AfterH", "MergedTree"];
 
-            if (swapdataset == "h1") {
-                var swaptitle = title[0];
-                title[0] = title[1];
-                title[1] = swaptitle;
-            }
-            else {
-                var swaptitle = title[0];
-                title[0] = title[1];
-                title[1] = swaptitle;
-            }
+
+            /*
+        if (swapdataset == "h1") {
+            var swaptitle = title[0];
+            title[0] = title[1];
+            title[1] = swaptitle;
+        }
+        else {
+            var swaptitle = title[0];
+            title[0] = title[1];
+            title[1] = swaptitle;
+        }
+        */
             console.log(title);
             /*
                         d3.select("#info_svg")
@@ -1877,27 +1976,49 @@
                     })
                     .on("mouseover", function (d, i) {
                         //console.log(d);
-                        var text = "";
+                        var text = ""; var label = "";
 
-                        var label = d.data.data.title;
-                        if (label == "")
+                        if (data_source == "books") {
                             label = d.data.data.description_child;
-                        console.log(label);
+                            console.log(label);
 
-                        update_log("mtree", "h2 node " + label, "node", "display tooltip", "mouseover", "", "", "", "", "");
+                            update_log("mtree", "h2 node " + label, "node", "display tooltip", "mouseover", "", "", "", "", "");
 
 
-                        var type = "";
-                        if (d.data.data.isbn == "category") {
-                            type = "Genre";
-                            type = type + " Code:" + d.data.data.description_child;
+                            var type = "";
+                            if (d.data.data.isbn == "category") {
+                                type = "Genre";
+                                // type = type + " Code:" + d.data.data.description_child;
+                            }
+                            else {
+                                type = "Book"
+                            }
+                            type = "TargetH " + type;
+                            text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
                         }
                         else {
-                            type = "Book"
-                        }
-                        type = "TargetH " + type;
-                        text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
+                            label = d.data.data.description_child, child = "root", parent = "";
+                            if (label.includes("/")) {
+                                child = label.substring(label.lastIndexOf("/") + 1, label.length);
+                                parent = label.substring(0, label.lastIndexOf("/"));
+                            }
 
+                            update_log("mtree", "h2 node " + label, "node", "display tooltip", "mouseover", "", "", "", "", "");
+                            //console.log(parent + " " + child);
+
+                            var type = "";
+                            if (d.children || d._children)
+                                type = "Folder";
+                            else {
+                                if (d.data.data.child.includes("."))
+                                    type = "File";
+                                else
+                                    type = "Folder"
+                            }
+                            type = "AfterH " + type;
+                            var text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + parent + "/<b>" + child + "</b>";
+
+                        }
 
 
                         d3.select("#tooltip")
@@ -2162,30 +2283,49 @@
                         return 0.3;
                     })
                     .on("mouseover", function (d, i) {
-                        var text = "";
-                        var label = d.data.data.title;
+                        var text = ""; var label = "";
 
-                        if (label == "")
-                            label = d.data.data.description;
+                        if (data_source == "books") {
+                            label = d.data.data.description_child;
+                            console.log(label);
 
-
-                        update_log("mtree", "h1 node " + label, "label", "display tooltip", "mouseover", "", "", "", "", "");
-
-                        console.log(label);
+                            update_log("mtree", "h2 node " + label, "node", "display tooltip", "mouseover", "", "", "", "", "");
 
 
-                        var type = "";
-                        if (d.data.data.isbn == "category") {
-                            type = "Genre";
-                            type = type + " Code:" + d.data.data.description_child;
+                            var type = "";
+                            if (d.data.data.isbn == "category") {
+                                type = "Genre";
+                                // type = type + " Code:" + d.data.data.description_child;
+                            }
+                            else {
+                                type = "Book"
+                            }
+                            type = "TargetH " + type;
+                            text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
                         }
                         else {
-                            type = "Book"
+                            label = d.data.data.description_child, child = "root", parent = "";
+                            if (label.includes("/")) {
+                                child = label.substring(label.lastIndexOf("/") + 1, label.length);
+                                parent = label.substring(0, label.lastIndexOf("/"));
+                            }
+
+                            update_log("mtree", "h2 node " + label, "node", "display tooltip", "mouseover", "", "", "", "", "");
+                            //console.log(parent + " " + child);
+
+                            var type = "";
+                            if (d.children || d._children)
+                                type = "Folder";
+                            else {
+                                if (d.data.data.child.includes("."))
+                                    type = "File";
+                                else
+                                    type = "Folder"
+                            }
+                            type = "AfterH " + type;
+                            var text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + parent + "/<b>" + child + "</b>";
+
                         }
-
-                        text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
-
-
 
 
 
@@ -3130,35 +3270,65 @@
                         //console.log(path);
                         //console.log(d);
 
-                        var label = d.data.data.title;
-                        if (label == "")
-                            label = d.data.data.description;
+                        var text = ""; var label = "";
 
-                        var type = ""; var text = "";
-                        //console.log(label);
+                        if (data_source == "books") {
+                            label = d.data.data.title;
+                            console.log(label);
 
-                        if (d.data.data.isbn == "category") {
-                            type = "<b>Genre</b>";
-                            label = d.data.data.title + "\nLoC Code: " + d.data.data.description;
+                            //update_log("mtree", "h2 node " + label, "node", "display tooltip", "mouseover", "", "", "", "", "");
+
+
+                            var type = "";
+                            if (d.data.data.isbn == "category") {
+                                type = "Genre";
+                                //  type = type + " Code:" + d.data.data.description_child;
+                            }
+                            else {
+                                type = "Book"
+                            }
+                            type = "TargetH " + type;
+                            text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
                         }
                         else {
-                            type = "<b>Book</b>";
-                            label = d.data.data.title;
+                            var label = path, child = "root", parent = "";
+                            //if (label.includes("/")) {
+                            child = path[path.length - 1];
+                            path.pop();
+                            parent = path.join("/");
+                            //child = label.substring(label.lastIndexOf("/") + 1, label.length);
+                            //parent = label.substring(0, label.lastIndexOf("/"));
+                            //}
+                            //console.log(parent + " " + child);
+
+                            var type = "";
+                            if (d.children || d._children)
+                                type = "Folder";
+                            else {
+                                if (d.data.data.child.includes("."))
+                                    type = "File";
+                                else
+                                    type = "Folder"
+                            }
+                            if (h2path.length == 0)
+                                h2text = "Not available in AfterH";
+                            else
+                                h2text = h2path.join("/");
+
+                            if (h1path.length == 0)
+                                h1text = "Not available in BeforeH";
+                            else
+                                h1text = h1path.join("/");
+
+                            //console.log(h2text == h1text);
+                            //console.log(h2text + " " + h1text);
+
+                            if (h2text == h1text)
+                                text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'><b>Path in BeforeH and AfterH: </b>" + h2text;
+                            else
+                                text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'><b>Path in BeforeH: </b>" + h1text + "<hr class='border border-danger border-1 opacity-50'><b>Path in AfterH: </b>" + h2text;
+
                         }
-
-                        if (d.data.data.shape == "h1")
-                            type = type + " available only in " + afterh;
-                        else if (d.data.data.shape == "h2")
-                            type = type + " available only in " + beforeh;
-                        else
-                            type = type + " available in " + afterh + " and " + beforeh;
-
-
-                        type = type + "<hr class='border border-danger border-1 opacity-50'>";
-
-
-
-                        text = type + "" + label + "<b>";
 
 
                         /*  if (h2text == h1text)
@@ -3596,28 +3766,65 @@
                         var text = "";
 
 
-                        var label = d.data.data.title;
-                        if (label == "")
-                            label = d.data.data.description_child;
+                        var text = ""; var label = "";
 
+                        if (data_source == "books") {
+                            label = d.data.data.title;
+                            //console.log(label);
 
-                        var type = "";
-                        if (d.data.data.isbn == "category") {
-                            type = "<b>Genre</b>";
-                            label = d.data.data.title + "\nLoC Code: " + d.data.data.description;
+                            //update_log("mtree", "h2 node " + label, "node", "display tooltip", "mouseover", "", "", "", "", "");
+                            console.log(d.data.data);
+
+                            var type = "";
+                            if (d.data.data.isbn == "category") {
+                                type = "Genre";
+                                //type = type + " Code:" + d.data.data.description_child;
+                            }
+                            else {
+                                type = "Book"
+                            }
+                            type = "TargetH " + type;
+                            text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'>" + label + "<b>";
                         }
-                        else
-                            type = "<b>Book</b>"
+                        else {
+                            var label = path, child = "root", parent = "";
+                            //if (label.includes("/")) {
+                            child = path[path.length - 1];
+                            path.pop();
+                            parent = path.join("/");
+                            //child = label.substring(label.lastIndexOf("/") + 1, label.length);
+                            //parent = label.substring(0, label.lastIndexOf("/"));
+                            //}
+                            //console.log(parent + " " + child);
 
-                        if (d.data.data.shape == "h1")
-                            type = type + " available only in " + afterh;
-                        else if (d.data.data.shape == "h2")
-                            type = type + " available only in " + beforeh;
-                        else
-                            type = type + " available in " + afterh + " and " + beforeh;
+                            var type = "";
+                            if (d.children || d._children)
+                                type = "Folder";
+                            else {
+                                if (d.data.data.child.includes("."))
+                                    type = "File";
+                                else
+                                    type = "Folder"
+                            }
+                            if (h2path.length == 0)
+                                h2text = "Not available in AfterH";
+                            else
+                                h2text = h2path.join("/");
 
-                        text = type + "<hr class='border border-danger border-1 opacity-50'>" + label;
+                            if (h1path.length == 0)
+                                h1text = "Not available in BeforeH";
+                            else
+                                h1text = h1path.join("/");
 
+                            //console.log(h2text == h1text);
+                            //console.log(h2text + " " + h1text);
+
+                            if (h2text == h1text)
+                                text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'><b>Path in BeforeH and AfterH: </b>" + h2text;
+                            else
+                                text = "<b> " + type + " </b><hr class='border border-danger border-1 opacity-50'><b>Path in BeforeH: </b>" + h1text + "<hr class='border border-danger border-1 opacity-50'><b>Path in AfterH: </b>" + h2text;
+
+                        }
 
 
 
