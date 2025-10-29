@@ -4,3 +4,4 @@ This repository will help you set up the MergedTree visualization for comparing 
 
 The index.html is the index file. Users are provided with multiple primary and secondary hierarchy files that can be played with so they can understand the functioning of the MergedTree. The path to these files must be changed in the mtree.html file and treewlinking.html for the MergedTree and the LinkedTree visualizations, respectively.
 
+You can bypass the consent page by using the following combinations: Ctrl+m for the MergedTree and Ctrl+L for the LinkedTree.
